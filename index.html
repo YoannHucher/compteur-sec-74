@@ -17,12 +17,12 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧪</text></svg>">
 
     <style>
-        /* 🌌 STYLING INSPIRÉ DE GEMINI_GENERATED_IMAGE_K7B0LRK7B0LRK7B0.PNG */
+        /* 🌌 CONFIGURATION ET STYLE LABVAPE DESIGN OS PREMIUM */
         :root {
-            --bg-gradient: radial-gradient(circle at 80% 20%, #1a103c 0%, #0b0f19 50%, #05070b 100%);
+            --bg-gradient: radial-gradient(circle at 50% 30%, #17123a 0%, #0b0f19 60%, #05070b 100%);
             --glass-bg: rgba(255, 255, 255, 0.06);
             --glass-border: rgba(255, 255, 255, 0.1);
-            --neon-glow: 0 0 30px rgba(112, 0, 255, 0.25);
+            --neon-glow: 0 0 40px rgba(112, 0, 255, 0.25);
             
             --cyan-neon: #3be2f2;
             --purple-neon: #a855f7;
@@ -43,65 +43,56 @@
             overflow-x: hidden;
         }
 
-        /* BARRE SUPÉRIEURE (VAPELAB) */
+        /* BARRE SUPÉRIEURE ÉPURÉE ET LOGO CENTRÉ GAUCHE (LOOK LOGICIEL) */
         .top-bar {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1400px;
+            justify-content: center; /* Centrage global */
+            max-width: 1300px;
             width: 100%;
-            margin: 0 auto 30px auto;
+            margin: 10px auto 30px auto;
             padding: 0 10px;
         }
 
-        .top-logo {
-            font-size: 20px;
+        .top-logo-centered {
+            font-size: 24px;
             font-weight: 800;
-            letter-spacing: 2px;
+            letter-spacing: 5px; /* Espacement typographique premium de l'image */
             color: #ffffff;
+            text-transform: uppercase;
+            text-shadow: 0 0 20px rgba(59, 226, 242, 0.4);
+            margin-right: 12%; /* Léger décalage vers la gauche pour coller à l'esthétique du moniteur */
         }
-        .top-logo span { color: #3b82f6; }
-
-        .top-actions {
-            display: flex;
-            gap: 15px;
-            align-items: center;
-        }
-        .user-badge {
-            background: rgba(255,255,255,0.05);
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 12px;
-            color: var(--text-muted);
-            border: 1px solid var(--glass-border);
+        .top-logo-centered span { 
+            color: var(--cyan-neon); 
+            font-weight: 400;
         }
 
-        /* CONTENEUR PRINCIPAL STYLE TABLEAU DE BORD */
+        /* CONTENEUR PRINCIPAL EN DOUBLE COLONNE (NAVIGATION | CONTENU) */
         .dashboard-container {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 25px;
-            max-width: 1300px;
+            gap: 30px;
+            max-width: 1200px;
             width: 100%;
             margin: auto;
         }
 
         @media (min-width: 992px) {
             .dashboard-container {
-                grid-template-columns: 320px 1fr 300px;
+                grid-template-columns: 320px 1fr;
                 align-items: start;
             }
         }
 
-        /* COMPOSANT FENÊTRE STYLE OS (MAC OS WINDOWS EFFECT) */
+        /* COMPOSANT FENÊTRE STYLE MAC/OS VITRE FUMÉE */
         .window-card {
             background: rgba(18, 24, 41, 0.6);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
             border-radius: 24px;
             border: 1px solid var(--glass-border);
-            box-shadow: 0 30px 60px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.1);
-            padding: 24px;
+            box-shadow: 0 40px 70px rgba(0,0,0,0.6), inset 0 1px 1px rgba(255,255,255,0.1);
+            padding: 28px;
             position: relative;
         }
 
@@ -109,7 +100,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
         }
 
         .window-dots {
@@ -124,51 +115,50 @@
         .dot.red { background: #ff5f56; }
         .dot.yellow { background: #ffbd2e; }
         .dot.green { background: #27c93f; }
-        .window-close { color: var(--text-muted); font-size: 14px; }
+        .window-close { color: var(--text-muted); font-size: 14px; cursor: pointer; }
 
-        /* WIDGET 1 : LE LOGO OFFICIEL LABVAPE GRAND ACCUEIL */
+        /* BLOC WIDGET LOGO HISTORIQUE GAUCHE */
         .widget-logo-box {
             text-align: center;
-            padding: 40px 20px;
-            background: linear-gradient(135deg, rgba(59, 226, 242, 0.05) 0%, rgba(112, 0, 255, 0.05) 100%);
-            border: 1px solid rgba(59, 226, 242, 0.15);
-            box-shadow: 0 0 30px rgba(5be2f2, 0.05);
+            padding: 35px 20px;
+            background: linear-gradient(135deg, rgba(59, 226, 242, 0.04) 0%, rgba(112, 0, 255, 0.04) 100%);
+            border: 1px solid rgba(59, 226, 242, 0.12);
         }
 
         .vape-illustration {
-            width: 90px;
-            height: 90px;
-            margin: 0 auto 20px auto;
-            background: radial-gradient(circle, rgba(59,226,242,0.2) 0%, transparent 70%);
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 16px auto;
+            background: radial-gradient(circle, rgba(59,226,242,0.15) 0%, transparent 70%);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 45px;
-            filter: drop-shadow(0 0 15px rgba(59,226,242,0.6));
+            font-size: 40px;
+            filter: drop-shadow(0 0 15px rgba(59,226,242,0.5));
         }
 
         .brand-title {
-            font-size: 28px;
+            font-size: 26px;
             font-weight: 800;
             letter-spacing: 4px;
             color: #ffffff;
-            margin: 0 0 4px 0;
+            margin: 0 0 6px 0;
             text-transform: uppercase;
         }
         .brand-subtitle {
             font-size: 8px;
             font-weight: 600;
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
             color: var(--text-muted);
             text-transform: uppercase;
-            border-top: 1px solid rgba(255,255,255,0.1);
+            border-top: 1px solid rgba(255,255,255,0.08);
             padding-top: 6px;
             display: inline-block;
         }
 
-        /* NAVIGATION PAR ONGLETS REVISITÉE EN DROPDOWN / LISTE COMPACTE */
+        /* NAVIGATION INTERACTIVE DES MENUS */
         .tools-nav {
-            margin-top: 25px;
+            margin-top: 20px;
             display: flex;
             flex-direction: column;
             gap: 8px;
@@ -177,8 +167,8 @@
             background: rgba(255,255,255,0.02);
             border: 1px solid transparent;
             color: var(--text-muted);
-            padding: 12px 16px;
-            border-radius: 12px;
+            padding: 13px 16px;
+            border-radius: 14px;
             cursor: pointer;
             text-align: left;
             font-weight: 600;
@@ -194,9 +184,9 @@
             border-left: 3px solid var(--cyan-neon);
         }
 
-        /* COMPOSANTS DE FORMULAIRE (STYLE VITRE SOMBRE) */
+        /* TYPOGRAPHIES ET FORMULAIRES DE CONFIGURATION */
         .window-title {
-            font-size: 18px;
+            font-size: 19px;
             font-weight: 700;
             margin: 0 0 4px 0;
             color: #ffffff;
@@ -204,7 +194,7 @@
         .window-desc {
             font-size: 12px;
             color: var(--text-muted);
-            margin-bottom: 20px;
+            margin-bottom: 24px;
         }
 
         label {
@@ -214,28 +204,28 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
             color: var(--text-muted);
-            margin-bottom: 6px;
+            margin-bottom: 7px;
         }
 
         input, select {
             width: 100%;
-            background: rgba(10, 14, 23, 0.8);
-            border: 1px solid rgba(255,255,255,0.08);
+            background: rgba(9, 13, 22, 0.85);
+            border: 1px solid rgba(255,255,255,0.07);
             border-radius: 12px;
-            padding: 12px 14px;
+            padding: 14px;
             color: #ffffff;
             font-size: 15px;
             font-weight: 600;
             box-sizing: border-box;
             outline: none;
-            margin-bottom: 16px;
+            margin-bottom: 18px;
             transition: border-color 0.2s;
         }
         input:focus, select:focus {
             border-color: var(--cyan-neon);
         }
 
-        /* 👑 LE BOUTON DÉGRADÉ ULTRA PREMIUM (IMAGE LOOK) */
+        /* 👑 LE BOUTON AVEC LE GRAND DÉGRADÉ DE L'IMAGE GENERÉE */
         .action-gradient-btn {
             width: 100%;
             background: linear-gradient(90deg, #2be2f4 0%, #3b82f6 50%, #8b5cf6 100%);
@@ -246,70 +236,32 @@
             font-size: 13px;
             font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
+            letter-spacing: 2px;
             cursor: pointer;
-            box-shadow: 0 8px 25px rgba(59, 226, 242, 0.35);
-            transition: all 0.3s ease;
+            box-shadow: 0 8px 30px rgba(59, 226, 242, 0.3);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             margin-top: 10px;
         }
         .action-gradient-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 12px 30px rgba(59, 226, 242, 0.5);
+            box-shadow: 0 14px 35px rgba(59, 226, 242, 0.45);
         }
 
-        /* PANNEAU DE RÉSULTAT INTÉGRÉ DANS LA FENÊTRE */
+        /* CONTENEUR DU VERDICT DE L'ANALYSE */
         .result-panel {
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 16px;
-            padding: 16px;
-            margin-top: 20px;
+            background: rgba(0, 0, 0, 0.25);
+            border-radius: 18px;
+            padding: 20px;
+            margin-top: 24px;
             border: 1px solid rgba(255,255,255,0.03);
         }
         .result-value {
-            font-size: 28px;
+            font-size: 32px;
             font-weight: 800;
             color: var(--cyan-neon);
-            text-shadow: 0 0 15px rgba(59, 226, 242, 0.3);
+            text-shadow: 0 0 20px rgba(59, 226, 242, 0.35);
         }
 
-        /* WIDGET 3 : DONNÉES CLIENT / GRAPHIQUES (DROITE) */
-        .widget-title {
-            font-size: 13px;
-            font-weight: 700;
-            color: #ffffff;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .chart-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            height: 120px;
-            margin-top: 25px;
-            padding: 0 10px;
-        }
-        .chart-bar-wrapper {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-        }
-        .chart-bar {
-            width: 8px;
-            border-radius: 10px;
-            background: linear-gradient(to top, var(--purple-neon), var(--cyan-neon));
-            box-shadow: 0 0 10px rgba(59, 226, 242, 0.3);
-            transition: height 0.5s ease;
-        }
-        .chart-day {
-            font-size: 9px;
-            color: var(--text-muted);
-            font-weight: 600;
-        }
-
-        /* TEXTE STATUS ET PRÉSETS */
         .status-text {
             font-size: 11px;
             font-weight: 700;
@@ -329,7 +281,7 @@
             background: rgba(255,255,255,0.03);
             border: 1px solid rgba(255,255,255,0.06);
             color: #fff;
-            padding: 8px;
+            padding: 9px;
             font-size: 11px;
             border-radius: 8px;
             cursor: pointer;
@@ -337,36 +289,31 @@
             text-align: center;
         }
 
-        /* FOOTER COPIÉ DE L'IMAGE */
         footer {
             text-align: center;
             margin-top: auto;
-            padding: 40px 10px 10px 10px;
+            padding: 50px 10px 15px 10px;
             font-size: 10px;
-            color: rgba(255,255,255,0.25);
+            color: rgba(255,255,255,0.2);
             letter-spacing: 0.5px;
         }
-        footer a { color: rgba(255,255,255,0.4); text-decoration: none; }
+        footer a { color: rgba(255,255,255,0.3); text-decoration: none; }
 
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
         .hidden-tab { display: none; }
     </style>
 </head>
 <body>
 
-    <!-- BARRE SUPÉRIEURE -->
+    <!-- BARRE SUPÉRIEURE AVEC EN-TÊTE CORRIGÉ ET CENTRÉ GAUCHE -->
     <div class="top-bar">
-        <div class="top-logo">VAPE<span>LAB</span></div>
-        <div class="top-actions">
-            <div class="user-badge">Denten chombls</div>
-            <span style="cursor:pointer; font-size:16px;">🔔</span>
-        </div>
+        <div class="top-logo-centered">LAB<span>VAPE</span></div>
     </div>
 
-    <!-- ZONE LOGICIELLE PRINCIPALE -->
+    <!-- ZONE LOGICIELLE INTERACTIVE PRINCIPALE -->
     <div class="dashboard-container">
         
-        <!-- COLONNE GAUCHE : IDENTITÉ & NAV -->
+        <!-- COMPOSANT DE GAUCHE : IDENTITÉ ET ONGLETS DE SÉLECTION -->
         <div>
             <div class="window-card widget-logo-box">
                 <div class="vape-illustration">🧪</div>
@@ -386,8 +333,8 @@
             </div>
         </div>
 
-        <!-- COLONNE CENTRALE : LES CRITÈRES ET LE DIAGNOSTIC DYNAMIQUE -->
-        <div class="window-card" style="border-color: rgba(168, 85, 247, 0.3); box-shadow: var(--neon-glow);">
+        <!-- COMPOSANT CENTRAL : MODULE DÉDIÉ AUX CALCULS (EFFET GLOW NÉON DE L'IMAGE) -->
+        <div class="window-card" style="border-color: rgba(168, 85, 247, 0.35); box-shadow: var(--neon-glow);">
             <div class="window-header">
                 <div class="window-dots">
                     <div class="dot red"></div>
@@ -566,10 +513,10 @@
                 </div>
             </div>
 
-            <!-- LE BOUTON EMBLEMATION DÉGRADÉ -->
+            <!-- LE BOUTON EMBLEMATION AVEC LE GRAND DÉGRADÉ DE L'IMAGE -->
             <button class="action-gradient-btn" onclick="calcAll()">Lancer le diagnostic</button>
 
-            <!-- BOÎTE DE RÉSULTATS PHARE -->
+            <!-- BOÎTE DE RÉSULTATS INTEGRÉE -->
             <div class="result-panel">
                 <label id="result-label-text">Analyse en cours</label>
                 <div class="result-value" id="main-result-value">--</div>
@@ -578,53 +525,14 @@
             </div>
         </div>
 
-        <!-- COLONNE DROITE : WIDGET COMPLEMENTAIRE GRAPH (LOOK IMAGE) -->
-        <div class="window-card">
-            <div class="widget-title">
-                <span>Datões de customers</span>
-                <span style="color:var(--text-muted); font-size:11px;">❯</span>
-            </div>
-            
-            <div class="chart-container">
-                <div class="chart-bar-wrapper">
-                    <div class="chart-bar" style="height: 45px;"></div>
-                    <span class="chart-day">L</span>
-                </div>
-                <div class="chart-bar-wrapper">
-                    <div class="chart-bar" style="height: 75px;"></div>
-                    <span class="chart-day">M</span>
-                </div>
-                <div class="chart-bar-wrapper">
-                    <div class="chart-bar" style="height: 60px;"></div>
-                    <span class="chart-day">M</span>
-                </div>
-                <div class="chart-bar-wrapper">
-                    <div class="chart-bar" style="height: 95px;"></div>
-                    <span class="chart-day">J</span>
-                </div>
-                <div class="chart-bar-wrapper">
-                    <div class="chart-bar" style="height: 40px;"></div>
-                    <span class="chart-day">V</span>
-                </div>
-                <div class="chart-bar-wrapper">
-                    <div class="chart-bar" style="height: 85px;"></div>
-                    <span class="chart-day">S</span>
-                </div>
-            </div>
-            
-            <div style="margin-top: 25px; font-size: 11px; color: var(--text-muted); line-height: 1.4;">
-                Indicateurs de flux et de recommandations de conseils automatisés Labvape enregistrés.
-            </div>
-        </div>
-
     </div>
 
     <!-- BAS DE PAGE OFFICIEL DE L'IMAGE -->
     <footer>
-        © 2026 VAPELAB — Système intelligent d'aide à la vente — Propriété exclusive du réseau. (<a href="https://labvape.fr" target="_blank">labvape.fr</a>)
+        © 2026 LABVAPE — Système intelligent d'aide à la vente — Propriété exclusive du réseau. (<a href="https://labvape.fr" target="_blank">labvape.fr</a>)
     </footer>
 
-    <!-- LOGIQUE APPLICATIVE INTERNE -->
+    <!-- LOGIQUE LOGICIELLE DE CALCUL SÉCURISÉE -->
     <script>
         let currentTab = 'cdr';
 
@@ -769,7 +677,7 @@
                     let w = parseFloat(document.getElementById("autoWatts").value) || 1;
                     
                     let totalJoules = ((mah * nb) / 1000) * 3.7 * 3600;
-                    let puffs = totalJoules / (w * 3); // Bouffées de 3 sec
+                    let puffs = totalJoules / (w * 3);
                     
                     mainVal.innerText = Math.floor(puffs) + " Puffs";
                     subTxt.innerText = "Basé sur un cycle complet de décharge et des bouffées moyennes de 3 secondes.";
