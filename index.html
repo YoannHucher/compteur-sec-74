@@ -18,85 +18,143 @@
     <link rel="icon" type="image/png" href="https://i.ibb.co/qMfNgwV9/Logo-Labvape.png">
 
     <style>
-        /* ⚪️ NOUVELLE IDENTITÉ GRAPHIQUE : CLAIRE, ÉPURÉE & INSTANTANÉE */
+        /* 📱 DESIGN HORIZONTAL & CLAIR — TEINTES BLEUTÉES LÉGÈRES */
         :root {
-            --bg-body: #f8fafc; /* Fond très clair et propre */
-            --bg-card: rgba(255, 255, 255, 0.9); /* Effet verre blanc */
-            --bg-input: #ffffff;
-            --border-light: rgba(226, 232, 240, 0.6);
+            --bg-body: #f3f7fa; /* Fond blanc avec une très légère nuance bleu glacé */
+            --bg-card: #ffffff; 
+            --bg-input: #edf4f9; /* Case de saisie teintée d'un bleu très léger */
+            --border-light: #e2eef5;
             
-            /* Couleurs d'accentuation vives et fraîches */
-            --primary: #8b5cf6; /* Violet moderne */
+            --primary: #8b5cf6; /* Violet signature */
             --primary-light: #ddd6fe;
-            --secondary: #06b6d4; /* Cyan énergisant */
-            --danger: #ef4444; /* Rouge alerte */
+            --secondary: #06b6d4; /* Cyan */
+            --danger: #ef4444;
             
-            --text-main: #1e293b; /* Bleu/Gris très foncé pour le texte */
-            --text-muted: #64748b; /* Gris texte secondaire */
-            --text-on-accent: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
         }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background-color: var(--bg-body);
-            background-image: 
-                radial-gradient(circle at 15% 15%, rgba(139, 92, 246, 0.03) 0%, transparent 25%),
-                radial-gradient(circle at 85% 85%, rgba(6, 182, 212, 0.03) 0%, transparent 25%);
             color: var(--text-main);
             margin: 0;
-            padding: 15px;
+            padding: 0;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             box-sizing: border-box;
-            overflow-x: hidden;
         }
 
-        .top-bar {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            max-width: 1300px;
-            width: 100%;
-            margin: 10px auto 10px auto;
-            padding: 10px;
-        }
-
-        /* 🏷️ Zone titre désactivée pour mettre le logo en valeur */
-        .top-logo-centered { display: none; }
-
-        .dashboard-container {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
-            max-width: 1240px;
-            width: 100%;
-            margin: auto;
-        }
-
-        @media (min-width: 992px) {
-            .dashboard-container {
-                grid-template-columns: 360px 1fr;
-                align-items: start;
-                gap: 30px;
-            }
-        }
-
-        /* Style Bento-Box Clair et Glass-morphism */
-        .window-card {
+        /* 👑 HEADER GLOBAL (Logo à gauche + Outils alignés) */
+        .app-header {
             background: var(--bg-card);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-radius: 24px;
-            border: 1px solid var(--border-light);
-            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.04), 0 1px 2px rgba(0,0,0,0.01);
-            padding: 25px;
-            position: relative;
-            transition: all 0.3s ease;
+            border-bottom: 1px solid var(--border-light);
+            padding: 10px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(139, 92, 246, 0.02);
         }
 
         @media (min-width: 768px) {
-            .window-card { padding: 35px; }
+            .app-header {
+                flex-direction: row;
+                align-items: center;
+                justify-content: flex-start;
+                padding: 12px 40px;
+                gap: 40px;
+            }
+        }
+
+        /* Intégration libre du logo en haut à gauche */
+        .vape-logo-left {
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+        }
+        .vape-logo-left img {
+            height: 42px;
+            width: auto;
+            display: block;
+        }
+
+        /* Menu horizontal avec défilement fluide sur Mobile */
+        .tools-nav-horizontal {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 5px;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            width: 100%;
+        }
+
+        /* Masquer la barre de défilement sur les navigateurs modernes tout en gardant le swipe */
+        .tools-nav-horizontal::-webkit-scrollbar {
+            display: none;
+        }
+        .tools-nav-horizontal {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .nav-item-btn {
+            background: var(--bg-input);
+            border: 1px solid var(--border-light);
+            color: var(--text-muted);
+            padding: 10px 18px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 13px;
+            white-space: nowrap; /* Évite le retour à la ligne des boutons */
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-item-btn:hover {
+            border-color: #cbd5e1;
+            color: var(--text-main);
+        }
+        
+        .nav-item-btn.active {
+            background: var(--bg-card);
+            color: var(--primary);
+            border-color: var(--primary);
+            box-shadow: 0 4px 10px rgba(139, 92, 246, 0.1);
+        }
+
+        /* 📦 CONTENEUR CENTRAL COMPACT */
+        .main-container {
+            max-width: 800px;
+            width: 100%;
+            margin: 20px auto;
+            padding: 0 15px;
+            box-sizing: border-box;
+        }
+
+        @media (min-width: 768px) {
+            .main-container {
+                margin: 40px auto;
+            }
+        }
+
+        .window-card {
+            background: var(--bg-card);
+            border-radius: 24px;
+            border: 1px solid var(--border-light);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+            padding: 25px;
+        }
+
+        @media (min-width: 768px) {
+            .window-card { padding: 40px; }
         }
 
         .window-header {
@@ -108,15 +166,8 @@
             padding-bottom: 15px;
         }
 
-        .window-dots {
-            display: flex;
-            gap: 7px;
-        }
-        .dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-        }
+        .window-dots { display: flex; gap: 7px; }
+        .dot { width: 12px; height: 12px; border-radius: 50%; }
         .dot.red { background: #ff5f56; cursor: pointer; }
         .dot.yellow { background: #ffbd2e; }
         .dot.green { background: #27c93f; }
@@ -125,93 +176,6 @@
             color: var(--text-muted); 
             font-size: 16px; 
             cursor: pointer; 
-            padding: 4px 8px;
-            border-radius: 8px;
-            transition: background 0.2s;
-        }
-        .window-close:hover {
-            background: rgba(0,0,0,0.03);
-            color: var(--text-main);
-        }
-
-        /* ✨ Intégration Libre du Logo (Plus de case grise) */
-        .widget-logo-box {
-            text-align: center;
-            padding: 10px 0 25px 0; 
-            background: transparent;
-            border: none;
-            border-radius: 0;
-            box-shadow: none;
-        }
-
-        .vape-illustration {
-            width: 290px;
-            max-width: 100%;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .vape-illustration img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        /* Navigation Menu Claire */
-        .tools-nav {
-            margin-top: 10px;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-        }
-
-        @media (min-width: 992px) {
-            .tools-nav {
-                display: flex;
-                flex-direction: column;
-                gap: 12px;
-            }
-        }
-
-        .nav-item-btn {
-            background: #ffffff;
-            border: 1px solid #e2e8f0;
-            color: var(--text-muted);
-            padding: 16px;
-            border-radius: 16px;
-            cursor: pointer;
-            text-align: left;
-            font-weight: 600;
-            font-size: 14px;
-            transition: all 0.2s ease;
-            display: flex;
-            align-items: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-        }
-
-        .nav-item-btn:hover {
-            border-color: #cbd5e1;
-            color: var(--text-main);
-            transform: translateY(-1px);
-        }
-        
-        .nav-item-btn.active {
-            background: #ffffff;
-            color: var(--primary);
-            border-color: var(--primary-light);
-            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.08);
-            position: relative;
-        }
-        .nav-item-btn.active::before {
-            content: '';
-            position: absolute;
-            left: -1px;
-            top: 25%;
-            height: 50%;
-            width: 4px;
-            background: var(--primary);
-            border-radius: 0 4px 4px 0;
         }
 
         .window-title {
@@ -249,11 +213,11 @@
             letter-spacing: 1.2px;
         }
 
-        /* Éléments de formulaires clairs et arrondis */
+        /* Entrées de formulaire aux nuances bleutées légères */
         input, select {
             width: 100%;
             background: var(--bg-input);
-            border: 1px solid #e2e8f0;
+            border: 1px solid var(--border-light);
             border-radius: 14px;
             padding: 16px;
             color: var(--text-main);
@@ -267,20 +231,17 @@
         }
         input:focus, select:focus {
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+            background: #ffffff;
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.08);
         }
 
-        /* ❌ Bouton "Lancer le diagnostic" SUPPRIMÉ ❌ */
-        .action-gradient-btn { display: none; }
-
-        /* Panneau de résultats hyper contrasté en mode clair */
+        /* Boîte de résultats */
         .result-panel {
-            background: #ffffff;
+            background: var(--bg-input);
             border-radius: 20px;
-            padding: 30px;
+            padding: 25px;
             margin-top: 10px;
-            border: 1px solid var(--primary-light);
-            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.06);
+            border: 1px solid var(--border-light);
         }
         .result-panel label {
             font-size: 11px;
@@ -288,12 +249,11 @@
             letter-spacing: 1.5px;
         }
         
-        /* Chiffres géants et clairs */
         .result-value {
-            font-size: 44px;
+            font-size: 40px;
             font-weight: 900;
             color: var(--text-main);
-            margin: 8px 0 18px 0;
+            margin: 6px 0 14px 0;
             letter-spacing: -1.5px;
         }
 
@@ -314,19 +274,20 @@
             font-size: 15px;
             line-height: 1.6;
             color: var(--text-main);
-            background: #f1f5f9;
+            background: #ffffff;
             padding: 16px;
             border-radius: 14px;
             border-left: 4px solid var(--primary);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.01);
         }
 
-        /* Blocs de recettes clairs */
+        /* Recettes Bento */
         .big-recipe-box {
             display: none;
             margin-top: 25px;
-            padding: 22px;
-            background: rgba(139, 92, 246, 0.03);
-            border: 1px solid var(--primary-light);
+            padding: 20px;
+            background: #ffffff;
+            border: 1px solid var(--border-light);
             border-radius: 20px;
         }
         .big-recipe-title {
@@ -343,14 +304,14 @@
             gap: 12px;
         }
         .recipe-block {
-            background: #ffffff;
-            border: 1px solid #e2e8f0;
+            background: var(--bg-input);
+            border: 1px solid var(--border-light);
             border-radius: 14px;
             padding: 16px 8px;
             text-align: center;
         }
         .recipe-block-val {
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 800;
             color: var(--primary);
         }
@@ -362,15 +323,7 @@
             margin-top: 6px;
         }
 
-        .empty-window-state {
-            display: none;
-            text-align: center;
-            padding: 60px 20px;
-        }
-        .empty-window-state h3 { font-size: 22px; margin-bottom: 10px; color: var(--text-main);}
-        .empty-window-state p { color: var(--text-muted); font-size: 14px; margin-bottom: 20px;}
-
-        /* Boutons d'options pré-configurés clairs */
+        /* Options de bouton de présélections */
         .preset-row {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -378,10 +331,10 @@
             margin-bottom: 25px;
         }
         .preset-item {
-            background: #ffffff;
-            border: 1px solid #e2e8f0;
+            background: var(--bg-input);
+            border: 1px solid var(--border-light);
             color: var(--text-main);
-            padding: 15px 10px;
+            padding: 14px 10px;
             font-size: 13px;
             border-radius: 12px;
             cursor: pointer;
@@ -391,22 +344,26 @@
         }
         .preset-item:hover {
             border-color: #cbd5e1;
-            background: #f8fafc;
         }
         .preset-item.active { 
-            background: rgba(139, 92, 246, 0.06);
+            background: #ffffff;
             border-color: var(--primary); 
             color: var(--primary); 
-            box-shadow: 0 2px 6px rgba(139, 92, 246, 0.06);
+            box-shadow: 0 4px 10px rgba(139, 92, 246, 0.06);
+        }
+
+        .empty-window-state {
+            display: none;
+            text-align: center;
+            padding: 40px 20px;
         }
 
         footer {
             text-align: center;
             margin-top: auto;
-            padding: 50px 10px 20px 10px;
+            padding: 40px 10px 20px 10px;
             font-size: 12px;
             color: var(--text-muted);
-            letter-spacing: 0.5px;
         }
         footer a { color: var(--primary); text-decoration: none; font-weight: 600;}
 
@@ -416,34 +373,26 @@
 </head>
 <body>
 
-    <div class="top-bar">
-        <div class="top-logo-centered">LABVAPE</div>
-    </div>
-
-    <div class="dashboard-container">
-        
-        <!-- MODULE DE GAUCHE : NAVIGATION -->
-        <div>
-            <!-- ✨ Logo Libre et Mieux Intégré -->
-            <div class="widget-logo-box">
-                <div class="vape-illustration">
-                    <img src="https://i.ibb.co/qMfNgwV9/Logo-Labvape.png" alt="Logo Labvape">
-                </div>
-            </div>
-
-            <div class="tools-nav">
-                <button id="nav-cdr" class="nav-item-btn active" onclick="switchTab('cdr')">⚡ Sécurité Accu</button>
-                <button id="nav-nicotine" class="nav-item-btn" onclick="switchTab('nicotine')">💧 Profil Nicotine</button>
-                <button id="nav-diy" class="nav-item-btn" onclick="switchTab('diy')">🧪 Calcul Pack DIY</button>
-                <button id="nav-pgvg" class="nav-item-btn" onclick="switchTab('pgvg')">📊 Conseil PG/VG</button>
-                <button id="nav-volt" class="nav-item-btn" onclick="switchTab('volt')">🔌 Volt ➔ Watt</button>
-                <button id="nav-auto" class="nav-item-btn" onclick="switchTab('auto')">🔋 Autonomie Puffs</button>
-                <button id="nav-mix" class="nav-item-btn" onclick="switchTab('mix')">🔀 Mélange Taux</button>
-                <button id="nav-eco" class="nav-item-btn" onclick="switchTab('eco')">💰 Gain Économies</button>
-            </div>
+    <!-- 👑 HEADER PRINCIPAL : LOGO EN HAUT À GAUCHE + MENU HORIZONTAL -->
+    <header class="app-header">
+        <div class="vape-logo-left">
+            <img src="https://i.ibb.co/qMfNgwV9/Logo-Labvape.png" alt="Logo Labvape">
         </div>
+        
+        <nav class="tools-nav-horizontal">
+            <button id="nav-cdr" class="nav-item-btn active" onclick="switchTab('cdr')">⚡ Sécurité Accu</button>
+            <button id="nav-nicotine" class="nav-item-btn" onclick="switchTab('nicotine')">💧 Profil Nicotine</button>
+            <button id="nav-diy" class="nav-item-btn" onclick="switchTab('diy')">🧪 Calcul Pack DIY</button>
+            <button id="nav-pgvg" class="nav-item-btn" onclick="switchTab('pgvg')">📊 Conseil PG/VG</button>
+            <button id="nav-volt" class="nav-item-btn" onclick="switchTab('volt')">🔌 Volt ➔ Watt</button>
+            <button id="nav-auto" class="nav-item-btn" onclick="switchTab('auto')">🔋 Autonomie Puffs</button>
+            <button id="nav-mix" class="nav-item-btn" onclick="switchTab('mix')">🔀 Mélange Taux</button>
+            <button id="nav-eco" class="nav-item-btn" onclick="switchTab('eco')">💰 Gain Économies</button>
+        </nav>
+    </header>
 
-        <!-- MODULE DE DROITE : INTERFACE APPLICATIVE -->
+    <!-- 📦 BLOC DE CONTENU CENTRAL -->
+    <main class="main-container">
         <div class="window-card" id="main-application-window">
             
             <div class="window-header">
@@ -650,7 +599,7 @@
                     </div>
                 </div>
 
-                <!-- BOÎTE DES RÉSULTATS VISUELS TRÈS LISIBLES -->
+                <!-- PANNEAU DE RÉSULTATS AUTOMATIQUES -->
                 <div class="result-panel">
                     <label id="result-label-text">Analyse de comptoir</label>
                     <div class="result-value" id="main-result-value">--</div>
@@ -679,14 +628,14 @@
 
             </div>
 
-            <!-- ÉCRAN D'ACCUEIL SI FENÊTRE FERMÉE -->
+            <!-- ÉCRAN DE FERMETURE -->
             <div class="empty-window-state" id="empty-state-view">
-                <h3>Fenêtre fermée</h3>
-                <p>Veuillez sélectionner un outil dans le menu de gauche pour ouvrir un nouveau diagnostic.</p>
+                <h3>Diagnostic masqué</h3>
+                <p>Sélectionnez un outil dans le menu horizontal supérieur pour faire réapparaître l'analyse.</p>
             </div>
 
         </div>
-    </div>
+    </main>
 
     <footer>
         © 2026 LABVAPE — Système intelligent d'aide à la vente — Propriété exclusive du réseau. (<a href="https://labvape.fr" target="_blank">labvape.fr</a>)
@@ -695,19 +644,15 @@
     <script>
         let currentTab = 'cdr';
 
-        // ✅ Lancer le diagnostic au chargement pour la première tabulation
         window.onload = function() {
             executeDiagnostic();
         };
 
-        // Commutateur d'onglets
         function switchTab(tabId) {
             currentTab = tabId;
             
             document.getElementById('window-form-wrapper').style.display = 'block';
             document.getElementById('empty-state-view').style.display = 'none';
-            document.getElementById('main-application-window').style.opacity = '1';
-            document.getElementById('main-application-window').style.transform = 'scale(1)';
 
             document.querySelectorAll('.nav-item-btn').forEach(btn => btn.classList.remove('active'));
             document.getElementById('nav-' + tabId).classList.add('active');
@@ -722,28 +667,22 @@
             document.getElementById('panel-eco').className = 'hidden-tab';
             
             document.getElementById('panel-' + tabId).className = '';
-
             document.getElementById('recipe-block-view').style.display = 'none';
 
-            // ✅ Lancer le calcul automatiquement lors du changement d'onglet
             executeDiagnostic();
         }
 
-        // Fermeture de la fenêtre principale
         function closeWindow() {
             document.getElementById('window-form-wrapper').style.display = 'none';
             document.getElementById('empty-state-view').style.display = 'block';
             document.querySelectorAll('.nav-item-btn').forEach(btn => btn.classList.remove('active'));
         }
 
-        // Configuration simplifiée via les boutons d'options
         function setMl(val, element) { 
             document.getElementById('ml').value = val; 
-            // Update active preset class
             const items = document.querySelectorAll('#panel-nicotine .preset-item');
             items.forEach(i => i.classList.remove('active'));
             element.classList.add('active');
-            // ✅ Lancer le calcul automatiquement
             executeDiagnostic();
         }
         function setVolt(val, element) { 
@@ -751,29 +690,24 @@
             const items = document.querySelectorAll('#panel-volt .preset-item');
             items.forEach(i => i.classList.remove('active'));
             element.classList.add('active');
-            // ✅ Lancer le calcul automatiquement
             executeDiagnostic();
         }
         function setSizePreset(size, element) {
             document.getElementById('ecoSizeFlacon').value = size;
             document.querySelectorAll('#size-preset-row .preset-item').forEach(item => item.classList.remove('active'));
             element.classList.add('active');
-            // ✅ Lancer le calcul automatiquement
             executeDiagnostic();
         }
 
-        // Alignement des ohms selon le tirage
         function syncResValue() {
             const style = document.getElementById("vapestyle").value;
             const resInput = document.getElementById("resval");
             if(style === "dl") resInput.value = "0.2";
             else if(style === "rdl") resInput.value = "0.5";
             else if(style === "mtl") resInput.value = "1.2";
-            // ✅ Lancer le calcul automatiquement
             executeDiagnostic();
         }
 
-        // 🧠 FONCTION CORE : EXÉCUTION DES CALCULS (INSTANTANÉE)
         function executeDiagnostic() {
             try {
                 const labelText = document.getElementById('result-label-text');
@@ -915,31 +849,24 @@
                 else if (currentTab === 'eco') {
                     labelText.innerText = "Économies financières nettes :";
                     
-                    // Saisie Tabac
                     let cigs = parseInt(document.getElementById("ecoCigs").value) || 0;
                     let priceTabacPaquet = parseFloat(document.getElementById("ecoPrice").value) || 0;
-                    
-                    // Saisie Vape
                     let flaconsMois = parseInt(document.getElementById("ecoNbFlacons").value) || 0;
                     let priceFlaconVape = parseFloat(document.getElementById("ecoPriceFlacon").value) || 0;
                     let resMois = parseFloat(document.getElementById("ecoResPerMonth").value) || 0;
                     let kitInitial = parseFloat(document.getElementById("ecoKitInitial").value) || 0;
                     let tailleFlacon = parseInt(document.getElementById("ecoSizeFlacon").value) || 10;
                     
-                    // Calculs sur l'ANNÉE complète
                     let coutTabacAnnuel = (cigs / 20) * priceTabacPaquet * 365.25;
                     let coutVapeAnnuelRecurrent = ((flaconsMois * priceFlaconVape) + resMois) * 12;
                     let coutVapeTotalAnnuel = coutVapeAnnuelRecurrent + kitInitial;
                     
                     let gainNetParAn = coutTabacAnnuel - coutVapeTotalAnnuel;
                     if(gainNetParAn < 0) gainNetParAn = 0;
-                    
-                    // Calcul du bilan Mensuel lissé
                     let gainNetParMois = gainNetParAn / 12;
                     
-                    // Rendu UI
                     mainVal.innerText = gainNetParMois.toFixed(2) + " € / mois";
-                    subTxt.innerHTML = "Soit un gain colossal de <strong>" + gainNetParAn.toFixed(2) + " € d'économies sur votre première année</strong> ! <br><span style='font-size:12px; opacity:0.8;'>(Matériel de départ déduit).</span>";
+                    subTxt.innerHTML = "Soit un gain de <strong>" + gainNetParAn.toFixed(2) + " € d'économies sur votre première année</strong> ! <br><span style='font-size:12px; opacity:0.8;'>(Matériel de départ déduit).</span>";
                     
                     statusTxt.innerText = "💰 BILAN FINANCIER ANNUEL RENTABLE";
                     statusTxt.className = "status-text";
