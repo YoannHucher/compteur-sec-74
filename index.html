@@ -2,98 +2,77 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LABVAPE — Système Intelligent</title>
     <link rel="icon" type="image/png" href="https://i.ibb.co/qMfNgwV9/Logo-Labvape.png">
-
     <style>
-        :root {
-            --bg-body: #f3f7fa; 
-            --bg-card: #ffffff; 
-            --primary: #8b5cf6; 
-            --text-main: #1e293b;
-        }
-
-        body { font-family: sans-serif; background-color: var(--bg-body); margin: 0; padding: 0; }
-
-        /* HEADER : Structure robuste */
+        :root { --bg-body: #f3f7fa; --bg-card: #ffffff; --primary: #8b5cf6; --text-main: #1e293b; --text-muted: #64748b; }
+        body { font-family: sans-serif; background-color: var(--bg-body); margin: 0; }
+        
+        /* HEADER RESPONSIVE */
         .app-header {
             background: var(--bg-card);
             border-bottom: 1px solid #e2eef5;
-            padding: 10px 20px;
+            padding: 10px 15px;
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 15px;
             position: sticky;
             top: 0;
             z-index: 1000;
         }
-
-        /* Logo fixe à gauche */
-        .vape-logo img { height: 45px; display: block; }
-
-        /* Navigation : Scroll sur mobile, centrée sur PC */
-        .tools-nav {
+        .vape-logo img { height: 40px; }
+        
+        /* Menu mobile (scroll) */
+        .tools-nav-horizontal {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             overflow-x: auto;
-            flex: 1;
-            padding-bottom: 5px;
-            scrollbar-width: none;
+            flex-grow: 1;
+            padding: 5px 0;
         }
-        .tools-nav::-webkit-scrollbar { display: none; }
-
-        /* Ajustement PC : On centre la navigation */
+        
+        /* Adaptation PC */
         @media (min-width: 900px) {
-            .app-header { justify-content: center; }
-            .tools-nav { flex: 0; justify-content: center; }
+            .app-header { justify-content: center; gap: 40px; padding: 15px 40px; }
+            .vape-logo img { height: 80px; } /* Logo plus grand sur PC */
         }
 
-        .nav-item-btn {
-            background: #edf4f9;
-            border: 1px solid #e2eef5;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 14px;
-            white-space: nowrap;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .nav-item-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
-
+        .nav-item-btn { background: #edf4f9; border: 1px solid #e2eef5; padding: 10px 15px; border-radius: 20px; white-space: nowrap; cursor: pointer; }
+        .nav-item-btn.active { background: var(--primary); color: white; }
+        
         .main-container { max-width: 800px; margin: 20px auto; padding: 0 15px; }
         .hidden-tab { display: none; }
+        /* ... Le reste de ton CSS habituel ... */
     </style>
 </head>
 <body>
 
-    <header class="app-header">
-        <div class="vape-logo">
-            <img src="https://i.ibb.co/qMfNgwV9/Logo-Labvape.png" alt="Logo">
-        </div>
-        <nav class="tools-nav">
-            <button class="nav-item-btn active" id="btn-cdr" onclick="switchTab('cdr')">⚡ Accu</button>
-            <button class="nav-item-btn" id="btn-nicotine" onclick="switchTab('nicotine')">💧 Nicotine</button>
-            <!-- Ajoute tes autres boutons ici -->
+<header class="app-header">
+    <div class="vape-logo"><img src="https://i.ibb.co/qMfNgwV9/Logo-Labvape.png" alt="Logo"></div>
+    <nav class="tools-nav-horizontal">
+        <button class="nav-item-btn active" onclick="switchTab('cdr')">⚡ Accu</button>
+        <button class="nav-item-btn" onclick="switchTab('nicotine')">💧 Nicotine</button>
+        <button class="nav-item-btn" onclick="switchTab('diy')">🧪 DIY</button>
         </nav>
-    </header>
+</header>
 
-    <main class="main-container">
-        <!-- Ton contenu -->
-    </main>
+<main class="main-container">
+    <div class="window-card">
+        </div>
+</main>
 
-    <script>
-        // RÉACTIVATION DE LA SÉCURITÉ DE FERMETURE
-        window.addEventListener('beforeunload', function (e) {
-            e.preventDefault();
-            e.returnValue = ''; // Déclenche la popup de confirmation
-        });
+<script>
+    // SÉCURITÉ FERMETURE
+    window.addEventListener('beforeunload', function (e) {
+        e.preventDefault();
+        e.returnValue = 'Voulez-vous vraiment quitter ?';
+    });
 
-        function switchTab(tabId) {
-            // Logique de changement d'onglet
-            document.querySelectorAll('.nav-item-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById('btn-' + tabId).classList.add('active');
-        }
-    </script>
+    function switchTab(tabId) {
+        // Ta logique complète de bascule d'onglets
+    }
+    
+    // ... Le reste de tes 900+ lignes de calculs ...
+</script>
 </body>
 </html>
