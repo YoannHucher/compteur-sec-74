@@ -105,7 +105,26 @@
             scrollbar-width: none;
         }
 
-        /* DESIGN ADAPTATIF POUR ORDINATEUR */
+        /* 🌓 BOUTON TOGGLE THÈME (SUR MOBILE : RESTE FIXE) */
+        .theme-toggle-btn {
+            background: var(--bg-input);
+            border: 1px solid var(--border-light);
+            color: var(--text-main);
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            transition: all 0.2s ease;
+            width: 38px;
+            height: 38px;
+            box-sizing: border-box;
+        }
+
+        /* 💻 DESIGN ADAPTATIF POUR ORDINATEUR */
         @media (min-width: 900px) {
             .app-header {
                 justify-content: center;
@@ -117,6 +136,13 @@
             }
             .tools-nav-horizontal {
                 flex-grow: 0;
+            }
+            /* Sur PC, on injecte le bouton directement dans le flux du menu */
+            .theme-toggle-btn {
+                width: 44px;
+                height: 44px;
+                font-size: 18px;
+                border-radius: 30px; /* Plus harmonieux dans la suite de boutons */
             }
         }
 
@@ -146,32 +172,6 @@
             color: var(--primary);
             border-color: var(--primary);
             box-shadow: 0 4px 10px rgba(139, 92, 246, 0.1);
-        }
-
-        /* 🌓 BOUTON TOGGLE THÈME */
-        .theme-toggle-btn {
-            background: var(--bg-input);
-            border: 1px solid var(--border-light);
-            color: var(--text-main);
-            padding: 10px;
-            border-radius: 50%;
-            cursor: pointer;
-            flex-shrink: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-            transition: all 0.2s ease;
-            width: 38px;
-            height: 38px;
-            box-sizing: border-box;
-        }
-        @media (min-width: 900px) {
-            .theme-toggle-btn {
-                width: 44px;
-                height: 44px;
-                font-size: 18px;
-            }
         }
 
         /* 📦 CONTENEUR CENTRAL SOUPLE */
@@ -234,6 +234,10 @@
             letter-spacing: 1.2px;
         }
 
+        input, .select-wrapper {
+            margin-bottom: 20px;
+        }
+
         input, select {
             width: 100%;
             background: var(--bg-input);
@@ -245,14 +249,31 @@
             font-weight: 600;
             box-sizing: border-box;
             outline: none;
-            margin-bottom: 20px;
             transition: all 0.2s, background-color 0.3s ease, border-color 0.3s ease;
             -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
         }
         input:focus, select:focus {
             border-color: var(--primary);
             background: var(--bg-card);
             box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.08);
+        }
+
+        /* 🏹 CONTENEUR FLÈCHE SÉLECTEUR POUR TOUS LES DROPDOWNS */
+        .select-wrapper {
+            position: relative;
+            width: 100%;
+        }
+        .select-wrapper::after {
+            content: "▼";
+            font-size: 11px;
+            color: var(--text-muted);
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
         }
 
         .result-panel {
@@ -390,7 +411,7 @@
 
     <!-- 👑 HEADER PRINCIPAL -->
     <header class="app-header">
-        <nav class="tools-nav-horizontal">
+        <nav class="tools-nav-horizontal" id="main-nav-container">
             <div class="vape-logo-left">
                 <img src="https://i.ibb.co/qMfNgwV9/Logo-Labvape.png" alt="Logo Labvape">
             </div>
@@ -403,9 +424,11 @@
             <button id="nav-auto" class="nav-item-btn" onclick="switchTab('auto')">🔋 Autonomie Puffs</button>
             <button id="nav-mix" class="nav-item-btn" onclick="switchTab('mix')">🔀 Mélange Taux</button>
             <button id="nav-eco" class="nav-item-btn" onclick="switchTab('eco')">💰 Économies</button>
+            
+            <!-- Le bouton de thème sera déplacé ici dynamiquement via JS si on est sur ordinateur -->
         </nav>
         
-        <!-- 🌓 COMMUTATEUR DE THÈME CLAIR / SOMBRE -->
+        <!-- Bouton par défaut en haut à droite (Mobile) -->
         <button class="theme-toggle-btn" id="theme-button" onclick="toggleTheme()" title="Changer de thème">☀️</button>
     </header>
 
@@ -444,10 +467,16 @@
                     <div class="window-desc">Configuration personnalisée selon le profil de consommation du fumeur.</div>
                     
                     <label>Cigarettes fumées par jour</label>
-                    <input type="number" id="cigs" value="15" oninput="executeDiagnostic()">
+                    <input type="number" id="cigs" value="15" oninput="syncCigarettes(this.value)">
                     
-                    <label>Intensité par cigarette (mg)</label>
-                    <input type="number" id="nicPerCig" value="2.0" step="0.1" oninput="executeDiagnostic()">
+                    <label>Intensité par cigarette</label>
+                    <div class="select-wrapper">
+                        <select id="nicPerCig" onchange="executeDiagnostic()">
+                            <option value="1.0">1 mg (Légère)</option>
+                            <option value="2.0" selected>2 mg (Normale / Forte)</option>
+                            <option value="3.0">3 mg (Sans filtre / Très forte)</option>
+                        </select>
+                    </div>
                     
                     <label>Consommation e-liquide estimée</label>
                     <div class="preset-row">
@@ -480,10 +509,12 @@
                         </div>
                         <div>
                             <label>Taux du booster</label>
-                            <select id="diyBoosterTaux" onchange="executeDiagnostic()">
-                                <option value="20">20 mg/ml</option>
-                                <option value="18">18 mg/ml</option>
-                            </select>
+                            <div class="select-wrapper">
+                                <select id="diyBoosterTaux" onchange="executeDiagnostic()">
+                                    <option value="20">20 mg/ml</option>
+                                    <option value="18">18 mg/ml</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -497,11 +528,13 @@
                     <input type="number" id="resval" value="0.3" step="0.1" oninput="executeDiagnostic()">
                     
                     <label>Type de tirage recherché</label>
-                    <select id="vapestyle" onchange="syncResValue()">
-                        <option value="dl">DL (Inhalation directe / Gros Nuages)</option>
-                        <option value="rdl">RDL (Semi-direct / Restreint)</option>
-                        <option value="mtl">MTL (Inhalation indirecte / Tirage serré)</option>
-                    </select>
+                    <div class="select-wrapper">
+                        <select id="vapestyle" onchange="syncResValue()">
+                            <option value="dl">DL (Inhalation directe / Gros Nuages)</option>
+                            <option value="rdl">RDL (Semi-direct / Restreint)</option>
+                            <option value="mtl">MTL (Inhalation indirecte / Tirage serré)</option>
+                        </select>
+                    </div>
                 </div>
 
                 <!-- ELECTRICITE VOLT TO WATT -->
@@ -567,7 +600,7 @@
                     <div class="grid-2">
                         <div>
                             <label>Cigarettes / jour</label>
-                            <input type="number" id="ecoCigs" value="20" oninput="executeDiagnostic()">
+                            <input type="number" id="ecoCigs" value="15" oninput="syncCigarettes(this.value)">
                         </div>
                         <div>
                             <label>Prix Paquet (€)</label>
@@ -648,12 +681,34 @@
         let currentTab = 'cdr';
 
         window.onload = function() {
-            // Charge le thème précédemment sauvegardé en mémoire locale si existant
+            // Gestion adaptative du bouton de thème selon la taille de l'écran
+            handleResponsiveThemeButton();
+            window.addEventListener('resize', handleResponsiveThemeButton);
+
             const savedTheme = localStorage.getItem('labvape-theme') || 'light';
             document.documentElement.setAttribute('data-theme', savedTheme);
             document.getElementById('theme-button').innerText = savedTheme === 'dark' ? '🌙' : '☀️';
             executeDiagnostic();
         };
+
+        /* 💻 LOGIQUE DE DÉPLACEMENT DU BOUTON THÈME (MOBILE VS PC) */
+        function handleResponsiveThemeButton() {
+            const btn = document.getElementById('theme-button');
+            const navContainer = document.getElementById('main-nav-container');
+            const header = document.querySelector('.app-header');
+
+            if (window.innerWidth >= 900) {
+                // Sur PC : On le déplace dans la barre d'onglets déroulante
+                if (btn.parentElement !== navContainer) {
+                    navContainer.appendChild(btn);
+                }
+            } else {
+                // Sur Mobile : On le remet fixe en haut à droite du header
+                if (btn.parentElement !== header) {
+                    header.appendChild(btn);
+                }
+            }
+        }
 
         /* 🌓 LOGIQUE DE COMMUTATION DYNAMIQUE DES COULEURS */
         function toggleTheme() {
@@ -663,6 +718,13 @@
             document.documentElement.setAttribute('data-theme', newTheme);
             localStorage.setItem('labvape-theme', newTheme);
             document.getElementById('theme-button').innerText = newTheme === 'dark' ? '🌙' : '☀️';
+        }
+
+        /* 🔄 SYNCHRONISATION DU NOMBRE DE CIGARETTES */
+        function syncCigarettes(value) {
+            document.getElementById('cigs').value = value;
+            document.getElementById('ecoCigs').value = value;
+            executeDiagnostic();
         }
 
         /* 🔒 SÉCURITÉ DE CONFIANCE CONTRE LA FERMETURE */
