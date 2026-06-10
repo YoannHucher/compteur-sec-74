@@ -426,8 +426,6 @@
             <button id="nav-auto" class="nav-item-btn" onclick="switchTab('auto')">🔋 Autonomie Puffs</button>
             <button id="nav-mix" class="nav-item-btn" onclick="switchTab('mix')">🔀 Mélange Taux</button>
             <button id="nav-eco" class="nav-item-btn" onclick="switchTab('eco')">💰 Économies</button>
-            <button id="nav-fuite" class="nav-item-btn" onclick="switchTab('fuite')">🚨 SOS Fuites</button>
-            <button id="nav-trans" class="nav-item-btn" onclick="switchTab('trans')">🔄 Sels vs Classique</button>
             
             <!-- 🌓 LE BOUTON COMMUTATEUR INTEGRÉ EN FIN DE FLUX -->
             <button class="theme-toggle-btn" id="theme-button" onclick="toggleTheme()" title="Changer de thème">☀️ Thème</button>
@@ -643,46 +641,6 @@
                     </div>
                 </div>
 
-                <!-- 🚨 NEW: SOS FUITES SAV QUICK -->
-                <div id="panel-fuite" class="hidden-tab">
-                    <h2 class="window-title">SOS Fuites & Glouglous</h2>
-                    <div class="window-desc">Arbre de résolution immédiate pour les SAV au comptoir.</div>
-                    
-                    <label>Symptôme constaté par le client</label>
-                    <div class="select-wrapper">
-                        <select id="fuiteType" onchange="executeDiagnostic()">
-                            <option value="airflow">Ça coule par les arrivées d'air (Airflows)</option>
-                            <option value="glouglou">Ça glougloute et j'ai du liquide dans la bouche</option>
-                            <option value="projection">Ça crépite fort et projette des gouttes brûlantes</option>
-                            <option value="topcap">Ça suinte tout autour du bouchon de remplissage</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- 🔄 NEW: CONVERTISSEUR NICOTINE TRANSITION -->
-                <div id="panel-trans" class="hidden-tab">
-                    <h2 class="window-title">Profil Transition Nicotine</h2>
-                    <div class="window-desc">Équivalences de Hit et assimilation (Puffs / Sels / Classique).</div>
-                    
-                    <label>Produit actuel du client</label>
-                    <div class="select-wrapper">
-                        <select id="transSource" onchange="executeDiagnostic()">
-                            <option value="salt">Sels de nicotine (Puffs / E-liquides Sels)</option>
-                            <option value="classic">Nicotine Classique (Fioles traditionnelles)</option>
-                        </select>
-                    </div>
-
-                    <label>Taux de nicotine actuel (mg/ml)</label>
-                    <div class="select-wrapper">
-                        <select id="transTaux" onchange="executeDiagnostic()">
-                            <option value="20" selected>20 mg (Max / Puff standard)</option>
-                            <option value="10">10 mg (Moyen / Demi-Puff)</option>
-                            <option value="6">6 mg (Faible)</option>
-                            <option value="3">3 mg (Très faible)</option>
-                        </select>
-                    </div>
-                </div>
-
                 <!-- PANNEAU DE RÉSULTATS AUTOMATIQUES -->
                 <div class="result-panel">
                     <label id="result-label-text">Analyse de comptoir</label>
@@ -771,8 +729,6 @@
             document.getElementById('panel-auto').className = 'hidden-tab';
             document.getElementById('panel-mix').className = 'hidden-tab';
             document.getElementById('panel-eco').className = 'hidden-tab';
-            document.getElementById('panel-fuite').className = 'hidden-tab';
-            document.getElementById('panel-trans').className = 'hidden-tab';
             
             document.getElementById('panel-' + tabId).className = '';
             document.getElementById('recipe-block-view').style.display = 'none';
@@ -972,68 +928,6 @@
                     
                     statusTxt.innerText = "💰 BILAN FINANCIER ANNUEL RENTABLE";
                     statusTxt.className = "status-text";
-                }
-
-                /* 🚨 LOGIQUE DYNAMIQUE DU BOUTON SAV FUITE */
-                else if (currentTab === 'fuite') {
-                    labelText.innerText = "Action corrective comptoir :";
-                    let type = document.getElementById('fuiteType').value;
-                    
-                    if (type === "airflow") {
-                        mainVal.innerText = "PG/VG ou Watts";
-                        statusTxt.innerText = "💧 FUITE SOUS LA RÉSISTANCE";
-                        statusTxt.className = "status-text danger";
-                        subTxt.innerHTML = "<strong>Causes courantes :</strong><br>1. E-liquide trop fluide (vendez un taux de VG plus élevé, min 50%).<br>2. Puissance réglée trop basse : le coton s'engorge car le jus n'est pas vaporisé.<br>3. Le client aspire trop fort (effet paille).";
-                    } else if (type === "glouglou") {
-                        mainVal.innerText = "Nettoyer + Forcer";
-                        statusTxt.innerText = "🗣️ SURCHARGE DE LA CHEMINÉE";
-                        statusTxt.className = "status-text";
-                        subTxt.innerHTML = "<strong>Solution comptoir immédiate :</strong><br>1. Passer un coup de Sopalin roulé dans la cheminée.<br>2. Augmenter la puissance de 3 ou 4 Watts pour nettoyer la résistance.<br>3. Secouer le clearomiseur tête en bas comme un thermomètre pour éjecter le surplus.";
-                    } else if (type === "projection") {
-                        mainVal.innerText = "Changer Coil";
-                        statusTxt.innerText = "💥 CRÉPITATIONS ET PROJECTIONS";
-                        statusTxt.className = "status-text danger";
-                        subTxt.innerHTML = "<strong>Analyse technique :</strong><br>1. La résistance est usée et n'est plus homogène (le coton est désagrégé).<br>2. Présence d'eau dans le coton (condensation).<br>➔ Remplacez la résistance et remontez les Watts à la valeur minimale gravée dessus.";
-                    } else if (type === "topcap") {
-                        mainVal.innerText = "Vérifier le joint";
-                        statusTxt.innerText = "🛑 PERTE DE PRESSION INTERNE";
-                        statusTxt.className = "status-text";
-                        subTxt.innerHTML = "<strong>Analyse technique :</strong><br>Le réservoir tient par dépression (vide d'air). Si le joint du bouchon supérieur est pincé, déchiré ou absent, le réservoir se vide par gravité.<br>➔ Remplacez le joint de rechange ou le top-cap.";
-                    }
-                }
-
-                /* 🔄 LOGIQUE DYNAMIQUE DE LA NICO-TRANSITION */
-                else if (currentTab === 'trans') {
-                    labelText.innerText = "Correspondance recommandée :";
-                    let src = document.getElementById('transSource').value;
-                    let taux = parseFloat(document.getElementById('transTaux').value) || 20;
-                    
-                    if (src === "salt") {
-                        // Sels vers Classique
-                        statusTxt.innerText = "🔄 TRANSITION : SELS ➔ NICOTINE TRADITIONNELLE";
-                        statusTxt.className = "status-text";
-                        if (taux === 20) {
-                            mainVal.innerText = "12 mg/ml";
-                            subTxt.innerHTML = "<strong>Attention Hit Fort !</strong> Les Sels de nicotine à 20 mg s'assimilent très vite et ne piquent pas. En passant sur de la nicotine classique, un taux de 12 mg fournira un Hit vigoureux mais nécessaire pour ne pas être en manque.";
-                        } else if (taux === 10) {
-                            mainVal.innerText = "6 mg/ml";
-                            subTxt.innerHTML = "Équivalence moyenne. Conseillez un e-liquide classique à 6 mg pour retrouver une sensation similaire sans irriter la gorge.";
-                        } else {
-                            mainVal.innerText = "3 mg/ml";
-                            subTxt.innerHTML = "Taux très bas. Parfait pour les petits vapoteurs sur du matériel polyvalent ou aérien.";
-                        }
-                    } else {
-                        // Classique vers Sels
-                        statusTxt.innerText = "🔄 TRANSITION : NICOTINE TRADITIONNELLE ➔ SELS";
-                        statusTxt.className = "status-text";
-                        if (taux === 20 || taux === 10) {
-                            mainVal.innerText = "20 mg Sels";
-                            subTxt.innerHTML = "<strong>Idéal anciens gros fumeurs / Puffs.</strong> Le sel à 20 mg va supprimer instantanément le manque sans agresser la gorge. À utiliser impérativement sur des petites résistances (> 0.8 Ohm) à basse puissance.";
-                        } else {
-                            mainVal.innerText = "10 mg Sels";
-                            subTxt.innerHTML = "Équivalence douce et ultra-fluide. Recommandé pour les vapoteurs qui n'aiment pas quand le e-liquide gratte le fond de la gorge.";
-                        }
-                    }
                 }
 
             } catch (e) {
