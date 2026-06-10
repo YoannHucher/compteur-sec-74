@@ -277,6 +277,40 @@
             pointer-events: none;
         }
 
+        /* 🔍 INTUITION SEARCH BAR AUTOCOMPLETION */
+        .search-container {
+            position: relative;
+            width: 100%;
+        }
+        .search-results-box {
+            position: absolute;
+            top: 52px;
+            left: 0;
+            width: 100%;
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            z-index: 999;
+            max-height: 220px;
+            overflow-y: auto;
+            display: none;
+            box-sizing: border-box;
+        }
+        .search-item {
+            padding: 12px 16px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-main);
+            border-bottom: 1px solid var(--border-light);
+            display: flex;
+            justify-content: space-between;
+        }
+        .search-item:last-child { border-bottom: none; }
+        .search-item:hover { background: var(--bg-input); color: var(--primary); }
+        .search-item span { font-size: 12px; color: var(--text-muted); font-weight: normal; }
+
         .result-panel {
             background: var(--bg-input);
             border-radius: 20px;
@@ -410,10 +444,9 @@
 </head>
 <body>
 
-    <!-- 👑 HEADER PRINCIPAL COMPLETEMENT DEFILANT (LOGO + MENU + THEME) -->
+    <!-- 👑 HEADER PRINCIPAL COMPLETEMENT DEFILANT -->
     <header class="app-header">
         <nav class="tools-nav-horizontal">
-            <!-- 🌀 LE LOGO INCORPORÉ AU FLUX HORIZONTAL -->
             <div class="vape-logo-inline">
                 <img src="https://i.ibb.co/qMfNgwV9/Logo-Labvape.png" alt="Logo Labvape">
             </div>
@@ -427,7 +460,6 @@
             <button id="nav-mix" class="nav-item-btn" onclick="switchTab('mix')">🔀 Mélange Taux</button>
             <button id="nav-eco" class="nav-item-btn" onclick="switchTab('eco')">💰 Économies</button>
             
-            <!-- 🌓 LE BOUTON COMMUTATEUR INTEGRÉ EN FIN DE FLUX -->
             <button class="theme-toggle-btn" id="theme-button" onclick="toggleTheme()" title="Changer de thème">☀️ Thème</button>
         </nav>
     </header>
@@ -487,33 +519,15 @@
                     <input type="number" id="ml" value="4" oninput="executeDiagnostic()">
                 </div>
 
-                <!-- PACK DIY RECETTE -->
+                <!-- PACK DIY RECETTE (RECHERCHE INTELLIGENTE) -->
                 <div id="panel-diy" class="hidden-tab">
                     <h2 class="window-title">Diagnostic dynamique — Mix DIY</h2>
-                    <div class="window-desc">Calcul précis pour les préparations e-liquides sur mesure.</div>
+                    <div class="window-desc">Recherche d'arômes stars et calcul automatisé des volumes.</div>
                     
-                    <label>Sélectionner un arôme connu</label>
-                    <div class="select-wrapper">
-                        <select id="diyAromePreset" onchange="applyAromePreset()">
-                            <option value="custom" selected>✨ Autre (Saisie manuelle du %)</option>
-                            <!-- A&L Ultimate -->
-                            <option value="15">Ragnarok / Valkyrie (A&L) — 15%</option>
-                            <option value="15">Shinigami / Oni (A&L) — 15%</option>
-                            <!-- Vampire Vape -->
-                            <option value="15">Heisenberg / Pinkman (Vampire Vape) — 15%</option>
-                            <!-- T-Juice -->
-                            <option value="15">Red Astaire (T-Juice) — 15%</option>
-                            <!-- Fruizee -->
-                            <option value="15">Fruizee (Tous arômes) — 15%</option>
-                            <!-- Dinner Lady -->
-                            <option value="20">Lemon Tart (Dinner Lady) — 20%</option>
-                            <!-- La Vape Insulaire / Le French Liquide -->
-                            <option value="15">La Chose (Le French Liquide) — 15%</option>
-                            <!-- Halo -->
-                            <option value="25">Sub Zero / Tribeca (Halo) — 25%</option>
-                            <!-- Vape Institut -->
-                            <option value="15">Tallak (Vape Institut) — 15%</option>
-                        </select>
+                    <label>Rechercher un Concentré (Nom ou Marque)</label>
+                    <div class="search-container">
+                        <input type="text" id="diySearchInput" placeholder="Ex: Ragnarok, Heisenberg, ONI, Lemon Tart..." oninput="filterAromeSearch()" autocomplete="off">
+                        <div id="diySearchResults" class="search-results-box"></div>
                     </div>
 
                     <div class="grid-2">
@@ -529,7 +543,7 @@
                     <div class="grid-2">
                         <div>
                             <label>% Arôme préconisé</label>
-                            <input type="number" id="diyAromePerc" value="15" oninput="resetAromeDropdownToCustom()">
+                            <input type="number" id="diyAromePerc" value="15" oninput="executeDiagnostic()">
                         </div>
                         <div>
                             <label>Taux du booster</label>
@@ -704,11 +718,57 @@
     <script>
         let currentTab = 'cdr';
 
+        // 📊 BASE DE DONNÉES MASSIVE EN LOCAL (35 MEGA-STARS DU MARCHÉ FRANÇAIS EN 50/50)
+        const AROME_DATABASE = [
+            { name: "Ragnarok", brand: "A&L Ultimate", rate: 15 },
+            { name: "Ragnarok Primal", brand: "A&L Ultimate", rate: 15 },
+            { name: "Oni", brand: "A&L Ultimate", rate: 15 },
+            { name: "Shinigami", brand: "A&L Ultimate", rate: 15 },
+            { name: "Valkyrie", brand: "A&L Ultimate", rate: 15 },
+            { name: "Nagato", brand: "A&L Ultimate", rate: 15 },
+            { name: "Leviathan", brand: "A&L Ultimate", rate: 15 },
+            { name: "Bahamut", brand: "A&L Ultimate", rate: 15 },
+            { name: "Heisenberg", brand: "Vampire Vape", rate: 15 },
+            { name: "Pinkman", brand: "Vampire Vape", rate: 15 },
+            { name: "Red Astaire", brand: "T-Juice", rate: 15 },
+            { name: "Clara T", brand: "T-Juice", rate: 15 },
+            { name: "Lemon Tart", brand: "Dinner Lady", rate: 20 },
+            { name: "La Chose", brand: "Le French Liquide", rate: 15 },
+            { name: "Sub Zero", brand: "Halo", rate: 25 },
+            { name: "Tribeca", brand: "Halo", rate: 25 },
+            { name: "Tallak", brand: "Vape Institut", rate: 15 },
+            { name: "Mallok", brand: "Vape Institut", rate: 15 },
+            { name: "Macadamia", brand: "Vape Institut", rate: 15 },
+            { name: "Bloody Summer", brand: "Fruizee", rate: 15 },
+            { name: "Crazy Mango", brand: "Fruizee", rate: 15 },
+            { name: "Ice Mint", brand: "Fruizee", rate: 15 },
+            { name: "Symphony", brand: "GFC Provap", rate: 15 },
+            { name: "Don Cristo Original", brand: "PGVG Labs", rate: 20 },
+            { name: "Don Cristo Custard", brand: "PGVG Labs", rate: 20 },
+            { name: "Concentré Relax", brand: "Eliquid France", rate: 15 },
+            { name: "Concentré Supreme", brand: "Eliquid France", rate: 15 },
+            { name: "Pop Corn", brand: "Monster Vape Labs", rate: 20 },
+            { name: "Strawberry Jam", brand: "Monster Vape Labs", rate: 20 },
+            { name: "Sucre - Additif", brand: "Solubarome", rate: 5 },
+            { name: "Menthe Glaciale", brand: "Solubarome", rate: 10 },
+            { name: "Vanilla Custard", brand: "Solubarome", rate: 15 },
+            { name: "Le Café", brand: "Supervape", rate: 10 },
+            { name: "Biscuit Craquant", brand: "Supervape", rate: 10 },
+            { name: "Cactus Citron", brand: "Supervape", rate: 10 }
+        ];
+
         window.onload = function() {
             const savedTheme = localStorage.getItem('labvape-theme') || 'light';
             document.documentElement.setAttribute('data-theme', savedTheme);
             updateThemeButtonVisual(savedTheme);
             executeDiagnostic();
+
+            // Fermer les résultats de recherche si on clique ailleurs sur l'écran
+            document.addEventListener('click', function(e) {
+                if (e.target.id !== 'diySearchInput') {
+                    document.getElementById('diySearchResults').style.display = 'none';
+                }
+            });
         };
 
         /* 🌓 LOGIQUE DU THÈME ET INTERRUPTEUR DE SYMBOLE */
@@ -726,20 +786,41 @@
             btn.innerHTML = theme === 'dark' ? '🌙 Thème Sombre' : '☀️ Thème Clair';
         }
 
-        /* 🧪 GESTION DE LA BASE DE DONNÉES ARÔME EN LOCAL */
-        function applyAromePreset() {
-            const select = document.getElementById('diyAromePreset');
-            const percInput = document.getElementById('diyAromePerc');
+        /* 🔍 MODULE DE RECHERCHE ET AUTOCOMPLÉTION */
+        function filterAromeSearch() {
+            const query = document.getElementById('diySearchInput').value.toLowerCase().trim();
+            const resultsBox = document.getElementById('diySearchResults');
             
-            if (select.value !== 'custom') {
-                percInput.value = select.value;
+            if (query.length === 0) {
+                resultsBox.style.display = 'none';
+                return;
             }
-            executeDiagnostic();
-        }
 
-        function resetAromeDropdownToCustom() {
-            document.getElementById('diyAromePreset').value = 'custom';
-            executeDiagnostic();
+            const filtered = AROME_DATABASE.filter(item => 
+                item.name.toLowerCase().includes(query) || 
+                item.brand.toLowerCase().includes(query)
+            );
+
+            if (filtered.length === 0) {
+                resultsBox.innerHTML = `<div class="search-item" style="cursor:default;color:var(--text-muted);">❌ Aucun arôme trouvé</div>`;
+                resultsBox.style.display = 'block';
+                return;
+            }
+
+            resultsBox.innerHTML = '';
+            filtered.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'search-item';
+                div.innerHTML = `${item.name} <span>${item.brand} (${item.rate}%)</span>`;
+                div.onclick = function() {
+                    document.getElementById('diySearchInput').value = `${item.name} (${item.brand})`;
+                    document.getElementById('diyAromePerc').value = item.rate;
+                    resultsBox.style.display = 'none';
+                    executeDiagnostic();
+                };
+                resultsBox.appendChild(div);
+            });
+            resultsBox.style.display = 'block';
         }
 
         /* 🔄 SYNCHRONISATION DU NOMBRE DE CIGARETTES */
@@ -749,10 +830,10 @@
             executeDiagnostic();
         }
 
-        /* 🔒 SÉCURITÉ DE CONFIANCE CONTRE LA FERMETURE */
+        /* 🔒 SÉCURITÉ CONTRE LA FERMETURE */
         window.addEventListener('beforeunload', function (e) {
             e.preventDefault();
-            e.returnValue = 'Attention : vous allez quitter l\'application LABVAPE. Toutes vos données en cours seront perdues.';
+            e.returnValue = 'Attention : vous allez quitter l\'application LABVAPE.';
         });
 
         function switchTab(tabId) {
