@@ -333,7 +333,6 @@
             border-left: 3px solid var(--purple-neon);
         }
 
-        /* 🧪 DESIGN GRAND FORMAT POUR LA RECETTE COMPOSANTS */
         .big-recipe-box {
             display: none;
             margin-top: 18px;
@@ -605,7 +604,7 @@
                     </div>
                 </div>
 
-                <!-- FINANCES SIMULATEUR ECONOMIE (SÉPARÉ EN DEUX) -->
+                <!-- FINANCES SIMULATEUR ECONOMIE -->
                 <div id="panel-eco" class="hidden-tab">
                     <h2 class="window-title">Diagnostic dynamic — Économies</h2>
                     <div class="window-desc">Bilan financier complet et comparatif direct.</div>
@@ -647,11 +646,11 @@
                     <div class="grid-2">
                         <div>
                             <label>Résistances / mois (€)</label>
-                            <input type="number" id="ecoResPerMonth" value="10" placeholder="Ex: 10">
+                            <input type="number" id="ecoResPerMonth" value="10">
                         </div>
                         <div>
                             <label>Kit Initial Achat (€)</label>
-                            <input type="number" id="ecoKitInitial" value="59.90" placeholder="Ex: 59.90">
+                            <input type="number" id="ecoKitInitial" value="59.90">
                         </div>
                     </div>
                 </div>
@@ -726,7 +725,6 @@
             
             document.getElementById('panel-' + tabId).className = '';
 
-            // Masquer la grosse boîte recette si on change d'onglet
             document.getElementById('recipe-block-view').style.display = 'none';
 
             document.getElementById('result-label-text').innerText = "Analyse mise à jour";
@@ -772,7 +770,7 @@
                 const subTxt = document.getElementById('sub-result-text');
                 const recipeView = document.getElementById('recipe-block-view');
 
-                recipeView.style.display = 'none'; // Par défaut masqué
+                recipeView.style.display = 'none';
 
                 if (currentTab === 'cdr') {
                     labelText.innerText = "Courant de décharge requis :";
@@ -834,7 +832,6 @@
                     statusTxt.innerText = "🧪 CALCUL RECETTE DIY VALIDE";
                     statusTxt.className = "status-text";
 
-                    // Injection et affichage en gros caractères de la recette demandée
                     document.getElementById('rec-booster').innerText = boostMl.toFixed(1) + " ml";
                     document.getElementById('rec-arome').innerText = aromeMl.toFixed(1) + " ml";
                     document.getElementById('rec-base').innerText = baseMl.toFixed(1) + " ml";
@@ -917,20 +914,22 @@
                     let kitInitial = parseFloat(document.getElementById("ecoKitInitial").value) || 0;
                     let tailleFlacon = parseInt(document.getElementById("ecoSizeFlacon").value) || 10;
                     
-                    // Calculs réels mensuels
-                    let coutTabacMensuel = (cigs / 20) * priceTabacPaquet * 30.42;
-                    let coutVapeRecurrentMensuel = (flaconsMois * priceFlaconVape) + resMois;
+                    // 1. Calculs sur l'ANNÉE complète (permet de déduire le kit de départ 1 seule fois)
+                    let coutTabacAnnuel = (cigs / 20) * priceTabacPaquet * 365.25;
+                    let coutVapeAnnuelRecurrent = ((flaconsMois * priceFlaconVape) + resMois) * 12;
+                    let coutVapeTotalAnnuel = coutVapeAnnuelRecurrent + kitInitial;
                     
-                    // Amortissement du matériel de départ unique prélevé 1 fois sur l'année (divisé par 12 mois)
-                    let amortissementKitMensuel = kitInitial / 12;
+                    let gainNetParAn = coutTabacAnnuel - coutVapeTotalAnnuel;
+                    if(gainNetParAn < 0) gainNetParAn = 0;
                     
-                    let coutVapeTotalMensuel = coutVapeRecurrentMensuel + amortissementKitMensuel;
-                    let gainNetParMois = coutTabacMensuel - coutVapeTotalMensuel;
-                    if(gainNetParMois < 0) gainNetParMois = 0;
+                    // 2. Calcul du bilan Mensuel lissé (avec amortissement du kit sur 12 mois)
+                    let gainNetParMois = gainNetParAn / 12;
                     
+                    // Rendu UI
                     mainVal.innerText = gainNetParMois.toFixed(2) + " € / mois";
-                    subTxt.innerText = "Calculé avec un volume mensuel de " + (flaconsMois * tailleFlacon) + " ml consommés, incluant l'amortissement lissé de votre matériel de départ (" + kitInitial.toFixed(2) + " €) sur 12 mois.";
-                    statusTxt.innerText = "💰 BILAN ÉCONOMIQUE MENSUEL OPTIMISÉ";
+                    subTxt.innerHTML = "Soit un gain colossal de <strong>" + gainNetParAn.toFixed(2) + " € d'économies sur votre 1ère année</strong> ! <br><span style='font-size:12px; opacity:0.8;'>(Consommation de " + (flaconsMois * tailleFlacon) + " ml/mois. Matériel de départ de " + kitInitial.toFixed(2) + " € déduit une seule fois sur l'année).</span>";
+                    
+                    statusTxt.innerText = "💰 BILAN FINANCIER ANNUEL HAUTEMENT RENTABLE";
                     statusTxt.className = "status-text";
                 }
 
