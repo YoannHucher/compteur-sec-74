@@ -251,9 +251,6 @@
             box-sizing: border-box;
             outline: none;
             transition: all 0.2s, background-color 0.3s ease, border-color 0.3s ease;
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
         }
         input:focus, select:focus {
             border-color: var(--primary);
@@ -261,7 +258,7 @@
             box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.08);
         }
 
-        /* 🏹 CONTENEUR FLÈCHE SÉLECTEUR POUR TOUS LES DROPDOWNS */
+        /* 🏹 CONTENEUR FLÈCHE SÉLECTEUR */
         .select-wrapper {
             position: relative;
             width: 100%;
@@ -276,40 +273,6 @@
             transform: translateY(-50%);
             pointer-events: none;
         }
-
-        /* 🔍 INTUITION SEARCH BAR AUTOCOMPLETION */
-        .search-container {
-            position: relative;
-            width: 100%;
-        }
-        .search-results-box {
-            position: absolute;
-            top: 52px;
-            left: 0;
-            width: 100%;
-            background: var(--bg-card);
-            border: 1px solid var(--border-light);
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-            z-index: 999;
-            max-height: 220px;
-            overflow-y: auto;
-            display: none;
-            box-sizing: border-box;
-        }
-        .search-item {
-            padding: 12px 16px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--text-main);
-            border-bottom: 1px solid var(--border-light);
-            display: flex;
-            justify-content: space-between;
-        }
-        .search-item:last-child { border-bottom: none; }
-        .search-item:hover { background: var(--bg-input); color: var(--primary); }
-        .search-item span { font-size: 12px; color: var(--text-muted); font-weight: normal; }
 
         .result-panel {
             background: var(--bg-input);
@@ -519,16 +482,127 @@
                     <input type="number" id="ml" value="4" oninput="executeDiagnostic()">
                 </div>
 
-                <!-- PACK DIY RECETTE (RECHERCHE INTELLIGENTE) -->
+                <!-- PACK DIY RECETTE (100 ARÔMES ULTRA-POPULAIRES) -->
                 <div id="panel-diy" class="hidden-tab">
                     <h2 class="window-title">Diagnostic dynamique — Mix DIY</h2>
-                    <div class="window-desc">Recherche d'arômes stars et calcul automatisé des volumes.</div>
+                    <div class="window-desc">Sélectionnez ou recherchez un arôme parmi les 100 meilleures ventes de France.</div>
                     
-                    <label>Rechercher un Concentré (Nom ou Marque)</label>
-                    <div class="search-container">
-                        <input type="text" id="diySearchInput" placeholder="Ex: Ragnarok, Heisenberg, ONI, Lemon Tart..." oninput="filterAromeSearch()" autocomplete="off">
-                        <div id="diySearchResults" class="search-results-box"></div>
-                    </div>
+                    <label>Rechercher ou Choisir un Arôme Concentré</label>
+                    <input type="text" id="diyAromeInput" list="aromeList" placeholder="Cliquez pour faire défiler ou écrivez le nom..." oninput="handleAromeSelection()">
+                    
+                    <datalist id="aromeList">
+                        <!-- ULTIMATE A&L (STARS) -->
+                        <option value="Ragnarok (A&L Ultimate) — 15%">
+                        <option value="Ragnarok Primal (A&L Ultimate) — 15%">
+                        <option value="Ragnarok Legend (A&L Ultimate) — 15%">
+                        <option value="Oni (A&L Ultimate) — 15%">
+                        <option value="Oni Sigurd (A&L Ultimate) — 15%">
+                        <option value="Shinigami (A&L Ultimate) — 15%">
+                        <option value="Shinigami Zero (A&L Ultimate) — 15%">
+                        <option value="Valkyrie (A&L Ultimate) — 15%">
+                        <option value="Valkyrie Zero (A&L Ultimate) — 15%">
+                        <option value="Nagato (A&L Ultimate) — 15%">
+                        <option value="Leviathan (A&L Ultimate) — 15%">
+                        <option value="Bahamut (A&L Ultimate) — 15%">
+                        <option value="Succube (A&L Ultimate) — 15%">
+                        <option value="Phoenix (A&L Ultimate) — 15%">
+                        <option value="Jiraya (A&L Ultimate) — 15%">
+                        <option value="Ifrit (A&L Ultimate) — 15%">
+                        <!-- VAMPIRE VAPE & T-JUICE -->
+                        <option value="Heisenberg (Vampire Vape) — 15%">
+                        <option value="Pinkman (Vampire Vape) — 15%">
+                        <option value="Attraction (Vampire Vape) — 15%">
+                        <option value="Blood Sukka (Vampire Vape) — 15%">
+                        <option value="Catapult (Vampire Vape) — 15%">
+                        <option value="Red Astaire (T-Juice) — 15%">
+                        <option value="Clara T (T-Juice) — 15%">
+                        <option value="Colonel Boom (T-Juice) — 15%">
+                        <option value="Minty T (T-Juice) — 15%">
+                        <!-- FRUIZEE & FRENCH LIQUIDE -->
+                        <option value="Bloody Summer (Fruizee) — 15%">
+                        <option value="Crazy Mango (Fruizee) — 15%">
+                        <option value="Ice Mint (Fruizee) — 15%">
+                        <option value="Citron Orange Mandarine (Fruizee) — 15%">
+                        <option value="Purple Beach (Fruizee) — 15%">
+                        <option value="Sunset Lover (Fruizee) — 15%">
+                        <option value="La Chose (Le French Liquide) — 15%">
+                        <option value="La Petite Chose (Le French Liquide) — 15%">
+                        <option value="Re-Animator (Le French Liquide) — 10%">
+                        <!-- HALO & DINNER LADY -->
+                        <option value="Sub Zero (Halo) — 25%">
+                        <option value="Tribeca (Halo) — 25%">
+                        <option value="Prime 15 (Halo) — 25%">
+                        <option value="Torque 56 (Halo) — 25%">
+                        <option value="Lemon Tart (Dinner Lady) — 20%">
+                        <option value="Corn Corn (Dinner Lady) — 20%">
+                        <option value="Strawberry Bikini (Dinner Lady) — 20%">
+                        <!-- VAPE INSTITUT & CLOUD'S OF LOLO -->
+                        <option value="Tallak (Vape Institut) — 15%">
+                        <option value="Mallok (Vape Institut) — 15%">
+                        <option value="Macadamia (Vape Institut) — 15%">
+                        <option value="Lion's Roar (Vape Institut) — 15%">
+                        <option value="Chimera (Vape Institut) — 15%">
+                        <option value="Magnum (Cloud's of Lolo) — 15%">
+                        <option value="Leccino (Cloud's of Lolo) — 15%">
+                        <option value="Pistacchio (Cloud's of Lolo) — 15%">
+                        <option value="Nougatine (Cloud's of Lolo) — 15%">
+                        <option value="Caramel Beurre Salé (Cloud's of Lolo) — 15%">
+                        <!-- REVOLUTE & DIY MONSTER -->
+                        <option value="Projet Lenny (Revolute) — 15%">
+                        <option value="Projet Amiami (Revolute) — 15%">
+                        <option value="Projet Drapaux (Revolute) — 15%">
+                        <option value="Umani (High End Revolute) — 10%">
+                        <option value="Dandy Puff (High End Revolute) — 10%">
+                        <option value="Snap Pear (High End Revolute) — 10%">
+                        <!-- SUPERVAPE -->
+                        <option value="Le Café (Supervape) — 10%">
+                        <option value="Biscuit Craquant (Supervape) — 10%">
+                        <option value="Cactus Citron (Supervape) — 10%">
+                        <option value="Crème Brûlée (Supervape) — 12%">
+                        <option value="Vanille Custard (Supervape) — 12%">
+                        <option value="Poire Amandine (Supervape) — 10%">
+                        <option value="Pop Corn Fondant (Supervape) — 11%">
+                        <!-- SOLUBAROME -->
+                        <option value="Menthe Glaciale (Solubarome) — 10%">
+                        <option value="Vanilla Custard (Solubarome) — 15%">
+                        <option value="Fraise à la Crème (Solubarome) — 15%">
+                        <option value="Poire Matinale (Solubarome) — 15%">
+                        <option value="Château Haut (Solubarome) — 15%">
+                        <option value="Fred Master (Solubarome) — 10%">
+                        <option value="Gorilla (Solubarome) — 15%">
+                        <!-- PGVG LABS, MONSTER VAPE LABS & ELIQUID FRANCE -->
+                        <option value="Don Cristo Original (PGVG Labs) — 20%">
+                        <option value="Don Cristo Custard (PGVG Labs) — 20%">
+                        <option value="Don Cristo XO (PGVG Labs) — 20%">
+                        <option value="Don Cristo Coffee (PGVG Labs) — 20%">
+                        <option value="Concentré Relax (Eliquid France) — 15%">
+                        <option value="Concentré Supreme (Eliquid France) — 15%">
+                        <option value="Strawberry Jam (Monster Vape Labs) — 20%">
+                        <option value="Blueberry Jam (Monster Vape Labs) — 20%">
+                        <option value="Butterscotch (Jam Monster) — 20%">
+                        <!-- KTS, SWOKE, FUR JONATHAN & AUTRES TRÈS VENDUS -->
+                        <option value="KTS Black (KTS) — 15%">
+                        <option value="KTS Gold (KTS) — 15%">
+                        <option value="Clone (Swoke) — 15%">
+                        <option value="Saiyen Vapors Frozen Buhon (Swoke) — 15%">
+                        <option value="Saiyen Vapors Frozen Païpaï (Swoke) — 15%">
+                        <option value="Furious Cookie (Moonshiners) — 15%">
+                        <option value="Big Apple (Moonshiners) — 15%">
+                        <option value="Old Nuts (Médiéval Vape) — 15%">
+                        <option value="La Recette Secrète (Custom) — 15%">
+                        <option value="Curaçao (Aroma Sense) — 15%">
+                        <option value="Guanabana (Solana) — 15%">
+                        <option value="Brocéliande (Flavour Power) — 15%">
+                        <option value="Macaron Framboise (Flavour Power) — 15%">
+                        <option value="Le Petit Blond (La Petite Vap) — 15%">
+                        <option value="Caramel vanille (Solubarome) — 15%">
+                        <option value="Pink Lady (Solana) — 15%">
+                        <option value="Café Gourmand (Solana) — 15%">
+                        <option value="Rediz Dead (Swoke) — 15%">
+                        <option value="Gamer (Vape Or DIY) — 15%">
+                        <option value="Mawashi (Vape Or DIY) — 15%">
+                        <option value="Kami (A&L Creation) — 10%">
+                    </datalist>
 
                     <div class="grid-2">
                         <div>
@@ -718,60 +792,14 @@
     <script>
         let currentTab = 'cdr';
 
-        // 📊 BASE DE DONNÉES MASSIVE EN LOCAL (35 MEGA-STARS DU MARCHÉ FRANÇAIS EN 50/50)
-        const AROME_DATABASE = [
-            { name: "Ragnarok", brand: "A&L Ultimate", rate: 15 },
-            { name: "Ragnarok Primal", brand: "A&L Ultimate", rate: 15 },
-            { name: "Oni", brand: "A&L Ultimate", rate: 15 },
-            { name: "Shinigami", brand: "A&L Ultimate", rate: 15 },
-            { name: "Valkyrie", brand: "A&L Ultimate", rate: 15 },
-            { name: "Nagato", brand: "A&L Ultimate", rate: 15 },
-            { name: "Leviathan", brand: "A&L Ultimate", rate: 15 },
-            { name: "Bahamut", brand: "A&L Ultimate", rate: 15 },
-            { name: "Heisenberg", brand: "Vampire Vape", rate: 15 },
-            { name: "Pinkman", brand: "Vampire Vape", rate: 15 },
-            { name: "Red Astaire", brand: "T-Juice", rate: 15 },
-            { name: "Clara T", brand: "T-Juice", rate: 15 },
-            { name: "Lemon Tart", brand: "Dinner Lady", rate: 20 },
-            { name: "La Chose", brand: "Le French Liquide", rate: 15 },
-            { name: "Sub Zero", brand: "Halo", rate: 25 },
-            { name: "Tribeca", brand: "Halo", rate: 25 },
-            { name: "Tallak", brand: "Vape Institut", rate: 15 },
-            { name: "Mallok", brand: "Vape Institut", rate: 15 },
-            { name: "Macadamia", brand: "Vape Institut", rate: 15 },
-            { name: "Bloody Summer", brand: "Fruizee", rate: 15 },
-            { name: "Crazy Mango", brand: "Fruizee", rate: 15 },
-            { name: "Ice Mint", brand: "Fruizee", rate: 15 },
-            { name: "Symphony", brand: "GFC Provap", rate: 15 },
-            { name: "Don Cristo Original", brand: "PGVG Labs", rate: 20 },
-            { name: "Don Cristo Custard", brand: "PGVG Labs", rate: 20 },
-            { name: "Concentré Relax", brand: "Eliquid France", rate: 15 },
-            { name: "Concentré Supreme", brand: "Eliquid France", rate: 15 },
-            { name: "Pop Corn", brand: "Monster Vape Labs", rate: 20 },
-            { name: "Strawberry Jam", brand: "Monster Vape Labs", rate: 20 },
-            { name: "Sucre - Additif", brand: "Solubarome", rate: 5 },
-            { name: "Menthe Glaciale", brand: "Solubarome", rate: 10 },
-            { name: "Vanilla Custard", brand: "Solubarome", rate: 15 },
-            { name: "Le Café", brand: "Supervape", rate: 10 },
-            { name: "Biscuit Craquant", brand: "Supervape", rate: 10 },
-            { name: "Cactus Citron", brand: "Supervape", rate: 10 }
-        ];
-
         window.onload = function() {
             const savedTheme = localStorage.getItem('labvape-theme') || 'light';
             document.documentElement.setAttribute('data-theme', savedTheme);
             updateThemeButtonVisual(savedTheme);
             executeDiagnostic();
-
-            // Fermer les résultats de recherche si on clique ailleurs sur l'écran
-            document.addEventListener('click', function(e) {
-                if (e.target.id !== 'diySearchInput') {
-                    document.getElementById('diySearchResults').style.display = 'none';
-                }
-            });
         };
 
-        /* 🌓 LOGIQUE DU THÈME ET INTERRUPTEUR DE SYMBOLE */
+        /* 🌓 LOGIQUE DU THÈME */
         function toggleTheme() {
             const currentTheme = document.documentElement.getAttribute('data-theme');
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
@@ -786,41 +814,21 @@
             btn.innerHTML = theme === 'dark' ? '🌙 Thème Sombre' : '☀️ Thème Clair';
         }
 
-        /* 🔍 MODULE DE RECHERCHE ET AUTOCOMPLÉTION */
-        function filterAromeSearch() {
-            const query = document.getElementById('diySearchInput').value.toLowerCase().trim();
-            const resultsBox = document.getElementById('diySearchResults');
+        /* 🧪 AUTOMATISATION DE LA BASE DES 100 AROMES */
+        function handleAromeSelection() {
+            const inputVal = document.getElementById('diyAromeInput').value;
+            const percInput = document.getElementById('diyAromePerc');
             
-            if (query.length === 0) {
-                resultsBox.style.display = 'none';
-                return;
+            if (inputVal.includes('—')) {
+                const parts = inputVal.split('—');
+                if (parts.length > 1) {
+                    const extractedNum = parseInt(parts[1].trim());
+                    if (!isNaN(extractedNum)) {
+                        percInput.value = extractedNum;
+                    }
+                }
             }
-
-            const filtered = AROME_DATABASE.filter(item => 
-                item.name.toLowerCase().includes(query) || 
-                item.brand.toLowerCase().includes(query)
-            );
-
-            if (filtered.length === 0) {
-                resultsBox.innerHTML = `<div class="search-item" style="cursor:default;color:var(--text-muted);">❌ Aucun arôme trouvé</div>`;
-                resultsBox.style.display = 'block';
-                return;
-            }
-
-            resultsBox.innerHTML = '';
-            filtered.forEach(item => {
-                const div = document.createElement('div');
-                div.className = 'search-item';
-                div.innerHTML = `${item.name} <span>${item.brand} (${item.rate}%)</span>`;
-                div.onclick = function() {
-                    document.getElementById('diySearchInput').value = `${item.name} (${item.brand})`;
-                    document.getElementById('diyAromePerc').value = item.rate;
-                    resultsBox.style.display = 'none';
-                    executeDiagnostic();
-                };
-                resultsBox.appendChild(div);
-            });
-            resultsBox.style.display = 'block';
+            executeDiagnostic();
         }
 
         /* 🔄 SYNCHRONISATION DU NOMBRE DE CIGARETTES */
@@ -830,7 +838,7 @@
             executeDiagnostic();
         }
 
-        /* 🔒 SÉCURITÉ CONTRE LA FERMETURE */
+        /* 🔒 SÉCURITÉ CONTRE LA FERMETURE CHRONIQUE */
         window.addEventListener('beforeunload', function (e) {
             e.preventDefault();
             e.returnValue = 'Attention : vous allez quitter l\'application LABVAPE.';
