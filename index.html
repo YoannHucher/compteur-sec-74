@@ -20,14 +20,14 @@
     <style>
         /* 📱 DESIGN HORIZONTAL & CLAIR — TEINTES BLEUTÉES LÉGÈRES */
         :root {
-            --bg-body: #f3f7fa; /* Fond blanc avec une très légère nuance bleu glacé */
+            --bg-body: #f3f7fa; 
             --bg-card: #ffffff; 
-            --bg-input: #edf4f9; /* Case de saisie teintée d'un bleu très léger */
+            --bg-input: #edf4f9; 
             --border-light: #e2eef5;
             
-            --primary: #8b5cf6; /* Violet signature */
+            --primary: #8b5cf6; 
             --primary-light: #ddd6fe;
-            --secondary: #06b6d4; /* Cyan */
+            --secondary: #06b6d4; 
             --danger: #ef4444;
             
             --text-main: #1e293b;
@@ -46,7 +46,7 @@
             box-sizing: border-box;
         }
 
-        /* 👑 HEADER GLOBAL (Logo agrandi à gauche + Outils alignés) */
+        /* 👑 HEADER GLOBAL ACCUEILLANT LE LOGO GÉANT ET LES ONGLETS */
         .app-header {
             background: var(--bg-card);
             border-bottom: 1px solid var(--border-light);
@@ -65,24 +65,24 @@
                 flex-direction: row;
                 align-items: center;
                 justify-content: flex-start;
-                padding: 15px 40px;
-                gap: 50px;
+                padding: 10px 40px; /* Hauteur ajustée pour le confort visuel */
+                gap: 40px;
             }
         }
 
-        /* Intégration libre et ENCORE PLUS GRANDE du logo */
+        /* 🎯 LE LOGO SEUL EST ENCORE PLUS GRAND (120PX) SANS CONFIGURATION COMPRESSANTE */
         .vape-logo-left {
             display: flex;
             align-items: center;
             flex-shrink: 0;
         }
         .vape-logo-left img {
-            height: 90px; /* Logo de taille supérieure pour un impact maximal */
+            height: 120px; /* Logo XXL pour une visibilité maximale */
             width: auto;
             display: block;
         }
 
-        /* Menu horizontal avec défilement fluide sur Mobile */
+        /* 🚨 LES ONGLETS RESTENT STRICTEMENT IDENTIQUES, PAS DE MODIFICATION DE TAILLE */
         .tools-nav-horizontal {
             display: flex;
             gap: 10px;
@@ -93,7 +93,6 @@
             width: 100%;
         }
 
-        /* Masquer la barre de défilement */
         .tools-nav-horizontal::-webkit-scrollbar {
             display: none;
         }
@@ -110,7 +109,7 @@
             border-radius: 30px;
             cursor: pointer;
             font-weight: 600;
-            font-size: 14px;
+            font-size: 14px; /* Taille d'écriture d'origine des onglets préservée */
             white-space: nowrap;
             transition: all 0.2s ease;
             display: flex;
@@ -342,7 +341,7 @@
 </head>
 <body>
 
-    <!-- 👑 HEADER PRINCIPAL : LOGO SUPER AGGRANDI (90PX) + ONGLET INTACTS -->
+    <!-- 👑 HEADER PRINCIPAL -->
     <header class="app-header">
         <div class="vape-logo-left">
             <img src="https://i.ibb.co/qMfNgwV9/Logo-Labvape.png" alt="Logo Labvape">
@@ -566,7 +565,7 @@
                     <div class="status-text" id="main-status-text">✅ Diagnostic calculé instantanément</div>
                     <div class="sub-result-details" id="sub-result-text">Modifiez les données ci-dessus pour voir l'analyse se mettre à jour en temps réel.</div>
                     
-                    <!-- BLOC AFFICHAGE GRANDES PROPORTIONS RECETTE DIY -->
+                    <!-- BLOC RECETTE DIY -->
                     <div class="big-recipe-box" id="recipe-block-view">
                         <div class="big-recipe-title">🧪 Recette à réaliser :</div>
                         <div class="big-recipe-grid">
@@ -602,7 +601,7 @@
             executeDiagnostic();
         };
 
-        /* 🔒 SÉCURITÉ ANTI-QUITTER */
+        /* 🔒 VERROUILLAGE ANTI-QUITTER */
         window.addEventListener('beforeunload', function (e) {
             e.preventDefault();
             e.returnValue = 'Voulez-vous vraiment quitter l\'application LABVAPE ?';
