@@ -14,26 +14,33 @@
         gtag('config', 'G-GBBR4R84TT');
     </script>
 
-    <!-- 1️⃣ LOGO DE L'ONGLET NAVIGATEUR (FAVICON) -->
+    <!-- LOGO DE L'ONGLET NAVIGATEUR (FAVICON) -->
     <link rel="icon" type="image/png" href="https://i.ibb.co/qMfNgwV9/Logo-Labvape.png">
 
     <style>
-        /* 🌌 STYLING ET ADAPTATION ERGONOMIQUE LABVAPE */
+        /* 🌌 REFONTE INSPIRÉE DE L'UNIVERS ARSÈNE VALENTIN */
         :root {
-            --bg-gradient: radial-gradient(circle at 50% 30%, #17123a 0%, #0b0f19 60%, #05070b 100%);
-            --glass-bg: rgba(255, 255, 255, 0.06);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --neon-glow: 0 0 40px rgba(112, 0, 255, 0.25);
+            --bg-dark: #0a0b10; /* Fond noir profond typique */
+            --card-bg: #131520; /* Cartes grises/bleutées sombres pour le contraste */
+            --input-bg: #1a1d2e; /* Éléments de saisie légèrement plus clairs */
+            --border-color: rgba(255, 255, 255, 0.05);
             
-            --cyan-neon: #3be2f2;
-            --purple-neon: #a855f7;
-            --text-main: #f1f5f9;
+            /* Les dégradés vifs et électriques de la vape moderne */
+            --vape-pink: #ff007f;
+            --vape-cyan: #00f0ff;
+            --vape-purple: #8b5cf6;
+            --text-main: #ffffff;
             --text-muted: #94a3b8;
+            
+            --gradient-accent: linear-gradient(90deg, #ff007f 0%, #7000ff 50%, #00f0ff 100%);
         }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background: var(--bg-gradient);
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(circle at 80% 20%, rgba(255, 0, 127, 0.06) 0%, transparent 40%),
+                radial-gradient(circle at 20% 80%, rgba(0, 240, 255, 0.05) 0%, transparent 40%);
             color: var(--text-main);
             margin: 0;
             padding: 15px;
@@ -49,21 +56,19 @@
             justify-content: center;
             max-width: 1300px;
             width: 100%;
-            margin: 10px auto 20px auto;
+            margin: 15px auto 25px auto;
             padding: 0 10px;
         }
 
         .top-logo-centered {
-            font-size: 24px;
-            font-weight: 800;
-            letter-spacing: 5px;
+            font-size: 26px;
+            font-weight: 900;
+            letter-spacing: 6px;
             color: #ffffff;
             text-transform: uppercase;
-            text-shadow: 0 0 20px rgba(59, 226, 242, 0.4);
-        }
-        .top-logo-centered span { 
-            color: var(--cyan-neon); 
-            font-weight: 400;
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .dashboard-container {
@@ -79,20 +84,19 @@
             .dashboard-container {
                 grid-template-columns: 340px 1fr;
                 align-items: start;
-                gap: 30px;
+                gap: 25px;
             }
         }
 
+        /* Style Bento-Box pour les cartes */
         .window-card {
-            background: rgba(18, 24, 41, 0.65);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-            border-radius: 24px;
-            border: 1px solid var(--glass-border);
-            box-shadow: 0 40px 70px rgba(0,0,0,0.6), inset 0 1px 1px rgba(255,255,255,0.1);
-            padding: 22px;
+            background: var(--card-bg);
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            padding: 25px;
             position: relative;
-            transition: opacity 0.3s ease, transform 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         @media (min-width: 768px) {
@@ -104,8 +108,8 @@
             align-items: center;
             justify-content: space-between;
             margin-bottom: 24px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            padding-bottom: 14px;
         }
 
         .window-dots {
@@ -120,6 +124,7 @@
         .dot.red { background: #ff5f56; cursor: pointer; }
         .dot.yellow { background: #ffbd2e; }
         .dot.green { background: #27c93f; }
+        
         .window-close { 
             color: var(--text-muted); 
             font-size: 16px; 
@@ -129,22 +134,21 @@
             transition: background 0.2s;
         }
         .window-close:hover {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
             color: #ffffff;
         }
 
-        /* 📦 Cadre de gauche contenant le logo */
+        /* Cadre du Logo */
         .widget-logo-box {
             text-align: center;
-            padding: 10px 5px; 
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.01) 0%, rgba(255, 255, 255, 0.03) 100%);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-sizing: border-box;
+            padding: 20px; 
+            background: #171926;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
         }
 
-        /* ✨ Conteneur maximisé pour l'affichage du nouveau logo coloré */
         .vape-illustration {
-            width: 310px;
+            width: 260px;
             max-width: 100%;
             margin: 0 auto;
             display: flex;
@@ -157,6 +161,7 @@
             display: block;
         }
 
+        /* Navigation Menu */
         .tools-nav {
             margin-top: 15px;
             display: grid;
@@ -168,99 +173,109 @@
             .tools-nav {
                 display: flex;
                 flex-direction: column;
-                gap: 8px;
+                gap: 10px;
             }
         }
 
         .nav-item-btn {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.05);
-            color: var(--text-muted);
-            padding: 14px 12px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: #cbd5e1;
+            padding: 15px;
             border-radius: 14px;
             cursor: pointer;
             text-align: left;
             font-weight: 600;
-            font-size: 12px;
-            line-height: 1.3;
+            font-size: 13px;
             transition: all 0.2s ease;
             display: flex;
             align-items: center;
-        }
-        
-        @media (min-width: 992px) {
-            .nav-item-btn {
-                font-size: 13px;
-                padding: 14px 16px;
-            }
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
 
-        .nav-item-btn:hover, .nav-item-btn.active {
-            background: rgba(255,255,255,0.08);
-            color: #ffffff;
-            border-color: rgba(255,255,255,0.15);
+        .nav-item-btn:hover {
+            border-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-1px);
         }
+        
         .nav-item-btn.active {
-            border-left: 4px solid var(--cyan-neon);
-            box-shadow: inset 4px 0 15px rgba(59, 226, 242, 0.1);
+            background: #171926;
+            color: #ffffff;
+            border-color: transparent;
+            box-shadow: inset 0 0 0 1px rgba(255, 0, 127, 0.4), 0 4px 15px rgba(255, 0, 127, 0.15);
+            position: relative;
+        }
+        .nav-item-btn.active::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 25%;
+            height: 50%;
+            width: 4px;
+            background: var(--vape-pink);
+            border-radius: 0 4px 4px 0;
         }
 
         .window-title {
-            font-size: 20px;
-            font-weight: 700;
-            margin: 0 0 4px 0;
+            font-size: 22px;
+            font-weight: 800;
+            margin: 0 0 6px 0;
             color: #ffffff;
+            letter-spacing: -0.5px;
         }
         .window-desc {
             font-size: 13px;
             color: var(--text-muted);
             margin-bottom: 24px;
-            line-height: 1.4;
+            line-height: 1.5;
         }
 
         label {
             display: block;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
             color: var(--text-muted);
             margin-bottom: 8px;
         }
 
         .section-separator-title {
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 800;
-            color: var(--cyan-neon);
+            color: var(--vape-cyan);
             text-transform: uppercase;
-            border-bottom: 1px dashed rgba(255,255,255,0.15);
-            padding-bottom: 6px;
-            margin: 20px 0 15px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding-bottom: 8px;
+            margin: 25px 0 18px 0;
             letter-spacing: 1px;
         }
 
+        /* Éléments de formulaires arrondis et profonds */
         input, select {
             width: 100%;
-            background: rgba(9, 13, 22, 0.85);
-            border: 1px solid rgba(255,255,255,0.08);
+            background: var(--input-bg);
+            border: 1px solid var(--border-color);
             border-radius: 12px;
-            padding: 14px;
+            padding: 15px;
             color: #ffffff;
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 600;
             box-sizing: border-box;
             outline: none;
-            margin-bottom: 18px;
-            transition: border-color 0.2s;
+            margin-bottom: 20px;
+            transition: all 0.2s;
             -webkit-appearance: none;
         }
         input:focus, select:focus {
-            border-color: var(--cyan-neon);
+            border-color: var(--vape-pink);
+            box-shadow: 0 0 10px rgba(255, 0, 127, 0.15);
         }
 
+        /* Bouton "Arsène style" aux bords très ronds et dégradé flashy */
         .action-gradient-btn {
             width: 100%;
-            background: linear-gradient(90deg, #2be2f4 0%, #3b82f6 50%, #8b5cf6 100%);
+            background: var(--gradient-accent);
             border: none;
             border-radius: 50px;
             padding: 18px 24px;
@@ -268,76 +283,80 @@
             font-size: 14px;
             font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
             cursor: pointer;
-            box-shadow: 0 8px 30px rgba(59, 226, 242, 0.3);
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 6px 20px rgba(112, 0, 255, 0.3);
+            transition: all 0.2s ease;
             margin-top: 10px;
         }
         .action-gradient-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 14px 35px rgba(59, 226, 242, 0.45);
+            box-shadow: 0 10px 25px rgba(255, 0, 127, 0.4);
+            filter: brightness(1.1);
         }
 
+        /* Panneau de résultats hyper contrasté */
         .result-panel {
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 20px;
-            padding: 22px;
-            margin-top: 24px;
-            border: 1px solid rgba(255,255,255,0.05);
+            background: #0d0e15;
+            border-radius: 16px;
+            padding: 24px;
+            margin-top: 28px;
+            border: 1px solid rgba(255, 255, 255, 0.02);
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
         }
         .result-panel label {
-            font-size: 12px;
+            font-size: 11px;
             color: var(--text-muted);
         }
+        
+        /* Chiffres géants et lumineux */
         .result-value {
-            font-size: 36px;
-            font-weight: 800;
-            color: var(--cyan-neon);
-            text-shadow: 0 0 20px rgba(59, 226, 242, 0.35);
-            margin: 4px 0 12px 0;
+            font-size: 40px;
+            font-weight: 900;
+            color: #ffffff;
+            margin: 6px 0 14px 0;
+            letter-spacing: -1px;
         }
 
         .status-text {
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 700;
             text-transform: uppercase;
-            margin-bottom: 10px;
-            color: #27c93f;
+            margin-bottom: 12px;
+            color: var(--vape-cyan);
             letter-spacing: 0.5px;
             display: flex;
             align-items: center;
+            gap: 6px;
         }
-        .status-text.danger { color: #ff5f56; }
+        .status-text.danger { color: var(--vape-pink); }
 
         .sub-result-details {
             font-size: 14px;
             line-height: 1.5;
-            color: #e2e8f0;
-            background: rgba(255, 255, 255, 0.03);
-            padding: 12px 14px;
-            border-radius: 10px;
-            border-left: 3px solid var(--purple-neon);
+            color: #94a3b8;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 14px;
+            border-radius: 12px;
+            border-left: 3px solid var(--vape-purple);
         }
 
+        /* Blocs de recettes bento */
         .big-recipe-box {
             display: none;
-            margin-top: 18px;
-            padding: 15px;
-            background: rgba(168, 85, 247, 0.08);
-            border: 1px solid rgba(168, 85, 247, 0.25);
+            margin-top: 20px;
+            padding: 18px;
+            background: rgba(139, 92, 246, 0.05);
+            border: 1px solid rgba(139, 92, 246, 0.15);
             border-radius: 16px;
         }
         .big-recipe-title {
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 800;
             color: #ffffff;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
             text-transform: uppercase;
             letter-spacing: 1px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
         }
         .big-recipe-grid {
             display: grid;
@@ -345,23 +364,23 @@
             gap: 10px;
         }
         .recipe-block {
-            background: rgba(9, 13, 22, 0.7);
-            border: 1px solid rgba(255,255,255,0.05);
+            background: var(--input-bg);
+            border: 1px solid var(--border-color);
             border-radius: 12px;
-            padding: 12px 6px;
+            padding: 14px 6px;
             text-align: center;
         }
         .recipe-block-val {
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 800;
-            color: var(--cyan-neon);
+            color: var(--vape-cyan);
         }
         .recipe-block-lbl {
-            font-size: 10px;
+            font-size: 9px;
             font-weight: 700;
             color: var(--text-muted);
             text-transform: uppercase;
-            margin-top: 4px;
+            margin-top: 5px;
         }
 
         .empty-window-state {
@@ -372,36 +391,43 @@
         .empty-window-state h3 { font-size: 22px; margin-bottom: 10px; color: #fff;}
         .empty-window-state p { color: var(--text-muted); font-size: 14px; margin-bottom: 20px;}
 
+        /* Boutons d'options pré-configurés */
         .preset-row {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 8px;
-            margin-bottom: 18px;
+            margin-bottom: 20px;
         }
         .preset-item {
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(255,255,255,0.08);
+            background: var(--input-bg);
+            border: 1px solid var(--border-color);
             color: #fff;
-            padding: 12px 8px;
+            padding: 13px 8px;
             font-size: 12px;
             border-radius: 10px;
             cursor: pointer;
             font-weight: 600;
             text-align: center;
-            transition: background 0.2s;
+            transition: all 0.2s;
         }
-        .preset-item:hover, .preset-item.active { background: rgba(255,255,255,0.1); }
-        .preset-item.active { border-color: var(--cyan-neon); color: var(--cyan-neon); }
+        .preset-item:hover {
+            border-color: rgba(255,255,255,0.15);
+        }
+        .preset-item.active { 
+            background: rgba(255, 0, 127, 0.1);
+            border-color: var(--vape-pink); 
+            color: var(--vape-pink); 
+        }
 
         footer {
             text-align: center;
             margin-top: auto;
             padding: 40px 10px 15px 10px;
             font-size: 11px;
-            color: rgba(255,255,255,0.2);
+            color: rgba(255,255,255,0.15);
             letter-spacing: 0.5px;
         }
-        footer a { color: rgba(255,255,255,0.3); text-decoration: none; }
+        footer a { color: rgba(255,255,255,0.25); text-decoration: none; }
 
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
         .hidden-tab { display: none; }
@@ -410,12 +436,12 @@
 <body>
 
     <div class="top-bar">
-        <div class="top-logo-centered">LAB<span>VAPE</span></div>
+        <div class="top-logo-centered">LABVAPE</div>
     </div>
 
     <div class="dashboard-container">
         
-        <!-- MODULE DE GAUCHE : NAVIGATION TACTILE -->
+        <!-- MODULE DE GAUCHE : NAVIGATION -->
         <div>
             <div class="window-card widget-logo-box">
                 <div class="vape-illustration">
@@ -436,7 +462,7 @@
         </div>
 
         <!-- MODULE DE DROITE : INTERFACE APPLICATIVE -->
-        <div class="window-card" id="main-application-window" style="border-color: rgba(168, 85, 247, 0.35); box-shadow: var(--neon-glow);">
+        <div class="window-card" id="main-application-window" style="box-shadow: 0 20px 45px rgba(0,0,0,0.6), 0 0 40px rgba(255, 0, 127, 0.04);">
             
             <div class="window-header">
                 <div class="window-dots">
@@ -579,12 +605,12 @@
                     <h2 class="window-title">Diagnostic dynamic — Recyclage</h2>
                     <div class="window-desc">Mélange de deux liquides aux taux différents.</div>
                     
-                    <label style="color:var(--cyan-neon)">Liquide Source A</label>
+                    <label style="color:var(--vape-cyan)">Liquide Source A</label>
                     <div class="grid-2">
                         <input type="number" id="mixVolA" value="50" placeholder="Vol ml">
                         <input type="number" id="mixNicA" value="3" placeholder="Taux mg">
                     </div>
-                    <label style="color:var(--purple-neon)">Liquide Source B</label>
+                    <label style="color:var(--vape-pink)">Liquide Source B</label>
                     <div class="grid-2">
                         <input type="number" id="mixVolB" value="10" placeholder="Vol ml">
                         <input type="number" id="mixNicB" value="12" placeholder="Taux mg">
@@ -730,8 +756,19 @@
         }
 
         // Configuration simplifiée via les boutons d'options
-        function setMl(val) { document.getElementById('ml').value = val; }
-        function setVolt(val) { document.getElementById('vwVolt').value = val; }
+        function setMl(val) { 
+            document.getElementById('ml').value = val; 
+            // Update active preset class
+            const items = document.querySelectorAll('#panel-nicotine .preset-item');
+            items.forEach(i => i.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+        function setVolt(val) { 
+            document.getElementById('vwVolt').value = val; 
+            const items = document.querySelectorAll('#panel-volt .preset-item');
+            items.forEach(i => i.classList.remove('active'));
+            event.target.classList.add('active');
+        }
         function setSizePreset(size, element) {
             document.getElementById('ecoSizeFlacon').value = size;
             document.querySelectorAll('#size-preset-row .preset-item').forEach(item => item.classList.remove('active'));
@@ -913,9 +950,9 @@
                     
                     // Rendu UI
                     mainVal.innerText = gainNetParMois.toFixed(2) + " € / mois";
-                    subTxt.innerHTML = "Soit un gain colossal de <strong>" + gainNetParAn.toFixed(2) + " € d'économies sur votre 1ère année</strong> ! <br><span style='font-size:12px; opacity:0.8;'>(Consommation de " + (flaconsMois * tailleFlacon) + " ml/mois. Matériel de départ de " + kitInitial.toFixed(2) + " € déduit une seule fois sur l'année).</span>";
+                    subTxt.innerHTML = "Soit un gain de <strong>" + gainNetParAn.toFixed(2) + " € d'économies sur votre première année</strong> ! <br><span style='font-size:12px; opacity:0.8;'>(Consommation de " + (flaconsMois * tailleFlacon) + " ml/mois. Kit de départ déduit).</span>";
                     
-                    statusTxt.innerText = "💰 BILAN FINANCIER ANNUEL HAUTEMENT RENTABLE";
+                    statusTxt.innerText = "💰 BILAN FINANCIER ANNUEL RENTABLE";
                     statusTxt.className = "status-text";
                 }
 
