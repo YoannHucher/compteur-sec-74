@@ -14,7 +14,8 @@
         gtag('config', 'G-GBBR4R84TT');
     </script>
 
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧪</text></svg>">
+    <!-- 1️⃣ LOGO DE L'ONGLET NAVIGATEUR (FAVICON) -->
+    <link rel="icon" type="image/png" href="https://i.ibb.co/cKqKQpkJ/Logo-Labvape-Photoroom.png">
 
     <style>
         /* 🌌 STYLING ET ADAPTATION ERGONOMIQUE LABVAPE */
@@ -139,16 +140,21 @@
             border: 1px solid rgba(59, 226, 242, 0.12);
         }
 
+        /* Ajustement de la boîte contenant l'image du logo à gauche */
         .vape-illustration {
-            width: 70px;
-            height: 70px;
+            width: 80px;
+            height: 80px;
             margin: 0 auto 12px auto;
             background: radial-gradient(circle, rgba(59,226,242,0.15) 0%, transparent 70%);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 36px;
-            filter: drop-shadow(0 0 15px rgba(59,226,242,0.5));
+            filter: drop-shadow(0 0 15px rgba(59,226,242,0.4));
+        }
+        .vape-illustration img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
         }
 
         .brand-title {
@@ -431,7 +437,10 @@
         <!-- MODULE DE GAUCHE : NAVIGATION TACTILE -->
         <div>
             <div class="window-card widget-logo-box">
-                <div class="vape-illustration">🧪</div>
+                <!-- 2️⃣ LOGO SUR LE SITE À GAUCHE -->
+                <div class="vape-illustration">
+                    <img src="https://i.ibb.co/cKqKQpkJ/Logo-Labvape-Photoroom.png" alt="Labvape Logo">
+                </div>
                 <h1 class="brand-title">Labvape</h1>
                 <div class="brand-subtitle">Outils - Calculs - Guides - Ressources</div>
             </div>
