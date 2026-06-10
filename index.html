@@ -46,44 +46,28 @@
             box-sizing: border-box;
         }
 
-        /* 👑 HEADER PRINCIPAL COMPLETEMET RESPONSIVE */
+        /* 👑 HEADER PRINCIPAL COMPLÈTEMENT RESPONSIVE */
         .app-header {
             background: var(--bg-card);
             border-bottom: 1px solid var(--border-light);
             padding: 10px 15px;
             display: flex;
-            flex-direction: row; /* Forcé en ligne dès le mobile */
-            align-items: center;
-            justify-content: flex-start;
-            gap: 15px;
             position: sticky;
             top: 0;
             z-index: 100;
             box-shadow: 0 4px 20px rgba(139, 92, 246, 0.02);
         }
 
-        /* 🎯 GESTION INTELLIGENTE DU LOGO (PETIT SUR MOBILE / GÉANT SUR PC) */
-        .vape-logo-left {
-            display: flex;
-            align-items: center;
-            flex-shrink: 0;
-        }
-        .vape-logo-left img {
-            height: 45px; /* Compact sur mobile pour ne perdre aucune place */
-            width: auto;
-            display: block;
-            transition: height 0.2s ease;
-        }
-
-        /* BARRE DES ONGLETS CONTENUE ET AJUSTÉE */
+        /* BARRE DES ONGLETS INTEGRANT LE LOGO */
         .tools-nav-horizontal {
             display: flex;
-            gap: 8px;
+            align-items: center;
+            gap: 10px;
             overflow-x: auto;
             padding-bottom: 3px;
             scroll-behavior: smooth;
             -webkit-overflow-scrolling: touch;
-            flex-grow: 1;
+            width: 100%;
         }
 
         .tools-nav-horizontal::-webkit-scrollbar {
@@ -94,18 +78,32 @@
             scrollbar-width: none;
         }
 
+        /* 🎯 LE LOGO FAIT MAINTENANT PARTIE DU FLUX ET BOUGE AVEC LA BARRE */
+        .vape-logo-left {
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+        }
+        .vape-logo-left img {
+            height: 45px; /* Compact sur mobile pour défiler parfaitement */
+            width: auto;
+            display: block;
+            transition: height 0.2s ease;
+        }
+
         /* DESIGN ADAPTATIF POUR ORDINATEUR (SANS CASSER LA VERSION PC) */
         @media (min-width: 900px) {
             .app-header {
-                justify-content: center; /* Centrage global sur grand écran */
+                justify-content: center; /* Centrage global du bloc sur grand écran */
                 padding: 10px 40px;
-                gap: 40px;
-            }
-            .vape-logo-left img {
-                height: 120px; /* Reprend sa taille XXL exclusive sur PC */
             }
             .tools-nav-horizontal {
-                flex-grow: 0; /* Ne force plus toute la largeur sur PC */
+                justify-content: center;
+                width: auto;
+                gap: 40px; /* Reprend les grands espaces d'origine sur PC */
+            }
+            .vape-logo-left img {
+                height: 120px; /* Reprend sa taille géante XXL exclusive sur PC */
             }
         }
 
@@ -349,13 +347,14 @@
 </head>
 <body>
 
-    <!-- 👑 HEADER PRINCIPAL UNIFIÉ PC / MOBILE -->
+    <!-- 👑 HEADER PRINCIPAL -->
     <header class="app-header">
-        <div class="vape-logo-left">
-            <img src="https://i.ibb.co/qMfNgwV9/Logo-Labvape.png" alt="Logo Labvape">
-        </div>
-        
         <nav class="tools-nav-horizontal">
+            <!-- Le logo est maintenant ici, il suit le mouvement de swipe à 100% -->
+            <div class="vape-logo-left">
+                <img src="https://i.ibb.co/qMfNgwV9/Logo-Labvape.png" alt="Logo Labvape">
+            </div>
+            
             <button id="nav-cdr" class="nav-item-btn active" onclick="switchTab('cdr')">⚡ Sécurité Accu</button>
             <button id="nav-nicotine" class="nav-item-btn" onclick="switchTab('nicotine')">💧 Profil Nicotine</button>
             <button id="nav-diy" class="nav-item-btn" onclick="switchTab('diy')">🧪 Calcul Pack DIY</button>
@@ -609,7 +608,7 @@
             executeDiagnostic();
         };
 
-        /* 🔒 PROTECTION CONTRE LA FERMETURE INTEMPESTIVE RESTAURÉE */
+        /* 🔒 VERROUILLAGE ANTI-QUITTER RE-STABILISÉ */
         window.addEventListener('beforeunload', function (e) {
             e.preventDefault();
             e.returnValue = 'Voulez-vous vraiment quitter l\'application LABVAPE ?';
