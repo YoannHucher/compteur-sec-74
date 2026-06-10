@@ -10,97 +10,89 @@
         :root {
             --bg-body: #f3f7fa; 
             --bg-card: #ffffff; 
-            --bg-input: #edf4f9; 
             --primary: #8b5cf6; 
             --text-main: #1e293b;
         }
 
         body { font-family: sans-serif; background-color: var(--bg-body); margin: 0; padding: 0; }
 
-        /* HEADER MOBILE & PC */
+        /* HEADER : Structure robuste */
         .app-header {
             background: var(--bg-card);
             border-bottom: 1px solid #e2eef5;
-            padding: 10px 15px;
+            padding: 10px 20px;
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 20px;
             position: sticky;
             top: 0;
             z-index: 1000;
         }
 
-        /* Logo petit sur mobile, taille normale sur PC */
-        .vape-logo-left img { height: 40px; width: auto; }
-        
-        @media (min-width: 768px) {
-            .vape-logo-left img { height: 60px; }
-            .app-header { justify-content: center; gap: 40px; padding: 10px 40px; }
-        }
+        /* Logo fixe à gauche */
+        .vape-logo img { height: 45px; display: block; }
 
-        /* Menu horizontal compact */
-        .tools-nav-horizontal {
+        /* Navigation : Scroll sur mobile, centrée sur PC */
+        .tools-nav {
             display: flex;
-            gap: 8px;
+            gap: 10px;
             overflow-x: auto;
-            flex-grow: 1;
-            scrollbar-width: none; /* Cache scrollbar */
+            flex: 1;
+            padding-bottom: 5px;
+            scrollbar-width: none;
         }
-        .tools-nav-horizontal::-webkit-scrollbar { display: none; }
+        .tools-nav::-webkit-scrollbar { display: none; }
+
+        /* Ajustement PC : On centre la navigation */
+        @media (min-width: 900px) {
+            .app-header { justify-content: center; }
+            .tools-nav { flex: 0; justify-content: center; }
+        }
 
         .nav-item-btn {
-            background: var(--bg-input);
+            background: #edf4f9;
             border: 1px solid #e2eef5;
-            padding: 8px 15px;
+            padding: 8px 16px;
             border-radius: 20px;
-            font-size: 13px;
+            font-size: 14px;
             white-space: nowrap;
             cursor: pointer;
+            transition: 0.2s;
         }
         .nav-item-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
 
         .main-container { max-width: 800px; margin: 20px auto; padding: 0 15px; }
-        .window-card { background: var(--bg-card); padding: 20px; border-radius: 20px; border: 1px solid #e2eef5; }
         .hidden-tab { display: none; }
-        input, select { width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 10px; border: 1px solid #ddd; box-sizing: border-box; }
     </style>
 </head>
 <body>
 
     <header class="app-header">
-        <div class="vape-logo-left">
+        <div class="vape-logo">
             <img src="https://i.ibb.co/qMfNgwV9/Logo-Labvape.png" alt="Logo">
         </div>
-        <nav class="tools-nav-horizontal">
-            <button class="nav-item-btn active" onclick="switchTab('cdr')">⚡ Accu</button>
-            <button class="nav-item-btn" onclick="switchTab('nicotine')">💧 Nicotine</button>
-            <button class="nav-item-btn" onclick="switchTab('diy')">🧪 DIY</button>
-            <button class="nav-item-btn" onclick="switchTab('pgvg')">📊 PG/VG</button>
-            <button class="nav-item-btn" onclick="switchTab('volt')">🔌 Volt</button>
-            <button class="nav-item-btn" onclick="switchTab('auto')">🔋 Autonomie</button>
+        <nav class="tools-nav">
+            <button class="nav-item-btn active" id="btn-cdr" onclick="switchTab('cdr')">⚡ Accu</button>
+            <button class="nav-item-btn" id="btn-nicotine" onclick="switchTab('nicotine')">💧 Nicotine</button>
+            <!-- Ajoute tes autres boutons ici -->
         </nav>
     </header>
 
     <main class="main-container">
-        <div class="window-card">
-            <!-- Tes contenus de formulaires ici -->
-            <div id="panel-cdr"><h2>Diagnostic Accu</h2><p>Contenu...</p></div>
-            <div id="panel-nicotine" class="hidden-tab"><h2>Profil Nicotine</h2><p>Contenu...</p></div>
-            <!-- ... -->
-        </div>
+        <!-- Ton contenu -->
     </main>
 
     <script>
-        // RÉACTIVATION DE LA POP-UP DE QUITTAGE
+        // RÉACTIVATION DE LA SÉCURITÉ DE FERMETURE
         window.addEventListener('beforeunload', function (e) {
             e.preventDefault();
-            e.returnValue = 'Attention : vous allez quitter l\'application.';
+            e.returnValue = ''; // Déclenche la popup de confirmation
         });
 
         function switchTab(tabId) {
-            document.querySelectorAll('.nav-item-btn').forEach(btn => btn.classList.remove('active'));
-            document.getElementById('nav-' + tabId)?.classList.add('active');
-            // Logique de switch des panneaux...
+            // Logique de changement d'onglet
+            document.querySelectorAll('.nav-item-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById('btn-' + tabId).classList.add('active');
         }
     </script>
 </body>
