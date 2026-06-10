@@ -43,7 +43,6 @@
             overflow-x: hidden;
         }
 
-        /* LOGO DU HAUT */
         .top-bar {
             display: flex;
             justify-content: center;
@@ -66,7 +65,6 @@
             font-weight: 400;
         }
 
-        /* DISPOSITION INTELLIGENTE MOBILE + PC */
         .dashboard-container {
             display: grid;
             grid-template-columns: 1fr;
@@ -84,7 +82,6 @@
             }
         }
 
-        /* VITRE FUMÉE STYLE "OS" INTERFACE */
         .window-card {
             background: rgba(18, 24, 41, 0.65);
             backdrop-filter: blur(30px);
@@ -135,7 +132,6 @@
             color: #ffffff;
         }
 
-        /* EN-TÊTE BLOC GAUCHE */
         .widget-logo-box {
             text-align: center;
             padding: 30px 20px;
@@ -174,7 +170,6 @@
             display: inline-block;
         }
 
-        /* RE-DESIGN MENUS : ERGONOMIE MOBILE EN GRILLE ACTUELLE */
         .tools-nav {
             margin-top: 15px;
             display: grid;
@@ -223,7 +218,6 @@
             box-shadow: inset 4px 0 15px rgba(59, 226, 242, 0.1);
         }
 
-        /* CHAMPS ET CONFIGURATION INTERNE */
         .window-title {
             font-size: 20px;
             font-weight: 700;
@@ -247,6 +241,17 @@
             margin-bottom: 8px;
         }
 
+        .section-separator-title {
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--cyan-neon);
+            text-transform: uppercase;
+            border-bottom: 1px dashed rgba(255,255,255,0.15);
+            padding-bottom: 6px;
+            margin: 20px 0 15px 0;
+            letter-spacing: 1px;
+        }
+
         input, select {
             width: 100%;
             background: rgba(9, 13, 22, 0.85);
@@ -260,13 +265,12 @@
             outline: none;
             margin-bottom: 18px;
             transition: border-color 0.2s;
-            -webkit-appearance: none; /* Uniformité mobile iOS/Android */
+            -webkit-appearance: none;
         }
         input:focus, select:focus {
             border-color: var(--cyan-neon);
         }
 
-        /* GRAND BUTTON LOGO STYLE */
         .action-gradient-btn {
             width: 100%;
             background: linear-gradient(90deg, #2be2f4 0%, #3b82f6 50%, #8b5cf6 100%);
@@ -287,11 +291,7 @@
             transform: translateY(-2px);
             box-shadow: 0 14px 35px rgba(59, 226, 242, 0.45);
         }
-        .action-gradient-btn:active {
-            transform: translateY(1px);
-        }
 
-        /* 👑 PANNEAU DE RÉSULTAT ET TEXTES EN GROS CARACTÈRES */
         .result-panel {
             background: rgba(0, 0, 0, 0.3);
             border-radius: 20px;
@@ -311,9 +311,8 @@
             margin: 4px 0 12px 0;
         }
 
-        /* 👑 CORRECTION TAILLE DE TEXTES SOUS-RÉSULTATS ET STATUTS (AGRANDIS) */
         .status-text {
-            font-size: 14px; /* Agrandi pour lisibilité parfaite */
+            font-size: 14px;
             font-weight: 700;
             text-transform: uppercase;
             margin-bottom: 10px;
@@ -325,16 +324,60 @@
         .status-text.danger { color: #ff5f56; }
 
         .sub-result-details {
-            font-size: 14px; /* Agrandi pour lisibilité parfaite */
+            font-size: 14px;
             line-height: 1.5;
-            color: #e2e8f0; /* Éclairci pour un meilleur contraste */
+            color: #e2e8f0;
             background: rgba(255, 255, 255, 0.03);
             padding: 12px 14px;
             border-radius: 10px;
             border-left: 3px solid var(--purple-neon);
         }
 
-        /* ÉCRAN D'ACCUEIL SI FENÊTRE FERMÉE */
+        /* 🧪 DESIGN GRAND FORMAT POUR LA RECETTE COMPOSANTS */
+        .big-recipe-box {
+            display: none;
+            margin-top: 18px;
+            padding: 15px;
+            background: rgba(168, 85, 247, 0.08);
+            border: 1px solid rgba(168, 85, 247, 0.25);
+            border-radius: 16px;
+        }
+        .big-recipe-title {
+            font-size: 13px;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .big-recipe-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+        .recipe-block {
+            background: rgba(9, 13, 22, 0.7);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 12px 6px;
+            text-align: center;
+        }
+        .recipe-block-val {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--cyan-neon);
+        }
+        .recipe-block-lbl {
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-top: 4px;
+        }
+
         .empty-window-state {
             display: none;
             text-align: center;
@@ -361,7 +404,8 @@
             text-align: center;
             transition: background 0.2s;
         }
-        .preset-item:hover { background: rgba(255,255,255,0.1); }
+        .preset-item:hover, .preset-item.active { background: rgba(255,255,255,0.1); }
+        .preset-item.active { border-color: var(--cyan-neon); color: var(--cyan-neon); }
 
         footer {
             text-align: center;
@@ -379,15 +423,13 @@
 </head>
 <body>
 
-    <!-- LOGO PRINCIPAL -->
     <div class="top-bar">
         <div class="top-logo-centered">LAB<span>VAPE</span></div>
     </div>
 
-    <!-- DOUBLE DASHBOARD -->
     <div class="dashboard-container">
         
-        <!-- MODULE DE GAUCHE : IDENTITÉ & BOUTONS LARGE TACTILE SUR MOBILE -->
+        <!-- MODULE DE GAUCHE : NAVIGATION TACTILE -->
         <div>
             <div class="window-card widget-logo-box">
                 <div class="vape-illustration">🧪</div>
@@ -407,7 +449,7 @@
             </div>
         </div>
 
-        <!-- MODULE DE DROITE : LA FENÊTRE APPLICATIVE AVEC LA CROIX EXÉCUTABLE -->
+        <!-- MODULE DE DROITE : INTERFACE APPLICATIVE -->
         <div class="window-card" id="main-application-window" style="border-color: rgba(168, 85, 247, 0.35); box-shadow: var(--neon-glow);">
             
             <div class="window-header">
@@ -416,11 +458,9 @@
                     <div class="dot yellow"></div>
                     <div class="dot green"></div>
                 </div>
-                <!-- Action de fermeture reliée sur la croix également -->
                 <div class="window-close" onclick="closeWindow()">✕</div>
             </div>
 
-            <!-- ENSEMBLE DES PANNEAUX DE SAISIES -->
             <div id="window-form-wrapper">
                 
                 <!-- CDR ACCU -->
@@ -431,7 +471,7 @@
                     <label>Puissance demandée (Watts)</label>
                     <input type="number" id="w" value="50">
                     
-                    <label>Tension minimale de coupure (Volts)</label>
+                    <label>Tension mini par accu (Volts)</label>
                     <input type="number" id="v" value="3.2" step="0.1">
                     
                     <div class="grid-2">
@@ -487,7 +527,7 @@
                             <input type="number" id="diyAromePerc" value="15">
                         </div>
                         <div>
-                            <label>Force Booster</label>
+                            <label>Taux du booster</label>
                             <select id="diyBoosterTaux">
                                 <option value="20">20 mg/ml</option>
                                 <option value="18">18 mg/ml</option>
@@ -529,7 +569,7 @@
                     <input type="number" id="vwVolt" value="3.7" step="0.1">
                 </div>
 
-                <!-- ENERGY PUFFS AUTONOMIE -->
+                <!-- AUTONOMIE PUFFS -->
                 <div id="panel-auto" class="hidden-tab">
                     <h2 class="window-title">Diagnostic dynamic — Capacité</h2>
                     <div class="window-desc">Estimation mathématique de la durée de vie de la batterie.</div>
@@ -565,11 +605,13 @@
                     </div>
                 </div>
 
-                <!-- FINANCES SIMULATEUR ECONOMIE -->
+                <!-- FINANCES SIMULATEUR ECONOMIE (SÉPARÉ EN DEUX) -->
                 <div id="panel-eco" class="hidden-tab">
                     <h2 class="window-title">Diagnostic dynamic — Économies</h2>
-                    <div class="window-desc">Rentabilité financière du passage à la vape au comptoir.</div>
+                    <div class="window-desc">Bilan financier complet et comparatif direct.</div>
                     
+                    <!-- PARTIE TABAC -->
+                    <div class="section-separator-title">🚬 1. Budget actuel Tabac</div>
                     <div class="grid-2">
                         <div>
                             <label>Cigarettes / jour</label>
@@ -580,19 +622,40 @@
                             <input type="number" id="ecoPrice" value="12.50">
                         </div>
                     </div>
+
+                    <!-- PARTIE VAPE -->
+                    <div class="section-separator-title">🔮 2. Budget estimé Vape</div>
                     <div class="grid-2">
                         <div>
-                            <label>Flacons Vape / mois</label>
+                            <label>Flacons / mois</label>
                             <input type="number" id="ecoNbFlacons" value="5">
                         </div>
                         <div>
-                            <label>Prix Moyen Unit.</label>
+                            <label>Prix Moyen Unit. (€)</label>
                             <input type="number" id="ecoPriceFlacon" value="5.90">
+                        </div>
+                    </div>
+                    
+                    <label>Taille du flacon utilisé</label>
+                    <div class="preset-row" id="size-preset-row">
+                        <div class="preset-item active" onclick="setSizePreset(10, this)">10 ml</div>
+                        <div class="preset-item" onclick="setSizePreset(50, this)">50 ml</div>
+                        <div class="preset-item" onclick="setSizePreset(100, this)">100 ml</div>
+                    </div>
+                    <input type="hidden" id="ecoSizeFlacon" value="10">
+
+                    <div class="grid-2">
+                        <div>
+                            <label>Résistances / mois (€)</label>
+                            <input type="number" id="ecoResPerMonth" value="10" placeholder="Ex: 10">
+                        </div>
+                        <div>
+                            <label>Kit Initial Achat (€)</label>
+                            <input type="number" id="ecoKitInitial" value="59.90" placeholder="Ex: 59.90">
                         </div>
                     </div>
                 </div>
 
-                <!-- UNIQUE STRATÉGIE : LE BOUTON DÉCLENCHEUR AU CLIC -->
                 <button class="action-gradient-btn" onclick="executeDiagnostic()">Lancer le diagnostic</button>
 
                 <!-- BOÎTE DES RÉSULTATS VISUELS TRÈS LISIBLES -->
@@ -601,11 +664,30 @@
                     <div class="result-value" id="main-result-value">--</div>
                     <div class="status-text" id="main-status-text">🔵 En attente de lancement</div>
                     <div class="sub-result-details" id="sub-result-text">Cliquez sur le bouton ci-dessus pour générer les données de comptoir.</div>
+                    
+                    <!-- BLOC AFFICHAGE GRANDES PROPORTIONS RECETTE DIY -->
+                    <div class="big-recipe-box" id="recipe-block-view">
+                        <div class="big-recipe-title">🧪 Recette à réaliser :</div>
+                        <div class="big-recipe-grid">
+                            <div class="recipe-block">
+                                <div class="recipe-block-val" id="rec-booster">--</div>
+                                <div class="recipe-block-lbl">Booster</div>
+                            </div>
+                            <div class="recipe-block">
+                                <div class="recipe-block-val" id="rec-arome">--</div>
+                                <div class="recipe-block-lbl">Arôme</div>
+                            </div>
+                            <div class="recipe-block">
+                                <div class="recipe-block-val" id="rec-base">--</div>
+                                <div class="recipe-block-lbl">Base Neutre</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
             </div>
 
-            <!-- APPARITION SI FERMETURE PAR LA CROIX -->
+            <!-- ÉCRAN D'ACCUEIL SI FENÊTRE FERMÉE -->
             <div class="empty-window-state" id="empty-state-view">
                 <h3>Fenêtre fermée</h3>
                 <p>Veuillez sélectionner un outil dans le menu de gauche pour ouvrir un nouveau diagnostic.</p>
@@ -615,29 +697,24 @@
         </div>
     </div>
 
-    <!-- PIED DE PAGE -->
     <footer>
         © 2026 LABVAPE — Système intelligent d'aide à la vente — Propriété exclusive du réseau. (<a href="https://labvape.fr" target="_blank">labvape.fr</a>)
     </footer>
 
-    <!-- CODE APPLICATIF RÉVISÉ -->
     <script>
         let currentTab = 'cdr';
 
         function switchTab(tabId) {
             currentTab = tabId;
             
-            // Rétablir la fenêtre si elle était fermée
             document.getElementById('window-form-wrapper').style.display = 'block';
             document.getElementById('empty-state-view').style.display = 'none';
             document.getElementById('main-application-window').style.opacity = '1';
             document.getElementById('main-application-window').style.transform = 'scale(1)';
 
-            // MAJ menu de navigation
             document.querySelectorAll('.nav-item-btn').forEach(btn => btn.classList.remove('active'));
             document.getElementById('nav-' + tabId).classList.add('active');
             
-            // Masquage / affichage des volets
             document.getElementById('panel-cdr').className = 'hidden-tab';
             document.getElementById('panel-nicotine').className = 'hidden-tab';
             document.getElementById('panel-diy').className = 'hidden-tab';
@@ -649,7 +726,9 @@
             
             document.getElementById('panel-' + tabId).className = '';
 
-            // Reset des affichages du panel résultat pour ne pas tricher avant le clic
+            // Masquer la grosse boîte recette si on change d'onglet
+            document.getElementById('recipe-block-view').style.display = 'none';
+
             document.getElementById('result-label-text').innerText = "Analyse mise à jour";
             document.getElementById('main-result-value').innerText = "--";
             document.getElementById('main-status-text').innerText = "🔵 Données modifiées. Prêt à calculer.";
@@ -658,7 +737,6 @@
         }
 
         function closeWindow() {
-            // Effet visuel fluide de fermeture
             document.getElementById('window-form-wrapper').style.display = 'none';
             document.getElementById('empty-state-view').style.display = 'block';
             document.querySelectorAll('.nav-item-btn').forEach(btn => btn.classList.remove('active'));
@@ -672,6 +750,12 @@
             document.getElementById('vwVolt').value = val;
         }
 
+        function setSizePreset(size, element) {
+            document.getElementById('ecoSizeFlacon').value = size;
+            document.querySelectorAll('#size-preset-row .preset-item').forEach(item => item.classList.remove('active'));
+            element.classList.add('active');
+        }
+
         function syncResValue() {
             const style = document.getElementById("vapestyle").value;
             const resInput = document.getElementById("resval");
@@ -680,13 +764,15 @@
             else if(style === "mtl") resInput.value = "1.2";
         }
 
-        /* 👑 APPELÉE UNIQUEMENT AU CLIC DU BOUTON PRINCIPAL */
         function executeDiagnostic() {
             try {
                 const labelText = document.getElementById('result-label-text');
                 const mainVal = document.getElementById('main-result-value');
                 const statusTxt = document.getElementById('main-status-text');
                 const subTxt = document.getElementById('sub-result-text');
+                const recipeView = document.getElementById('recipe-block-view');
+
+                recipeView.style.display = 'none'; // Par défaut masqué
 
                 if (currentTab === 'cdr') {
                     labelText.innerText = "Courant de décharge requis :";
@@ -732,7 +818,7 @@
                 } 
                 
                 else if (currentTab === 'diy') {
-                    labelText.innerText = "Proportions de la recette :";
+                    labelText.innerText = "Proportions globales du pack :";
                     let total = parseFloat(document.getElementById("diyTotal").value) || 0;
                     let nic = parseFloat(document.getElementById("diyNic").value) || 0;
                     let perc = parseFloat(document.getElementById("diyAromePerc").value) || 0;
@@ -743,10 +829,16 @@
                     let baseMl = total - boostMl - aromeMl;
                     if(baseMl < 0) baseMl = 0;
                     
-                    mainVal.innerText = (boostMl/10).toFixed(1) + " Boosters";
-                    subTxt.innerText = "Détails de composition : " + boostMl.toFixed(0) + "ml de Boosters | " + aromeMl.toFixed(0) + "ml d'Arôme | " + baseMl.toFixed(0) + "ml de Base.";
-                    statusTxt.innerText = "🧪 RECETTE PRÊTE À ASSEMBLER";
+                    mainVal.innerText = (boostMl/10).toFixed(1) + " Booster(s)";
+                    subTxt.innerText = "Préparation complète basée sur vos objectifs de dosage comptoir.";
+                    statusTxt.innerText = "🧪 CALCUL RECETTE DIY VALIDE";
                     statusTxt.className = "status-text";
+
+                    // Injection et affichage en gros caractères de la recette demandée
+                    document.getElementById('rec-booster').innerText = boostMl.toFixed(1) + " ml";
+                    document.getElementById('rec-arome').innerText = aromeMl.toFixed(1) + " ml";
+                    document.getElementById('rec-base').innerText = baseMl.toFixed(1) + " ml";
+                    recipeView.style.display = 'block';
                 }
 
                 else if (currentTab === 'pgvg') {
@@ -812,20 +904,33 @@
                 }
 
                 else if (currentTab === 'eco') {
-                    labelText.innerText = "Économies financières estimées :";
+                    labelText.innerText = "Économies financières nettes :";
+                    
+                    // Saisie Tabac
                     let cigs = parseInt(document.getElementById("ecoCigs").value) || 0;
-                    let price = parseFloat(document.getElementById("ecoPrice").value) || 0;
-                    let flacons = parseInt(document.getElementById("ecoNbFlacons").value) || 0;
-                    let fPrice = parseFloat(document.getElementById("ecoPriceFlacon").value) || 0;
+                    let priceTabacPaquet = parseFloat(document.getElementById("ecoPrice").value) || 0;
                     
-                    let coûtTabac = (cigs / 20) * price * 30.42;
-                    let coûtVape = flacons * fPrice;
-                    let gainMois = coûtTabac - coûtVape;
-                    if(gainMois < 0) gainMois = 0;
+                    // Saisie Vape
+                    let flaconsMois = parseInt(document.getElementById("ecoNbFlacons").value) || 0;
+                    let priceFlaconVape = parseFloat(document.getElementById("ecoPriceFlacon").value) || 0;
+                    let resMois = parseFloat(document.getElementById("ecoResPerMonth").value) || 0;
+                    let kitInitial = parseFloat(document.getElementById("ecoKitInitial").value) || 0;
+                    let tailleFlacon = parseInt(document.getElementById("ecoSizeFlacon").value) || 10;
                     
-                    mainVal.innerText = gainMois.toFixed(2) + " € / mois";
-                    subTxt.innerText = "Soit une réduction budgétaire d'environ " + (gainMois * 12).toFixed(0) + " € d'économies nettes à l'année.";
-                    statusTxt.innerText = "💰 BILAN FINANCIER HAUTEMENT RENTABLE";
+                    // Calculs réels mensuels
+                    let coutTabacMensuel = (cigs / 20) * priceTabacPaquet * 30.42;
+                    let coutVapeRecurrentMensuel = (flaconsMois * priceFlaconVape) + resMois;
+                    
+                    // Amortissement du matériel de départ unique prélevé 1 fois sur l'année (divisé par 12 mois)
+                    let amortissementKitMensuel = kitInitial / 12;
+                    
+                    let coutVapeTotalMensuel = coutVapeRecurrentMensuel + amortissementKitMensuel;
+                    let gainNetParMois = coutTabacMensuel - coutVapeTotalMensuel;
+                    if(gainNetParMois < 0) gainNetParMois = 0;
+                    
+                    mainVal.innerText = gainNetParMois.toFixed(2) + " € / mois";
+                    subTxt.innerText = "Calculé avec un volume mensuel de " + (flaconsMois * tailleFlacon) + " ml consommés, incluant l'amortissement lissé de votre matériel de départ (" + kitInitial.toFixed(2) + " €) sur 12 mois.";
+                    statusTxt.innerText = "💰 BILAN ÉCONOMIQUE MENSUEL OPTIMISÉ";
                     statusTxt.className = "status-text";
                 }
 
