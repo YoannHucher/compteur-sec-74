@@ -14,7 +14,7 @@
         gtag('config', 'G-GBBR4R84TT');
     </script>
 
-    <!-- 1️⃣ LOGO DE L'ONGLET NAVIGATEUR (FAVICON MAJ) -->
+    <!-- 1️⃣ LOGO DE L'ONGLET NAVIGATEUR (FAVICON) -->
     <link rel="icon" type="image/png" href="https://i.ibb.co/3yGcL2WS/Logo-Labvape-blanc.png">
 
     <style>
@@ -133,16 +133,19 @@
             color: #ffffff;
         }
 
+        /* 📦 Cadre du logo : taille externe préservée, mais padding réduit pour laisser respirer le logo */
         .widget-logo-box {
             text-align: center;
-            padding: 25px 15px;
+            padding: 10px 5px; 
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.01) 0%, rgba(255, 255, 255, 0.03) 100%);
             border: 1px solid rgba(255, 255, 255, 0.08);
+            box-sizing: border-box;
         }
 
-        /* ✨ Zone du logo avec les dimensions préservées (250px) et affichage net */
+        /* ✨ Taille du logo augmentée au maximum (310px) dans les limites du cadre de gauche */
         .vape-illustration {
-            width: 250px;
+            width: 310px;
+            max-width: 100%;
             margin: 0 auto;
             display: flex;
             align-items: center;
@@ -415,7 +418,6 @@
         <!-- MODULE DE GAUCHE : NAVIGATION TACTILE -->
         <div>
             <div class="window-card widget-logo-box">
-                <!-- 2️⃣ NOUVEAU LOGO BLANC INTÉGRÉ ICI -->
                 <div class="vape-illustration">
                     <img src="https://i.ibb.co/3yGcL2WS/Logo-Labvape-blanc.png" alt="Logo Labvape Blanc">
                 </div>
