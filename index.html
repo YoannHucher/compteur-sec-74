@@ -46,7 +46,7 @@
             box-sizing: border-box;
         }
 
-        /* 👑 HEADER GLOBAL ACCUEILLANT LE LOGO GÉANT ET LES ONGLETS */
+        /* 👑 HEADER GLOBAL CENTRÉ SUR ÉCRAN ORDINATEUR */
         .app-header {
             background: var(--bg-card);
             border-bottom: 1px solid var(--border-light);
@@ -64,25 +64,25 @@
             .app-header {
                 flex-direction: row;
                 align-items: center;
-                justify-content: flex-start;
-                padding: 10px 40px; /* Hauteur ajustée pour le confort visuel */
+                justify-content: center; /* Centrage horizontal de l'ensemble logo + onglets */
+                padding: 10px 40px;
                 gap: 40px;
             }
         }
 
-        /* 🎯 LE LOGO SEUL EST ENCORE PLUS GRAND (120PX) SANS CONFIGURATION COMPRESSANTE */
+        /* LOGO À GAUCHE DANS LE BLOC CENTRÉ */
         .vape-logo-left {
             display: flex;
             align-items: center;
             flex-shrink: 0;
         }
         .vape-logo-left img {
-            height: 120px; /* Logo XXL pour une visibilité maximale */
+            height: 120px; 
             width: auto;
             display: block;
         }
 
-        /* 🚨 LES ONGLETS RESTENT STRICTEMENT IDENTIQUES, PAS DE MODIFICATION DE TAILLE */
+        /* BARRE DES ONGLETS CONTENUE ET AJUSTÉE */
         .tools-nav-horizontal {
             display: flex;
             gap: 10px;
@@ -90,7 +90,7 @@
             padding-bottom: 5px;
             scroll-behavior: smooth;
             -webkit-overflow-scrolling: touch;
-            width: 100%;
+            width: auto; /* Permet le centrage sans forcer tout l'écran */
         }
 
         .tools-nav-horizontal::-webkit-scrollbar {
@@ -109,7 +109,7 @@
             border-radius: 30px;
             cursor: pointer;
             font-weight: 600;
-            font-size: 14px; /* Taille d'écriture d'origine des onglets préservée */
+            font-size: 14px; 
             white-space: nowrap;
             transition: all 0.2s ease;
             display: flex;
