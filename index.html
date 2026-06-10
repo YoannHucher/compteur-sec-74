@@ -15,7 +15,7 @@
     </script>
 
     <!-- 1️⃣ LOGO DE L'ONGLET NAVIGATEUR (FAVICON) -->
-    <link rel="icon" type="image/png" href="https://i.ibb.co/3yGcL2WS/Logo-Labvape-blanc.png">
+    <link rel="icon" type="image/png" href="https://i.ibb.co/qMfNgwV9/Logo-Labvape.png">
 
     <style>
         /* 🌌 STYLING ET ADAPTATION ERGONOMIQUE LABVAPE */
@@ -133,7 +133,7 @@
             color: #ffffff;
         }
 
-        /* 📦 Cadre de gauche contenant l'illustration */
+        /* 📦 Cadre de gauche contenant le logo */
         .widget-logo-box {
             text-align: center;
             padding: 10px 5px; 
@@ -142,7 +142,7 @@
             box-sizing: border-box;
         }
 
-        /* ✨ Conteneur maximisé pour l'affichage de l'image */
+        /* ✨ Conteneur maximisé pour l'affichage du nouveau logo coloré */
         .vape-illustration {
             width: 310px;
             max-width: 100%;
@@ -419,7 +419,7 @@
         <div>
             <div class="window-card widget-logo-box">
                 <div class="vape-illustration">
-                    <img src="https://i.ibb.co/3yGcL2WS/Logo-Labvape-blanc.png" alt="Logo Labvape Blanc">
+                    <img src="https://i.ibb.co/qMfNgwV9/Logo-Labvape.png" alt="Logo Labvape">
                 </div>
             </div>
 
@@ -690,6 +690,7 @@
     <script>
         let currentTab = 'cdr';
 
+        // Commutateur d'onglets
         function switchTab(tabId) {
             currentTab = tabId;
             
@@ -721,26 +722,23 @@
             document.getElementById('sub-result-text').innerText = "Cliquez sur 'Lancer le diagnostic' pour valider.";
         }
 
+        // Fermeture de la fenêtre principale
         function closeWindow() {
             document.getElementById('window-form-wrapper').style.display = 'none';
             document.getElementById('empty-state-view').style.display = 'block';
             document.querySelectorAll('.nav-item-btn').forEach(btn => btn.classList.remove('active'));
         }
 
-        function setMl(val) {
-            document.getElementById('ml').value = val;
-        }
-
-        function setVolt(val) {
-            document.getElementById('vwVolt').value = val;
-        }
-
+        // Configuration simplifiée via les boutons d'options
+        function setMl(val) { document.getElementById('ml').value = val; }
+        function setVolt(val) { document.getElementById('vwVolt').value = val; }
         function setSizePreset(size, element) {
             document.getElementById('ecoSizeFlacon').value = size;
             document.querySelectorAll('#size-preset-row .preset-item').forEach(item => item.classList.remove('active'));
             element.classList.add('active');
         }
 
+        // Alignement des ohms selon le tirage
         function syncResValue() {
             const style = document.getElementById("vapestyle").value;
             const resInput = document.getElementById("resval");
@@ -749,6 +747,7 @@
             else if(style === "mtl") resInput.value = "1.2";
         }
 
+        // Exécution des calculs
         function executeDiagnostic() {
             try {
                 const labelText = document.getElementById('result-label-text');
@@ -815,7 +814,7 @@
                     if(baseMl < 0) baseMl = 0;
                     
                     mainVal.innerText = (boostMl/10).toFixed(1) + " Booster(s)";
-                    subTxt.innerText = "Préparation complète basée on vos objectifs de dosage comptoir.";
+                    subTxt.innerText = "Préparation complète basée sur vos objectifs de dosage comptoir.";
                     statusTxt.innerText = "🧪 CALCUL RECETTE DIY VALIDE";
                     statusTxt.className = "status-text";
 
@@ -901,7 +900,7 @@
                     let kitInitial = parseFloat(document.getElementById("ecoKitInitial").value) || 0;
                     let tailleFlacon = parseInt(document.getElementById("ecoSizeFlacon").value) || 10;
                     
-                    // 1. Calculs sur l'ANNÉE complète
+                    // Calculs sur l'ANNÉE complète
                     let coutTabacAnnuel = (cigs / 20) * priceTabacPaquet * 365.25;
                     let coutVapeAnnuelRecurrent = ((flaconsMois * priceFlaconVape) + resMois) * 12;
                     let coutVapeTotalAnnuel = coutVapeAnnuelRecurrent + kitInitial;
@@ -909,7 +908,7 @@
                     let gainNetParAn = coutTabacAnnuel - coutVapeTotalAnnuel;
                     if(gainNetParAn < 0) gainNetParAn = 0;
                     
-                    // 2. Calcul du bilan Mensuel lissé
+                    // Calcul du bilan Mensuel lissé
                     let gainNetParMois = gainNetParAn / 12;
                     
                     // Rendu UI
