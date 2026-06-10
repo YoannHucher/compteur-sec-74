@@ -66,13 +66,21 @@
             display: flex;
             flex-direction: row;
             align-items: center;
-            justify-content: flex-start;
+            justify-content: space-between; /* Aligne le bouton à droite sur mobile */
             gap: 15px;
             position: sticky;
             top: 0;
             z-index: 100;
             box-shadow: 0 4px 20px rgba(139, 92, 246, 0.02);
             transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .header-left-group {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            overflow: hidden;
+            flex-grow: 1;
         }
 
         .vape-logo-left {
@@ -105,23 +113,23 @@
             scrollbar-width: none;
         }
 
-        /* 🌓 BOUTON TOGGLE THÈME (SUR MOBILE : RESTE FIXE) */
+        /* 🌓 BOUTON TOGGLE THÈME (MOBILE PAR DÉFAUT : INTEGREE EN HAUT A DROITE) */
         .theme-toggle-btn {
             background: var(--bg-input);
             border: 1px solid var(--border-light);
             color: var(--text-main);
-            padding: 10px;
-            border-radius: 50%;
             cursor: pointer;
             flex-shrink: 0;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 16px;
             transition: all 0.2s ease;
-            width: 38px;
-            height: 38px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 18px;
             box-sizing: border-box;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
         }
 
         /* 💻 DESIGN ADAPTATIF POUR ORDINATEUR */
@@ -131,18 +139,23 @@
                 padding: 12px 40px;
                 gap: 40px;
             }
+            .header-left-group {
+                flex-grow: 0;
+                overflow: visible;
+            }
             .vape-logo-left img {
                 height: 90px; 
             }
             .tools-nav-horizontal {
                 flex-grow: 0;
             }
-            /* Sur PC, on injecte le bouton directement dans le flux du menu */
+            /* Sur PC, on change de look pour s'aligner avec le menu ovale */
             .theme-toggle-btn {
-                width: 44px;
-                height: 44px;
-                font-size: 18px;
-                border-radius: 30px; /* Plus harmonieux dans la suite de boutons */
+                width: auto;
+                height: auto;
+                padding: 10px 16px;
+                border-radius: 30px;
+                font-size: 14px;
             }
         }
 
@@ -411,24 +424,24 @@
 
     <!-- 👑 HEADER PRINCIPAL -->
     <header class="app-header">
-        <nav class="tools-nav-horizontal" id="main-nav-container">
+        <div class="header-left-group">
             <div class="vape-logo-left">
                 <img src="https://i.ibb.co/qMfNgwV9/Logo-Labvape.png" alt="Logo Labvape">
             </div>
             
-            <button id="nav-cdr" class="nav-item-btn active" onclick="switchTab('cdr')">⚡ Sécurité Accu</button>
-            <button id="nav-nicotine" class="nav-item-btn" onclick="switchTab('nicotine')">💧 Profil Nicotine</button>
-            <button id="nav-diy" class="nav-item-btn" onclick="switchTab('diy')">🧪 Calcul Pack DIY</button>
-            <button id="nav-pgvg" class="nav-item-btn" onclick="switchTab('pgvg')">📊 Conseil PG/VG</button>
-            <button id="nav-volt" class="nav-item-btn" onclick="switchTab('volt')">🔌 Volt ➔ Watt</button>
-            <button id="nav-auto" class="nav-item-btn" onclick="switchTab('auto')">🔋 Autonomie Puffs</button>
-            <button id="nav-mix" class="nav-item-btn" onclick="switchTab('mix')">🔀 Mélange Taux</button>
-            <button id="nav-eco" class="nav-item-btn" onclick="switchTab('eco')">💰 Économies</button>
-            
-            <!-- Le bouton de thème sera déplacé ici dynamiquement via JS si on est sur ordinateur -->
-        </nav>
+            <nav class="tools-nav-horizontal" id="main-nav-container">
+                <button id="nav-cdr" class="nav-item-btn active" onclick="switchTab('cdr')">⚡ Sécurité Accu</button>
+                <button id="nav-nicotine" class="nav-item-btn" onclick="switchTab('nicotine')">💧 Profil Nicotine</button>
+                <button id="nav-diy" class="nav-item-btn" onclick="switchTab('diy')">🧪 Calcul Pack DIY</button>
+                <button id="nav-pgvg" class="nav-item-btn" onclick="switchTab('pgvg')">📊 Conseil PG/VG</button>
+                <button id="nav-volt" class="nav-item-btn" onclick="switchTab('volt')">🔌 Volt ➔ Watt</button>
+                <button id="nav-auto" class="nav-item-btn" onclick="switchTab('auto')">🔋 Autonomie Puffs</button>
+                <button id="nav-mix" class="nav-item-btn" onclick="switchTab('mix')">🔀 Mélange Taux</button>
+                <button id="nav-eco" class="nav-item-btn" onclick="switchTab('eco')">💰 Économies</button>
+            </nav>
+        </div>
         
-        <!-- Bouton par défaut en haut à droite (Mobile) -->
+        <!-- Bouton unique géré dynamiquement par le script -->
         <button class="theme-toggle-btn" id="theme-button" onclick="toggleTheme()" title="Changer de thème">☀️</button>
     </header>
 
@@ -681,43 +694,55 @@
         let currentTab = 'cdr';
 
         window.onload = function() {
-            // Gestion adaptative du bouton de thème selon la taille de l'écran
             handleResponsiveThemeButton();
             window.addEventListener('resize', handleResponsiveThemeButton);
 
             const savedTheme = localStorage.getItem('labvape-theme') || 'light';
             document.documentElement.setAttribute('data-theme', savedTheme);
-            document.getElementById('theme-button').innerText = savedTheme === 'dark' ? '🌙' : '☀️';
+            updateThemeButtonVisual(savedTheme);
+            
             executeDiagnostic();
         };
 
-        /* 💻 LOGIQUE DE DÉPLACEMENT DU BOUTON THÈME (MOBILE VS PC) */
+        /* 💻 DEPLACEMENT SANS IMPACT : MOBILE VS ORDINATEUR */
         function handleResponsiveThemeButton() {
             const btn = document.getElementById('theme-button');
             const navContainer = document.getElementById('main-nav-container');
             const header = document.querySelector('.app-header');
 
             if (window.innerWidth >= 900) {
-                // Sur PC : On le déplace dans la barre d'onglets déroulante
                 if (btn.parentElement !== navContainer) {
                     navContainer.appendChild(btn);
                 }
             } else {
-                // Sur Mobile : On le remet fixe en haut à droite du header
                 if (btn.parentElement !== header) {
                     header.appendChild(btn);
                 }
             }
+            // Conserve l'icône à jour après le déplacement
+            const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+            updateThemeButtonVisual(currentTheme);
         }
 
-        /* 🌓 LOGIQUE DE COMMUTATION DYNAMIQUE DES COULEURS */
+        /* 🌓 COMMUTATEUR ET MISES À JOUR DOCK DU TEXTE/ICONE DE THÈME */
         function toggleTheme() {
             const currentTheme = document.documentElement.getAttribute('data-theme');
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
             
             document.documentElement.setAttribute('data-theme', newTheme);
             localStorage.setItem('labvape-theme', newTheme);
-            document.getElementById('theme-button').innerText = newTheme === 'dark' ? '🌙' : '☀️';
+            updateThemeButtonVisual(newTheme);
+        }
+
+        function updateThemeButtonVisual(theme) {
+            const btn = document.getElementById('theme-button');
+            if (window.innerWidth >= 900) {
+                // Sur PC : Version complète avec texte + émoji
+                btn.innerText = theme === 'dark' ? '🌙 Mode Sombre' : '☀️ Mode Clair';
+            } else {
+                // Sur Téléphone : Émoji seul, centré et compact
+                btn.innerText = theme === 'dark' ? '🌙' : '☀️';
+            }
         }
 
         /* 🔄 SYNCHRONISATION DU NOMBRE DE CIGARETTES */
