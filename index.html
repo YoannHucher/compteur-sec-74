@@ -2,10 +2,8 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, viewport-fit=cover">
-    <meta name="robots" content="noindex, nofollow">
-    
-    <title>LABVAPE — Assistant Conseil & Outils Professionnels</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LABVAPE — Système Intelligent d'Aide à la Vente</title>
     
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-GBBR4R84TT"></script>
@@ -16,406 +14,440 @@
         gtag('config', 'G-GBBR4R84TT');
     </script>
 
-    <!-- Favicon Émoji Fiole -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧪</text></svg>">
 
     <style>
-        /* 🌌 GLOBAL LABVAPE DARK PREMIUM CODE */
+        /* 🌌 STYLING INSPIRÉ DE GEMINI_GENERATED_IMAGE_K7B0LRK7B0LRK7B0.PNG */
         :root {
-            --bg-dark: #060913;
-            --bg-card: rgba(17, 25, 44, 0.65);
-            --vape-cyan: #00d2ff;
-            --vape-purple: #7000ff;
-            --vape-green: #00ffaa;
-            --vape-red: #ff3366;
-            --text-main: #f8fafc;
-            --text-muted: #64748b;
-            --border-glow: rgba(0, 210, 255, 0.15);
+            --bg-gradient: radial-gradient(circle at 80% 20%, #1a103c 0%, #0b0f19 50%, #05070b 100%);
+            --glass-bg: rgba(255, 255, 255, 0.06);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --neon-glow: 0 0 30px rgba(112, 0, 255, 0.25);
+            
+            --cyan-neon: #3be2f2;
+            --purple-neon: #a855f7;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
         }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-dark);
-            background-image: 
-                radial-gradient(circle at 0% 0%, rgba(112, 0, 255, 0.15) 0%, transparent 40%),
-                radial-gradient(circle at 100% 100%, rgba(0, 210, 255, 0.12) 0%, transparent 45%);
-            background-attachment: fixed;
+            background: var(--bg-gradient);
             color: var(--text-main);
-            margin: 0 auto;
-            padding: 24px 16px;
-            max-width: 450px;
+            margin: 0;
+            padding: 20px;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             box-sizing: border-box;
             overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
         }
 
-        /* HEADER & LOGO PREMIUM */
-        header {
+        /* BARRE SUPÉRIEURE (VAPELAB) */
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            width: 100%;
+            margin: 0 auto 30px auto;
+            padding: 0 10px;
+        }
+
+        .top-logo {
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: #ffffff;
+        }
+        .top-logo span { color: #3b82f6; }
+
+        .top-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        .user-badge {
+            background: rgba(255,255,255,0.05);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            color: var(--text-muted);
+            border: 1px solid var(--glass-border);
+        }
+
+        /* CONTENEUR PRINCIPAL STYLE TABLEAU DE BORD */
+        .dashboard-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+            max-width: 1300px;
+            width: 100%;
+            margin: auto;
+        }
+
+        @media (min-width: 992px) {
+            .dashboard-container {
+                grid-template-columns: 320px 1fr 300px;
+                align-items: start;
+            }
+        }
+
+        /* COMPOSANT FENÊTRE STYLE OS (MAC OS WINDOWS EFFECT) */
+        .window-card {
+            background: rgba(18, 24, 41, 0.6);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border-radius: 24px;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.1);
+            padding: 24px;
+            position: relative;
+        }
+
+        .window-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .window-dots {
+            display: flex;
+            gap: 6px;
+        }
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+        .dot.red { background: #ff5f56; }
+        .dot.yellow { background: #ffbd2e; }
+        .dot.green { background: #27c93f; }
+        .window-close { color: var(--text-muted); font-size: 14px; }
+
+        /* WIDGET 1 : LE LOGO OFFICIEL LABVAPE GRAND ACCUEIL */
+        .widget-logo-box {
             text-align: center;
-            margin-bottom: 28px;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, rgba(59, 226, 242, 0.05) 0%, rgba(112, 0, 255, 0.05) 100%);
+            border: 1px solid rgba(59, 226, 242, 0.15);
+            box-shadow: 0 0 30px rgba(5be2f2, 0.05);
         }
 
-        .logo-container {
-            width: 170px;
-            height: auto;
-            margin: 0 auto 8px auto;
+        .vape-illustration {
+            width: 90px;
+            height: 90px;
+            margin: 0 auto 20px auto;
+            background: radial-gradient(circle, rgba(59,226,242,0.2) 0%, transparent 70%);
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 45px;
+            filter: drop-shadow(0 0 15px rgba(59,226,242,0.6));
         }
 
-        .logo-img {
-            width: 100%;
-            height: auto;
-            object-fit: contain;
-            filter: drop-shadow(0 0 20px rgba(0, 210, 255, 0.3));
-        }
-
-        .logo-fallback {
-            font-size: 2.5rem;
-            background: rgba(255, 255, 255, 0.03);
-            padding: 14px;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(10px);
-        }
-
-        .subtitle {
-            color: #94a3b8;
-            font-size: 11px;
-            font-weight: 700;
+        .brand-title {
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: 4px;
+            color: #ffffff;
+            margin: 0 0 4px 0;
             text-transform: uppercase;
-            letter-spacing: 0.2em;
-            text-shadow: 0 0 10px rgba(0, 210, 255, 0.2);
         }
-
-        /* NÉO-ONGLETS HORIZONTAUX SANS SCROLLBAR VISIBLE */
-        .tabs-container {
-            overflow-x: auto;
-            white-space: nowrap;
-            margin-bottom: 24px;
-            margin-left: -16px;
-            margin-right: -16px;
-            padding-left: 16px;
-            padding-right: 16px;
-            -webkit-overflow-scrolling: touch;
-        }
-        .tabs-container::-webkit-scrollbar { display: none; }
-
-        .tabs {
-            display: inline-flex;
-            background: rgba(10, 15, 30, 0.8);
-            padding: 6px;
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-        }
-
-        .tab-btn {
-            background: transparent;
-            border: none;
+        .brand-subtitle {
+            font-size: 8px;
+            font-weight: 600;
+            letter-spacing: 2px;
             color: var(--text-muted);
-            padding: 12px 18px;
-            border-radius: 12px;
-            font-size: 13px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .tab-btn.active {
-            background: linear-gradient(135deg, var(--vape-cyan), #0077ff);
-            color: #020617;
-            font-weight: 800;
-            box-shadow: 0 4px 20px rgba(0, 210, 255, 0.4);
-        }
-
-        /* CONTENUS DES ONGLETS */
-        .tab-content {
-            display: none;
-            width: 100%;
-        }
-        .tab-content.active {
-            display: block;
-        }
-
-        h2 {
-            font-size: 13px;
-            font-weight: 800;
             text-transform: uppercase;
-            color: #cbd5e1;
-            margin: 4px 0 16px 4px;
-            letter-spacing: 1px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 6px;
+            display: inline-block;
+        }
+
+        /* NAVIGATION PAR ONGLETS REVISITÉE EN DROPDOWN / LISTE COMPACTE */
+        .tools-nav {
+            margin-top: 25px;
             display: flex;
-            align-items: center;
+            flex-direction: column;
             gap: 8px;
         }
-
-        /* CARTES DE CALCUL DESIGN INTERFACE CYBER */
-        .box {
-            background: var(--bg-card);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            padding: 22px;
-            border-radius: 24px;
-            margin-bottom: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            box-sizing: border-box;
-            position: relative;
-            overflow: hidden;
+        .nav-item-btn {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid transparent;
+            color: var(--text-muted);
+            padding: 12px 16px;
+            border-radius: 12px;
+            cursor: pointer;
+            text-align: left;
+            font-weight: 600;
+            font-size: 13px;
+            transition: all 0.2s ease;
+        }
+        .nav-item-btn:hover, .nav-item-btn.active {
+            background: rgba(255,255,255,0.07);
+            color: #ffffff;
+            border-color: rgba(255,255,255,0.1);
+        }
+        .nav-item-btn.active {
+            border-left: 3px solid var(--cyan-neon);
         }
 
-        /* Ligne lumineuse décorative sur le haut de la carte principale */
-        .box::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--border-glow), transparent);
+        /* COMPOSANTS DE FORMULAIRE (STYLE VITRE SOMBRE) */
+        .window-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin: 0 0 4px 0;
+            color: #ffffff;
+        }
+        .window-desc {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 20px;
         }
 
         label {
             display: block;
-            font-size: 12px;
-            color: #94a3b8;
-            margin-bottom: 8px;
+            font-size: 11px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            color: var(--text-muted);
+            margin-bottom: 6px;
         }
 
-        /* ENTRÉES PREMIUM CYBERPUNK */
         input, select {
             width: 100%;
-            background: rgba(8, 12, 24, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(10, 14, 23, 0.8);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 12px 14px;
             color: #ffffff;
-            padding: 15px 16px;
-            border-radius: 14px;
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 600;
-            margin-bottom: 16px;
             box-sizing: border-box;
             outline: none;
-            transition: all 0.3s ease;
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+            margin-bottom: 16px;
+            transition: border-color 0.2s;
         }
-
         input:focus, select:focus {
-            border-color: var(--vape-cyan);
-            box-shadow: 0 0 15px rgba(0, 210, 255, 0.25), inset 0 2px 4px rgba(0,0,0,0.2);
-            background: #080c18;
+            border-color: var(--cyan-neon);
         }
 
-        /* GRILLES DE CONFIGURATION ET PRÉSETS */
-        .preset-grid {
+        /* 👑 LE BOUTON DÉGRADÉ ULTRA PREMIUM (IMAGE LOOK) */
+        .action-gradient-btn {
+            width: 100%;
+            background: linear-gradient(90deg, #2be2f4 0%, #3b82f6 50%, #8b5cf6 100%);
+            border: none;
+            border-radius: 50px;
+            padding: 16px 20px;
+            color: #ffffff;
+            font-size: 13px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(59, 226, 242, 0.35);
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+        .action-gradient-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(59, 226, 242, 0.5);
+        }
+
+        /* PANNEAU DE RÉSULTAT INTÉGRÉ DANS LA FENÊTRE */
+        .result-panel {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 16px;
+            padding: 16px;
+            margin-top: 20px;
+            border: 1px solid rgba(255,255,255,0.03);
+        }
+        .result-value {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--cyan-neon);
+            text-shadow: 0 0 15px rgba(59, 226, 242, 0.3);
+        }
+
+        /* WIDGET 3 : DONNÉES CLIENT / GRAPHIQUES (DROITE) */
+        .widget-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #ffffff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chart-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            height: 120px;
+            margin-top: 25px;
+            padding: 0 10px;
+        }
+        .chart-bar-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+        .chart-bar {
+            width: 8px;
+            border-radius: 10px;
+            background: linear-gradient(to top, var(--purple-neon), var(--cyan-neon));
+            box-shadow: 0 0 10px rgba(59, 226, 242, 0.3);
+            transition: height 0.5s ease;
+        }
+        .chart-day {
+            font-size: 9px;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        /* TEXTE STATUS ET PRÉSETS */
+        .status-text {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-top: 10px;
+            color: #27c93f;
+        }
+        .status-text.danger { color: #ff5f56; }
+
+        .preset-row {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
+            gap: 6px;
             margin-bottom: 16px;
         }
-
-        .preset-btn {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            color: #e2e8f0;
-            padding: 11px;
-            border-radius: 10px;
-            font-size: 12px;
-            cursor: pointer;
-            font-weight: 700;
-            transition: all 0.2s;
-        }
-
-        .preset-btn:hover {
-            background: rgba(0, 210, 255, 0.1);
-            border-color: var(--vape-cyan);
-            color: #ffffff;
-        }
-
-        /* NUMÉROS DE RÉSULTATS LUMINEUX EXTRA-LARGE */
-        .res {
-            font-size: 32px;
-            font-weight: 900;
-            color: #ffffff;
-            margin-top: 4px;
-            letter-spacing: -1px;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
-        }
-
-        .sub-res {
-            font-size: 13px;
-            color: var(--text-muted);
-            margin-top: 6px;
-            line-height: 1.5;
-            font-weight: 500;
-        }
-
-        /* MESSAGES DE STATUT CHIRURGICAUX */
-        .status {
-            padding: 16px;
-            border-radius: 14px;
-            text-align: center;
-            font-weight: 800;
-            margin-top: 16px;
-            font-size: 13px;
-            letter-spacing: 0.3px;
-            text-transform: uppercase;
-        }
-
-        .safe { 
-            background: rgba(0, 255, 170, 0.06); 
-            color: var(--vape-green); 
-            border: 1px solid rgba(0, 255, 170, 0.2);
-            box-shadow: 0 0 15px rgba(0, 255, 170, 0.05);
-        }
-        .danger { 
-            background: rgba(255, 51, 102, 0.06); 
-            color: var(--vape-red); 
-            border: 1px solid rgba(255, 51, 102, 0.2);
-            box-shadow: 0 0 15px rgba(255, 51, 102, 0.05);
-        }
-        .neutral { 
-            background: rgba(255, 255, 255, 0.02); 
-            color: #94a3b8; 
-            border: 1px solid rgba(255, 255, 255, 0.05); 
-        }
-        .money { 
-            background: rgba(0, 255, 170, 0.08); 
-            color: #22c55e; 
-            border: 1px solid rgba(0, 255, 170, 0.15); 
-        }
-
-        /* SÉPARATEUR FIN STYLISÉ */
-        hr {
-            border: 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
-            margin: 20px 0;
-        }
-
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
-
-        footer {
-            margin-top: auto;
-            padding: 40px 0 10px 0;
-            color: #475569;
+        .preset-item {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            color: #fff;
+            padding: 8px;
             font-size: 11px;
+            border-radius: 8px;
+            cursor: pointer;
             font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
             text-align: center;
         }
 
-        /* ADAPTATION COMPTOIR LARGE (PC ET IPAD FLAT) */
-        @media(min-width:768px){
-            body { max-width: 1000px; padding: 40px 24px; }
-            .desk-layout { display: grid; grid-template-columns: 1.2fr 1fr; gap: 28px; align-items: start; }
-            .box { margin-bottom: 0; }
+        /* FOOTER COPIÉ DE L'IMAGE */
+        footer {
+            text-align: center;
+            margin-top: auto;
+            padding: 40px 10px 10px 10px;
+            font-size: 10px;
+            color: rgba(255,255,255,0.25);
+            letter-spacing: 0.5px;
         }
+        footer a { color: rgba(255,255,255,0.4); text-decoration: none; }
+
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .hidden-tab { display: none; }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="logo-container">
-            <img class="logo-img" src="logo.png" alt="Logo Labvape" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-            <span class="logo-fallback" style="display:none;">🧪</span>
-        </div>
-        <div class="subtitle">Assistant Conseil Labvape</div>
-    </header>
-
-    <!-- BARRE DE SÉLECTION D'ONGLETS -->
-    <div class="tabs-container">
-        <div class="tabs">
-            <button id="btn-cdr" class="tab-btn active" onclick="switchTab('cdr')">⚡ Accu</button>
-            <button id="btn-nicotine" class="tab-btn" onclick="switchTab('nicotine')">💧 Nicotine</button>
-            <button id="btn-diy" class="tab-btn" onclick="switchTab('diy')">🧪 Pack DIY</button>
-            <button id="btn-pgvg" class="tab-btn" onclick="switchTab('pgvg')">📊 PG/VG</button>
-            <button id="btn-volt-watt" class="tab-btn" onclick="switchTab('volt-watt')">🔌 Volt ➔ Watt</button>
-            <button id="btn-autonomie" class="tab-btn" onclick="switchTab('autonomie')">🔋 Autonomie</button>
-            <button id="btn-mix" class="tab-btn" onclick="switchTab('mix')">🔀 Mélange Taux</button>
-            <button id="btn-eco" class="tab-btn" onclick="switchTab('eco')">💰 Économies</button>
+    <!-- BARRE SUPÉRIEURE -->
+    <div class="top-bar">
+        <div class="top-logo">VAPE<span>LAB</span></div>
+        <div class="top-actions">
+            <div class="user-badge">Denten chombls</div>
+            <span style="cursor:pointer; font-size:16px;">🔔</span>
         </div>
     </div>
 
-    <!-- ZONE DE CONFIGURATIONS INTERACTIVES -->
-    
-    <!-- 1. ACCU -->
-    <div id="tab-cdr" class="tab-content active">
-        <h2>⚡ Sécurité Accu &amp; Loi d'Ohm</h2>
-        <div class="desk-layout">
-            <div class="box">
+    <!-- ZONE LOGICIELLE PRINCIPALE -->
+    <div class="dashboard-container">
+        
+        <!-- COLONNE GAUCHE : IDENTITÉ & NAV -->
+        <div>
+            <div class="window-card widget-logo-box">
+                <div class="vape-illustration">🧪</div>
+                <h1 class="brand-title">Labvape</h1>
+                <div class="brand-subtitle">Outils - Calculs - Guides - Ressources</div>
+            </div>
+
+            <div class="tools-nav">
+                <button id="nav-cdr" class="nav-item-btn active" onclick="switchTab('cdr')">⚡ Sécurité Accu / Ohm</button>
+                <button id="nav-nicotine" class="nav-item-btn" onclick="switchTab('nicotine')">💧 Profil Nicotine</button>
+                <button id="nav-diy" class="nav-item-btn" onclick="switchTab('diy')">🧪 Calculateur Pack DIY</button>
+                <button id="nav-pgvg" class="nav-item-btn" onclick="switchTab('pgvg')">📊 Analyse Conseil PG/VG</button>
+                <button id="nav-volt" class="nav-item-btn" onclick="switchTab('volt')">🔌 Conversion Volt ➔ Watt</button>
+                <button id="nav-auto" class="nav-item-btn" onclick="switchTab('auto')">🔋 Autonomie (Puffs)</button>
+                <button id="nav-mix" class="nav-item-btn" onclick="switchTab('mix')">🔀 Mélange de Taux</button>
+                <button id="nav-eco" class="nav-item-btn" onclick="switchTab('eco')">💰 Simulateur Économies</button>
+            </div>
+        </div>
+
+        <!-- COLONNE CENTRALE : LES CRITÈRES ET LE DIAGNOSTIC DYNAMIQUE -->
+        <div class="window-card" style="border-color: rgba(168, 85, 247, 0.3); box-shadow: var(--neon-glow);">
+            <div class="window-header">
+                <div class="window-dots">
+                    <div class="dot red"></div>
+                    <div class="dot yellow"></div>
+                    <div class="dot green"></div>
+                </div>
+                <div class="window-close">✕</div>
+            </div>
+
+            <!-- CONTENU INTERACTIF : ACCU -->
+            <div id="panel-cdr">
+                <h2 class="window-title">Diagnostic dynamic — Accu</h2>
+                <div class="window-desc">Analyse en temps réel de la décharge d'ampères et conformité de sécurité.</div>
+                
                 <label>Puissance demandée (Watts)</label>
                 <input type="number" id="w" value="50" oninput="calcAll()">
                 
-                <label>Tension mini par accu (Volts)</label>
+                <label>Tension minimale de coupure (Volts)</label>
                 <input type="number" id="v" value="3.2" step="0.1" oninput="calcAll()">
                 
-                <label>Nombre d'accus dans la box</label>
-                <input type="number" id="n" value="1" oninput="calcAll()">
-                
-                <label>CDR Continu de l'accu (Ampères)</label>
-                <input type="number" id="c" value="25" oninput="calcAll()">
-            </div>
-            <div>
-                <div class="box">
-                    <label>Ampères demandés aux accus</label>
-                    <div class="res" id="outA" style="color: var(--vape-cyan);">0.00 A</div>
-                    <hr>
-                    <label>CDR total disponible</label>
-                    <div class="res" id="outC">25.00 A</div>
-                    <div id="statusCdr" class="status safe">🟢 Configuration sécurisée</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 2. NICOTINE -->
-    <div id="tab-nicotine" class="tab-content">
-        <h2>🎯 Besoin en Nicotine personnalisé</h2>
-        <div class="desk-layout">
-            <div class="box">
-                <label>Nombre de cigarettes par jour</label>
-                <input type="number" id="cigs" value="15" oninput="calcAll()">
-                
-                <label>Nicotine par cigarette (mg)</label>
-                <input type="number" id="nicPerCig" value="2.0" step="0.1" oninput="calcAll()">
-                
-                <label>Consommation estimée (ml / jour)</label>
-                <div class="preset-grid">
-                    <button class="preset-btn" onclick="setMl(2)">2 ml (Pod)</button>
-                    <button class="preset-btn" onclick="setMl(4)">4 ml (Moyen)</button>
-                    <button class="preset-btn" onclick="setMl(8)">8 ml (Nuage)</button>
-                </div>
-                <input type="number" id="ml" value="3" step="0.5" oninput="calcAll()">
-            </div>
-            <div>
-                <div class="box">
-                    <label>Taux de nicotine conseillé</label>
-                    <div class="res" id="outTaux" style="color: var(--vape-cyan);">0.0 mg/ml</div>
-                    <hr>
-                    <div class="sub-res" id="outBesoin">Besoin quotidien : 0 mg</div>
-                </div>
-                <div class="status neutral">💡 Profil basé sur l'absorption par type de cigarette.</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 3. DIY -->
-    <div id="tab-diy" class="tab-content">
-        <h2>🧪 Préparation Mix &amp; Vape (DIY)</h2>
-        <div class="desk-layout">
-            <div class="box">
                 <div class="grid-2">
                     <div>
-                        <label>Volume total (ml)</label>
+                        <label>Nombre d'accus</label>
+                        <input type="number" id="n" value="1" oninput="calcAll()">
+                    </div>
+                    <div>
+                        <label>CDR Continu (A)</label>
+                        <input type="number" id="c" value="25" oninput="calcAll()">
+                    </div>
+                </div>
+            </div>
+
+            <!-- CONTENU INTERACTIF : NICOTINE -->
+            <div id="panel-nicotine" class="hidden-tab">
+                <h2 class="window-title">Diagnostic dynamic — Nicotine</h2>
+                <div class="window-desc">Configuration personnalisée selon le profil de consommation du fumeur.</div>
+                
+                <label>Cigarettes fumées par jour</label>
+                <input type="number" id="cigs" value="15" oninput="calcAll()">
+                
+                <label>Intensité par cigarette (mg)</label>
+                <input type="number" id="nicPerCig" value="2.0" step="0.1" oninput="calcAll()">
+                
+                <label>Consommation e-liquide estimée</label>
+                <div class="preset-row">
+                    <div class="preset-item" onclick="setMl(2)">2 ml (Pod)</div>
+                    <div class="preset-item" onclick="setMl(4)">4 ml (Moyen)</div>
+                    <div class="preset-item" onclick="setMl(8)">8 ml (Cloud)</div>
+                </div>
+                <input type="number" id="ml" value="4" oninput="calcAll()">
+            </div>
+
+            <!-- CONTENU INTERACTIF : DIY -->
+            <div id="panel-diy" class="hidden-tab">
+                <h2 class="window-title">Diagnostic dynamic — Mix DIY</h2>
+                <div class="window-desc">Calcul précis pour les préparations e-liquides sur mesure.</div>
+                
+                <div class="grid-2">
+                    <div>
+                        <label>Volume Total (ml)</label>
                         <input type="number" id="diyTotal" value="100" oninput="calcAll()">
                     </div>
                     <div>
@@ -425,11 +457,11 @@
                 </div>
                 <div class="grid-2">
                     <div>
-                        <label>% d'arôme préconisé</label>
+                        <label>% Arôme préconisé</label>
                         <input type="number" id="diyAromePerc" value="15" oninput="calcAll()">
                     </div>
                     <div>
-                        <label>Taux du Booster</label>
+                        <label>Force Booster</label>
                         <select id="diyBoosterTaux" onchange="calcAll()">
                             <option value="20">20 mg/ml</option>
                             <option value="18">18 mg/ml</option>
@@ -437,408 +469,353 @@
                     </div>
                 </div>
             </div>
-            <div>
-                <div class="box">
-                    <div class="grid-2">
-                        <div>
-                            <label id="labelDiyBoosters">Boosters</label>
-                            <div class="res" id="outDiyBoosters" style="color:#f59e0b">0.0 fl</div>
-                            <div class="sub-res" id="outDiyBoostersMl">(0 ml)</div>
-                        </div>
-                        <div>
-                            <label>Arôme Concentré</label>
-                            <div class="res" id="outDiyArome" style="color:var(--vape-purple)">15 ml</div>
-                        </div>
-                    </div>
-                    <hr>
-                    <label>Base Neutre à ajouter</label>
-                    <div class="res" id="outDiyBase" style="color: var(--vape-green);">70 ml</div>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <!-- 4. PG/VG -->
-    <div id="tab-pgvg" class="tab-content">
-        <h2>📊 Analyse du Matériel</h2>
-        <div class="desk-layout">
-            <div class="box">
+            <!-- CONTENU INTERACTIF : PG/VG -->
+            <div id="panel-pgvg" class="hidden-tab">
+                <h2 class="window-title">Diagnostic dynamic — Matériel</h2>
+                <div class="window-desc">Vérification de la viscosité idéale du jus selon l'atomiseur.</div>
+                
                 <label>Valeur de la résistance (Ohm)</label>
                 <input type="number" id="resval" value="0.3" step="0.1" oninput="calcAll()">
                 
-                <label>Type de matériel / Tirage</label>
+                <label>Type de tirage recherché</label>
                 <select id="vapestyle" onchange="syncResValue()">
-                    <option value="dl">Gros Nuages (Inhalation Directe - DL)</option>
-                    <option value="rdl">Polyvalent / Moyen (RDL)</option>
-                    <option value="mtl">Petit Pod / Tirage Serré (MTL)</option>
+                    <option value="dl">DL (Inhalation directe / Gros Nuages)</option>
+                    <option value="rdl">RDL (Semi-direct / Restreint)</option>
+                    <option value="mtl">MTL (Inhalation indirecte / Tirage serré)</option>
                 </select>
             </div>
-            <div>
-                <div class="box">
-                    <label>Ratio PG/VG recommandé</label>
-                    <div class="res" id="outPgVg" style="color: var(--vape-purple)">30 PG / 70 VG</div>
-                    <hr>
-                    <label>Pourquoi ce choix ?</label>
-                    <div class="sub-res" id="outPgVgConseil">---</div>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <!-- 5. VOLT/WATT -->
-    <div id="tab-volt-watt" class="tab-content">
-        <h2>🔌 Convertisseur Tension / Puissance</h2>
-        <div class="desk-layout">
-            <div class="box">
-                <label>Valeur de la résistance (Ohm)</label>
-                <input type="number" id="vwOhm" value="0.5" step="0.05" oninput="calcAll()">
+            <!-- CONTENU INTERACTIF : VOLT TO WATT -->
+            <div id="panel-volt" class="hidden-tab">
+                <h2 class="window-title">Diagnostic dynamic — Électricité</h2>
+                <div class="window-desc">Calcul de la puissance générée selon la tension délivrée.</div>
                 
-                <label>Tension appliquée (Volts)</label>
-                <div class="preset-grid">
-                    <button class="preset-btn" onclick="setVolt(4.2)">4.2 V</button>
-                    <button class="preset-btn" onclick="setVolt(3.7)">3.7 V</button>
-                    <button class="preset-btn" onclick="setVolt(3.2)">3.2 V</button>
+                <label>Résistance (Ohm)</label>
+                <input type="number" id="vwOhm" value="0.5" oninput="calcAll()">
+                
+                <label>Tension sélectionnée (Volts)</label>
+                <div class="preset-row">
+                    <div class="preset-item" onclick="setVolt(4.2)">4.2 V</div>
+                    <div class="preset-item" onclick="setVolt(3.7)">3.7 V</div>
+                    <div class="preset-item" onclick="setVolt(3.2)">3.2 V</div>
                 </div>
                 <input type="number" id="vwVolt" value="3.7" step="0.1" oninput="calcAll()">
             </div>
-            <div>
-                <div class="box">
-                    <div class="grid-2">
-                        <div>
-                            <label>Puissance</label>
-                            <div class="res" style="color:#f59e0b" id="outVwWatts">0.0 W</div>
-                        </div>
-                        <div>
-                            <label>Intensité</label>
-                            <div class="res" id="outVwAmps" style="color: var(--vape-cyan)">0.00 A</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <!-- 6. AUTONOMIE -->
-    <div id="tab-autonomie" class="tab-content">
-        <h2>🔋 Calculateur d'Autonomie Battery</h2>
-        <div class="desk-layout">
-            <div class="box">
+            <!-- CONTENU INTERACTIF : AUTONOMIE -->
+            <div id="panel-auto" class="hidden-tab">
+                <h2 class="window-title">Diagnostic dynamic — Capacité</h2>
+                <div class="window-desc">Estimation mathématique de la durée de vie de la batterie.</div>
+                
                 <div class="grid-2">
                     <div>
-                        <label>Accu (mAh)</label>
+                        <label>mAh de la cellule</label>
                         <input type="number" id="autoMah" value="3000" step="500" oninput="calcAll()">
                     </div>
                     <div>
-                        <label>Nombre</label>
+                        <label>Quantité</label>
                         <input type="number" id="autoNb" value="1" oninput="calcAll()">
                     </div>
                 </div>
-                <label>Puissance de vape (Watts)</label>
+                <label>Puissance d'utilisation (Watts)</label>
                 <input type="number" id="autoWatts" value="40" oninput="calcAll()">
             </div>
-            <div>
-                <div class="box">
-                    <label>Nombre de bouffées (puffs) max</label>
-                    <div class="res" id="outPuffs" style="color: var(--vape-green);">0 puffs</div>
-                    <div class="sub-res">(Estimé sur des bouffées moyennes de 3 secondes)</div>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <!-- 7. MÉLANGE TAUX -->
-    <div id="tab-mix" class="tab-content">
-        <h2>🔀 Mélangeur de Taux (Recyclage)</h2>
-        <div class="desk-layout">
-            <div class="box">
-                <label style="color: var(--vape-cyan);">Liquide Principal (A)</label>
+            <!-- CONTENU INTERACTIF : MIX -->
+            <div id="panel-mix" class="hidden-tab">
+                <h2 class="window-title">Diagnostic dynamic — Recyclage</h2>
+                <div class="window-desc">Mélange de deux liquides aux taux différents.</div>
+                
+                <label style="color:var(--cyan-neon)">Liquide Source A</label>
                 <div class="grid-2">
-                    <div>
-                        <label>Vol A (ml)</label>
-                        <input type="number" id="mixVolA" value="50" oninput="calcAll()">
-                    </div>
-                    <div>
-                        <label>Nic A (mg)</label>
-                        <input type="number" id="mixNicA" value="3" oninput="calcAll()">
-                    </div>
+                    <input type="number" id="mixVolA" value="50" placeholder="Vol ml" oninput="calcAll()">
+                    <input type="number" id="mixNicA" value="3" placeholder="Taux mg" oninput="calcAll()">
                 </div>
-                <hr style="margin:12px 0">
-                <label style="color: var(--vape-purple);">Liquide à Ajouter (B)</label>
+                <label style="color:var(--purple-neon)">Liquide Source B</label>
                 <div class="grid-2">
-                    <div>
-                        <label>Vol B (ml)</label>
-                        <input type="number" id="mixVolB" value="10" oninput="calcAll()">
-                    </div>
-                    <div>
-                        <label>Nic B (mg)</label>
-                        <input type="number" id="mixNicB" value="12" oninput="calcAll()">
-                    </div>
+                    <input type="number" id="mixVolB" value="10" placeholder="Vol ml" oninput="calcAll()">
+                    <input type="number" id="mixNicB" value="12" placeholder="Taux mg" oninput="calcAll()">
                 </div>
             </div>
-            <div>
-                <div class="box">
-                    <div class="grid-2">
-                        <div>
-                            <label>Volume Total</label>
-                            <div class="res" id="outMixVol">60 ml</div>
-                        </div>
-                        <div>
-                            <label>Taux Final</label>
-                            <div class="res" style="color: var(--vape-green);" id="outMixNic">0.0 mg</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <!-- 8. ÉCONOMIES -->
-    <div id="tab-eco" class="tab-content">
-        <h2>💰 Budget &amp; Économies</h2>
-        <div class="desk-layout">
-            <div class="box">
+            <!-- CONTENU INTERACTIF : ECO -->
+            <div id="panel-eco" class="hidden-tab">
+                <h2 class="window-title">Diagnostic dynamic — Économies</h2>
+                <div class="window-desc">Rentabilité financière du passage à la vape au comptoir.</div>
+                
                 <div class="grid-2">
                     <div>
-                        <label>Cigs / jour</label>
+                        <label>Cigarettes / jour</label>
                         <input type="number" id="ecoCigs" value="20" oninput="calcAll()">
                     </div>
                     <div>
-                        <label>Prix paquet</label>
-                        <input type="number" id="ecoPrice" value="12.50" step="0.5" oninput="calcAll()">
+                        <label>Prix Paquet (€)</label>
+                        <input type="number" id="ecoPrice" value="12.50" oninput="calcAll()">
                     </div>
                 </div>
-                <div class="grid-3">
+                <div class="grid-2">
                     <div>
-                        <label>Flacons/m</label>
+                        <label>Flacons Vape / mois</label>
                         <input type="number" id="ecoNbFlacons" value="5" oninput="calcAll()">
                     </div>
                     <div>
-                        <label>Prix (€)</label>
-                        <input type="number" id="ecoPriceFlacon" value="5.90" step="0.1" oninput="calcAll()">
-                    </div>
-                    <div>
-                        <label>Taille</label>
-                        <select id="ecoSizeFlacon" onchange="calcAll()">
-                            <option value="10">10 ml</option>
-                            <option value="50">50 ml</option>
-                            <option value="100">100 ml</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="grid-2" style="margin-top:4px;">
-                    <div>
-                        <label>Résistances/m</label>
-                        <input type="number" id="ecoResistances" value="12" oninput="calcAll()">
-                    </div>
-                    <div>
-                        <label>Kit Départ (€)</label>
-                        <input type="number" id="ecoKitPrice" value="49.90" oninput="calcAll()">
+                        <label>Prix Moyen Unit.</label>
+                        <input type="number" id="ecoPriceFlacon" value="5.90" oninput="calcAll()">
                     </div>
                 </div>
             </div>
-            <div>
-                <div class="box">
-                    <label>Économies générées</label>
-                    <div class="res" style="color: var(--vape-green);" id="outEcoMois">0.00 € / m</div>
-                    <hr>
-                    <div class="res" style="color:#f59e0b; font-size:24px;" id="outEcoAn">0.00 € / an 1</div>
-                    <div id="statusEco" class="status money">Analyse financière active</div>
-                </div>
+
+            <!-- LE BOUTON EMBLEMATION DÉGRADÉ -->
+            <button class="action-gradient-btn" onclick="calcAll()">Lancer le diagnostic</button>
+
+            <!-- BOÎTE DE RÉSULTATS PHARE -->
+            <div class="result-panel">
+                <label id="result-label-text">Analyse en cours</label>
+                <div class="result-value" id="main-result-value">--</div>
+                <div class="status-text" id="main-status-text">🟢 Système opérationnel</div>
+                <div style="font-size: 11px; margin-top: 6px; color: var(--text-muted);" id="sub-result-text">Saisissez les données pour mettre à jour.</div>
             </div>
         </div>
+
+        <!-- COLONNE DROITE : WIDGET COMPLEMENTAIRE GRAPH (LOOK IMAGE) -->
+        <div class="window-card">
+            <div class="widget-title">
+                <span>Datões de customers</span>
+                <span style="color:var(--text-muted); font-size:11px;">❯</span>
+            </div>
+            
+            <div class="chart-container">
+                <div class="chart-bar-wrapper">
+                    <div class="chart-bar" style="height: 45px;"></div>
+                    <span class="chart-day">L</span>
+                </div>
+                <div class="chart-bar-wrapper">
+                    <div class="chart-bar" style="height: 75px;"></div>
+                    <span class="chart-day">M</span>
+                </div>
+                <div class="chart-bar-wrapper">
+                    <div class="chart-bar" style="height: 60px;"></div>
+                    <span class="chart-day">M</span>
+                </div>
+                <div class="chart-bar-wrapper">
+                    <div class="chart-bar" style="height: 95px;"></div>
+                    <span class="chart-day">J</span>
+                </div>
+                <div class="chart-bar-wrapper">
+                    <div class="chart-bar" style="height: 40px;"></div>
+                    <span class="chart-day">V</span>
+                </div>
+                <div class="chart-bar-wrapper">
+                    <div class="chart-bar" style="height: 85px;"></div>
+                    <span class="chart-day">S</span>
+                </div>
+            </div>
+            
+            <div style="margin-top: 25px; font-size: 11px; color: var(--text-muted); line-height: 1.4;">
+                Indicateurs de flux et de recommandations de conseils automatisés Labvape enregistrés.
+            </div>
+        </div>
+
     </div>
 
+    <!-- BAS DE PAGE OFFICIEL DE L'IMAGE -->
     <footer>
-        &copy; 2026 LABVAPE — Outil Magasin Sécurisé — Tous droits réservés.
+        © 2026 VAPELAB — Système intelligent d'aide à la vente — Propriété exclusive du réseau. (<a href="https://labvape.fr" target="_blank">labvape.fr</a>)
     </footer>
 
-    <!-- MOTEUR LOGICIEL SÉCURISÉ CONTRE LES BUGS -->
+    <!-- LOGIQUE APPLICATIVE INTERNE -->
     <script>
-        // Gestion propre et sécurisée des Onglets
-        function switchTab(tabName) {
-            // Désactiver tous les onglets (boutons et sections)
-            document.querySelectorAll(".tab-btn").forEach(btn => btn.classList.remove("active"));
-            document.querySelectorAll(".tab-content").forEach(content => content.classList.remove("active"));
+        let currentTab = 'cdr';
+
+        function switchTab(tabId) {
+            currentTab = tabId;
             
-            // Activer la section demandée de manière ultra ciblée
-            const targetBtn = document.getElementById("btn-" + tabName);
-            const targetContent = document.getElementById("tab-" + tabName);
+            // MAJ boutons de navigation
+            document.querySelectorAll('.nav-item-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('nav-' + tabId).classList.add('active');
             
-            if (targetBtn && targetContent) {
-                targetBtn.classList.add("active");
-                targetContent.classList.add("active");
-            }
+            // MAJ formulaires affichés
+            document.getElementById('panel-cdr').className = 'hidden-tab';
+            document.getElementById('panel-nicotine').className = 'hidden-tab';
+            document.getElementById('panel-diy').className = 'hidden-tab';
+            document.getElementById('panel-pgvg').className = 'hidden-tab';
+            document.getElementById('panel-volt').className = 'hidden-tab';
+            document.getElementById('panel-auto').className = 'hidden-tab';
+            document.getElementById('panel-mix').className = 'hidden-tab';
+            document.getElementById('panel-eco').className = 'hidden-tab';
             
-            // Forcer le recalcul immédiat des éléments de l'onglet actif
+            document.getElementById('panel-' + tabId).className = '';
+            
             calcAll();
         }
 
-        // Fonctions d'aide pour les boutons pré-configurés
         function setMl(val) {
-            const element = document.getElementById("ml");
-            if (element) { element.value = val; calcAll(); }
+            document.getElementById('ml').value = val;
+            calcAll();
         }
 
         function setVolt(val) {
-            const element = document.getElementById("vwVolt");
-            if (element) { element.value = val; calcAll(); }
-        }
-        
-        function syncResValue() {
-            const style = document.getElementById("vapestyle").value;
-            const resInput = document.getElementById("resval");
-            if (!resInput) return;
-            
-            if (style === "dl") resInput.value = "0.2";
-            else if (style === "rdl") resInput.value = "0.5";
-            else if (style === "mtl") resInput.value = "1.2";
-            
+            document.getElementById('vwVolt').value = val;
             calcAll();
         }
 
-        // Moteur de calcul global ultra-sécurisé avec fallback
+        function syncResValue() {
+            const style = document.getElementById("vapestyle").value;
+            const resInput = document.getElementById("resval");
+            if(style === "dl") resInput.value = "0.2";
+            else if(style === "rdl") resInput.value = "0.5";
+            else if(style === "mtl") resInput.value = "1.2";
+            calcAll();
+        }
+
         function calcAll() {
             try {
-                // --- 1. ACCU / LOI D'OHM ---
-                let w = parseFloat(document.getElementById("w")?.value) || 0;
-                let v = parseFloat(document.getElementById("v")?.value) || 3.2;
-                let n = parseInt(document.getElementById("n")?.value) || 1;
-                let c = parseFloat(document.getElementById("c")?.value) || 0;
-                
-                let ampsDemandes = 0;
-                if (v > 0 && n > 0) {
-                    ampsDemandes = w / (v * n * 0.9); // Prise en compte de 90% d'efficacité chipset
-                }
-                let cdrTotal = c * n;
-                
-                if (document.getElementById("outA")) document.getElementById("outA").innerText = ampsDemandes.toFixed(2) + " A";
-                if (document.getElementById("outC")) document.getElementById("outC").innerText = cdrTotal.toFixed(2) + " A";
-                
-                let statusCdr = document.getElementById("statusCdr");
-                if (statusCdr) {
-                    if (ampsDemandes > cdrTotal && cdrTotal > 0) {
-                        statusCdr.className = "status danger";
-                        statusCdr.innerText = "🚨 DANGER : CDR DÉPASSÉ DE " + (ampsDemandes - cdrTotal).toFixed(2) + " A";
+                const labelText = document.getElementById('result-label-text');
+                const mainVal = document.getElementById('main-result-value');
+                const statusTxt = document.getElementById('main-status-text');
+                const subTxt = document.getElementById('sub-result-text');
+
+                if (currentTab === 'cdr') {
+                    labelText.innerText = "Courant de décharge requis";
+                    let w = parseFloat(document.getElementById("w").value) || 0;
+                    let v = parseFloat(document.getElementById("v").value) || 3.2;
+                    let n = parseInt(document.getElementById("n").value) || 1;
+                    let c = parseFloat(document.getElementById("c").value) || 0;
+                    
+                    let amps = (v > 0 && n > 0) ? (w / (v * n * 0.9)) : 0;
+                    let maxCdr = c * n;
+                    
+                    mainVal.innerText = amps.toFixed(2) + " A";
+                    subTxt.innerText = "Capacité de décharge max disponible : " + maxCdr.toFixed(2) + " A";
+                    
+                    if (amps > maxCdr && maxCdr > 0) {
+                        statusTxt.innerText = "🚨 DANGER : LIMITE CRITIQUE ACCU DÉPASSÉE";
+                        statusTxt.className = "status-text danger";
                     } else {
-                        statusCdr.className = "status safe";
-                        statusCdr.innerText = "🟢 CONFIGURATION SÉCURISÉE";
+                        statusTxt.innerText = "🟢 CONFIGURATION SÉCURISÉE";
+                        statusTxt.className = "status-text";
                     }
+                } 
+                
+                else if (currentTab === 'nicotine') {
+                    labelText.innerText = "Taux de nicotine cible conseillé";
+                    let cigs = parseInt(document.getElementById("cigs").value) || 0;
+                    let nicPerCig = parseFloat(document.getElementById("nicPerCig").value) || 2.0;
+                    let ml = parseFloat(document.getElementById("ml").value) || 1;
+                    
+                    let besoin = cigs * nicPerCig;
+                    let taux = besoin / ml;
+                    
+                    mainVal.innerText = taux.toFixed(1) + " mg/ml";
+                    subTxt.innerText = "Besoin quotidien total assimilé : " + besoin.toFixed(0) + " mg";
+                    statusTxt.innerText = taux > 20 ? "⚠️ Seuil limite légal TPD (20mg) dépassé" : "🟢 Recommandation conforme";
+                    statusTxt.className = taux > 20 ? "status-text danger" : "status-text";
+                } 
+                
+                else if (currentTab === 'diy') {
+                    labelText.innerText = "Proportions de la recette";
+                    let total = parseFloat(document.getElementById("diyTotal").value) || 0;
+                    let nic = parseFloat(document.getElementById("diyNic").value) || 0;
+                    let perc = parseFloat(document.getElementById("diyAromePerc").value) || 0;
+                    let boostTaux = parseFloat(document.getElementById("diyBoosterTaux").value) || 20;
+                    
+                    let boostMl = (nic * total) / boostTaux;
+                    let aromeMl = total * (perc / 100);
+                    let baseMl = total - boostMl - aromeMl;
+                    if(baseMl < 0) baseMl = 0;
+                    
+                    mainVal.innerText = (boostMl/10).toFixed(1) + " Boosters";
+                    subTxt.innerText = "Détails : " + boostMl.toFixed(0) + "ml Boosters | " + aromeMl.toFixed(0) + "ml Arôme | " + baseMl.toFixed(0) + "ml Base.";
+                    statusTxt.innerText = "🧪 Recette prête à assembler";
+                    statusTxt.className = "status-text";
                 }
 
-                // --- 2. NICOTINE PROFILE ---
-                let cigs = parseInt(document.getElementById("cigs")?.value) || 0;
-                let ml = parseFloat(document.getElementById("ml")?.value) || 0;
-                let nicPerCig = parseFloat(document.getElementById("nicPerCig")?.value) || 2.0;
-                
-                let besoinQuotidien = cigs * nicPerCig;
-                let tauxConseille = ml > 0 ? (besoinQuotidien / ml) : 0;
-                
-                if (document.getElementById("outBesoin")) {
-                    document.getElementById("outBesoin").innerText = "Besoin quotidien : " + besoinQuotidien.toFixed(0) + " mg de nicotine";
-                }
-                
-                let outTaux = document.getElementById("outTaux");
-                if (outTaux) {
-                    if (tauxConseille > 20) {
-                        outTaux.innerHTML = tauxConseille.toFixed(1) + " mg/ml <br><span style='color:var(--vape-red); font-size:11px;'>⚠️ Max légal Européen dépassé (20mg)</span>";
+                else if (currentTab === 'pgvg') {
+                    labelText.innerText = "Viscosité idéale préconisée";
+                    let res = parseFloat(document.getElementById("resval").value) || 0.5;
+                    
+                    if (res < 0.4) {
+                        mainVal.innerText = "30 PG / 70 VG";
+                        subTxt.innerText = "Résistance basse. Nécessite un liquide épais High VG pour éviter fuites et suintements.";
+                    } else if (res >= 0.4 && res <= 0.8) {
+                        mainVal.innerText = "50 PG / 50 VG";
+                        subTxt.innerText = "Équilibre universel. Parfait pour la majorité des pods et clearomiseurs modernes.";
                     } else {
-                        outTaux.innerText = tauxConseille.toFixed(1) + " mg/ml";
+                        mainVal.innerText = "70 PG / 30 VG";
+                        subTxt.innerText = "Résistance Haute MTL. Exige des e-liquides fluides pour écarter le Dry-Hit (goût brûlé).";
                     }
+                    statusTxt.innerText = "📊 Analyse matériel finalisée";
+                    statusTxt.className = "status-text";
                 }
 
-                // --- 3. PACK DIY ---
-                let diyTotal = parseFloat(document.getElementById("diyTotal")?.value) || 0;
-                let diyNic = parseFloat(document.getElementById("diyNic")?.value) || 0;
-                let diyAromePerc = parseFloat(document.getElementById("diyAromePerc")?.value) || 0;
-                let diyBoosterTaux = parseFloat(document.getElementById("diyBoosterTaux")?.value) || 20;
-                
-                let boostersMl = (diyNic * diyTotal) / diyBoosterTaux;
-                let boostersFlacons = boostersMl / 10;
-                let aromeMl = diyTotal * (diyAromePerc / 100);
-                let baseMl = diyTotal - boostersMl - aromeMl;
-                if (baseMl < 0) baseMl = 0;
-                
-                if (document.getElementById("outDiyBoosters")) document.getElementById("outDiyBoosters").innerText = boostersFlacons.toFixed(1) + " fl";
-                if (document.getElementById("outDiyBoostersMl")) document.getElementById("outDiyBoostersMl").innerText = "(" + boostersMl.toFixed(0) + " ml)";
-                if (document.getElementById("outDiyArome")) document.getElementById("outDiyArome").innerText = aromeMl.toFixed(0) + " ml";
-                if (document.getElementById("outDiyBase")) document.getElementById("outDiyBase").innerText = baseMl.toFixed(0) + " ml";
-
-                // --- 4. ANALYSE PG/VG ---
-                let resval = parseFloat(document.getElementById("resval")?.value) || 0.5;
-                let outPgVg = document.getElementById("outPgVg");
-                let outPgVgConseil = document.getElementById("outPgVgConseil");
-                
-                if (outPgVg && outPgVgConseil) {
-                    if (resval < 0.4) {
-                        outPgVg.innerText = "30 PG / 70 VG";
-                        outPgVgConseil.innerText = "Canaux larges (DL). Demande un e-liquide épais (High VG) pour écarter tout risque de fuite.";
-                    } else if (resval >= 0.4 && resval <= 0.8) {
-                        outPgVg.innerText = "50 PG / 50 VG";
-                        outPgVgConseil.innerText = "Tirage intermédiaire (RDL). Équilibre parfait saveur/vapeur, s'adapte à 90% des pods actuels.";
-                    } else {
-                        outPgVg.innerText = "70 PG / 30 VG ou 50/50";
-                        outPgVgConseil.innerText = "Résistance serrée (MTL). Exige des liquides fluides pour éviter les clignotements ou dry-hits.";
-                    }
+                else if (currentTab === 'volt') {
+                    labelText.innerText = "Puissance électrique calculée";
+                    let ohm = parseFloat(document.getElementById("vwOhm").value) || 1;
+                    let volt = parseFloat(document.getElementById("vwVolt").value) || 0;
+                    let watts = (volt * volt) / ohm;
+                    let amps = volt / ohm;
+                    
+                    mainVal.innerText = watts.toFixed(1) + " Watts";
+                    subTxt.innerText = "Intensité du courant générée sur le coil : " + amps.toFixed(2) + " A";
+                    statusTxt.innerText = "🔌 Équilibre de tension Loi d'Ohm";
+                    statusTxt.className = "status-text";
                 }
 
-                // --- 5. VOLT TO WATT ---
-                let vwOhm = parseFloat(document.getElementById("vwOhm")?.value) || 0;
-                let vwVolt = parseFloat(document.getElementById("vwVolt")?.value) || 0;
-                let vwWatts = vwOhm > 0 ? ((vwVolt * vwVolt) / vwOhm) : 0;
-                let vwAmps = vwOhm > 0 ? (vwVolt / vwOhm) : 0;
-                
-                if (document.getElementById("outVwWatts")) document.getElementById("outVwWatts").innerText = vwWatts.toFixed(1) + " W";
-                if (document.getElementById("outVwAmps")) document.getElementById("outVwAmps").innerText = vwAmps.toFixed(2) + " A";
-
-                // --- 6. PUFFS AUTONOMIE ---
-                let autoMah = parseFloat(document.getElementById("autoMah")?.value) || 0;
-                let autoNb = parseInt(document.getElementById("autoNb")?.value) || 1;
-                let autoWatts = parseFloat(document.getElementById("autoWatts")?.value) || 0;
-                let puffsMax = 0;
-                if (autoWatts > 0) {
-                    puffsMax = (((autoMah * autoNb) / 1000) * 3.7 * 3600) / (autoWatts * 3);
-                }
-                if (document.getElementById("outPuffs")) document.getElementById("outPuffs").innerText = Math.floor(puffsMax) + " puffs";
-
-                // --- 7. RECYCLAGE / MÉLANGE ---
-                let mixVolA = parseFloat(document.getElementById("mixVolA")?.value) || 0;
-                let mixNicA = parseFloat(document.getElementById("mixNicA")?.value) || 0;
-                let mixVolB = parseFloat(document.getElementById("mixVolB")?.value) || 0;
-                let mixNicB = parseFloat(document.getElementById("mixNicB")?.value) || 0;
-                let totalMixVol = mixVolA + mixVolB;
-                let finalMixNic = totalMixVol > 0 ? (((mixVolA * mixNicA) + (mixVolB * mixNicB)) / totalMixVol) : 0;
-                
-                if (document.getElementById("outMixVol")) document.getElementById("outMixVol").innerText = totalMixVol.toFixed(0) + " ml";
-                if (document.getElementById("outMixNic")) document.getElementById("outMixNic").innerText = finalMixNic.toFixed(1) + " mg/ml";
-
-                // --- 8. ÉCONOMIES BUDGET ---
-                let ecoCigs = parseInt(document.getElementById("ecoCigs")?.value) || 0;
-                let ecoPrice = parseFloat(document.getElementById("ecoPrice")?.value) || 0;
-                let ecoNbFlacons = parseInt(document.getElementById("ecoNbFlacons")?.value) || 0;
-                let ecoPriceFlacon = parseFloat(document.getElementById("ecoPriceFlacon")?.value) || 0;
-                let ecoSizeFlacon = parseFloat(document.getElementById("ecoSizeFlacon")?.value) || 10;
-                let ecoResistances = parseFloat(document.getElementById("ecoResistances")?.value) || 0;
-                let ecoKitPrice = parseFloat(document.getElementById("ecoKitPrice")?.value) || 0;
-                
-                let coutClopeMois = (ecoCigs / 20) * ecoPrice * 30.42;
-                let coutVapeMois = (ecoNbFlacons * ecoPriceFlacon) + ecoResistances;
-                let ecoMois = coutClopeMois - coutVapeMois;
-                if (ecoMois < 0) ecoMois = 0;
-                let ecoAn1 = (ecoMois * 12) - ecoKitPrice;
-                if (ecoAn1 < 0) ecoAn1 = 0;
-                
-                if (document.getElementById("outEcoMois")) document.getElementById("outEcoMois").innerText = ecoMois.toFixed(2) + " € / mois";
-                if (document.getElementById("outEcoAn")) document.getElementById("outEcoAn").innerText = ecoAn1.toFixed(2) + " € / la 1ère année";
-                if (document.getElementById("statusEco")) {
-                    document.getElementById("statusEco").innerText = "💧 Volume mensuel conseillé : " + (ecoNbFlacons * ecoSizeFlacon) + " ml";
+                else if (currentTab === 'auto') {
+                    labelText.innerText = "Autonomie maximale théorique";
+                    let mah = parseFloat(document.getElementById("autoMah").value) || 0;
+                    let nb = parseInt(document.getElementById("autoNb").value) || 1;
+                    let w = parseFloat(document.getElementById("autoWatts").value) || 1;
+                    
+                    let totalJoules = ((mah * nb) / 1000) * 3.7 * 3600;
+                    let puffs = totalJoules / (w * 3); // Bouffées de 3 sec
+                    
+                    mainVal.innerText = Math.floor(puffs) + " Puffs";
+                    subTxt.innerText = "Basé sur un cycle complet de décharge et des bouffées moyennes de 3 secondes.";
+                    statusTxt.innerText = "🔋 Diagnostic énergétique effectué";
+                    statusTxt.className = "status-text";
                 }
 
-            } catch (error) {
-                console.error("Erreur de calcul interceptée : ", error);
+                else if (currentTab === 'mix') {
+                    labelText.innerText = "Résultat du mélange de taux";
+                    let vA = parseFloat(document.getElementById("mixVolA").value) || 0;
+                    let nA = parseFloat(document.getElementById("mixNicA").value) || 0;
+                    let vB = parseFloat(document.getElementById("mixVolB").value) || 0;
+                    let nB = parseFloat(document.getElementById("mixNicB").value) || 0;
+                    
+                    let vTot = vA + vB;
+                    let nFinal = vTot > 0 ? (((vA * nA) + (vB * nB)) / vTot) : 0;
+                    
+                    mainVal.innerText = nFinal.toFixed(1) + " mg/ml";
+                    subTxt.innerText = "Volume total obtenu après mixage : " + vTot.toFixed(0) + " ml";
+                    statusTxt.innerText = "🔀 Homogénéisation terminée";
+                    statusTxt.className = "status-text";
+                }
+
+                else if (currentTab === 'eco') {
+                    labelText.innerText = "Économies financières estimées";
+                    let cigs = parseInt(document.getElementById("ecoCigs").value) || 0;
+                    let price = parseFloat(document.getElementById("ecoPrice").value) || 0;
+                    let flacons = parseInt(document.getElementById("ecoNbFlacons").value) || 0;
+                    let fPrice = parseFloat(document.getElementById("ecoPriceFlacon").value) || 0;
+                    
+                    let coûtTabac = (cigs / 20) * price * 30.42;
+                    let coûtVape = flacons * fPrice;
+                    let gainMois = coûtTabac - coûtVape;
+                    if(gainMois < 0) gainMois = 0;
+                    
+                    mainVal.innerText = gainMois.toFixed(2) + " € / mois";
+                    subTxt.innerText = "Soit environ " + (gainMois * 12).toFixed(0) + " € d'économies cumulées à l'année.";
+                    statusTxt.innerText = "💰 Bilan budgétaire rentable";
+                    statusTxt.className = "status-text";
+                }
+
+            } catch (e) {
+                console.error(e);
             }
         }
 
-        // Initialisation automatique de la page
         window.onload = function() {
             calcAll();
         };
