@@ -46,51 +46,44 @@
             box-sizing: border-box;
         }
 
-        /* 👑 HEADER GLOBAL CENTRÉ SUR ÉCRAN ORDINATEUR */
+        /* 👑 HEADER PRINCIPAL COMPLETEMET RESPONSIVE */
         .app-header {
             background: var(--bg-card);
             border-bottom: 1px solid var(--border-light);
-            padding: 15px 20px;
+            padding: 10px 15px;
             display: flex;
-            flex-direction: column;
-            gap: 20px;
+            flex-direction: row; /* Forcé en ligne dès le mobile */
+            align-items: center;
+            justify-content: flex-start;
+            gap: 15px;
             position: sticky;
             top: 0;
             z-index: 100;
             box-shadow: 0 4px 20px rgba(139, 92, 246, 0.02);
         }
 
-        @media (min-width: 768px) {
-            .app-header {
-                flex-direction: row;
-                align-items: center;
-                justify-content: center; /* Centrage horizontal de l'ensemble logo + onglets */
-                padding: 10px 40px;
-                gap: 40px;
-            }
-        }
-
-        /* LOGO À GAUCHE DANS LE BLOC CENTRÉ */
+        /* 🎯 GESTION INTELLIGENTE DU LOGO (PETIT SUR MOBILE / GÉANT SUR PC) */
         .vape-logo-left {
             display: flex;
             align-items: center;
             flex-shrink: 0;
         }
         .vape-logo-left img {
-            height: 120px; 
+            height: 45px; /* Compact sur mobile pour ne perdre aucune place */
             width: auto;
             display: block;
+            transition: height 0.2s ease;
         }
 
         /* BARRE DES ONGLETS CONTENUE ET AJUSTÉE */
         .tools-nav-horizontal {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             overflow-x: auto;
-            padding-bottom: 5px;
+            padding-bottom: 3px;
             scroll-behavior: smooth;
             -webkit-overflow-scrolling: touch;
-            width: auto; /* Permet le centrage sans forcer tout l'écran */
+            flex-grow: 1;
         }
 
         .tools-nav-horizontal::-webkit-scrollbar {
@@ -101,20 +94,35 @@
             scrollbar-width: none;
         }
 
+        /* DESIGN ADAPTATIF POUR ORDINATEUR (SANS CASSER LA VERSION PC) */
+        @media (min-width: 900px) {
+            .app-header {
+                justify-content: center; /* Centrage global sur grand écran */
+                padding: 10px 40px;
+                gap: 40px;
+            }
+            .vape-logo-left img {
+                height: 120px; /* Reprend sa taille XXL exclusive sur PC */
+            }
+            .tools-nav-horizontal {
+                flex-grow: 0; /* Ne force plus toute la largeur sur PC */
+            }
+        }
+
         .nav-item-btn {
             background: var(--bg-input);
             border: 1px solid var(--border-light);
             color: var(--text-muted);
-            padding: 12px 20px;
+            padding: 10px 16px;
             border-radius: 30px;
             cursor: pointer;
             font-weight: 600;
-            font-size: 14px; 
+            font-size: 13px; 
             white-space: nowrap;
             transition: all 0.2s ease;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 5px;
         }
 
         .nav-item-btn:hover {
@@ -149,7 +157,7 @@
             border-radius: 24px;
             border: 1px solid var(--border-light);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
-            padding: 30px;
+            padding: 25px;
         }
 
         @media (min-width: 768px) {
@@ -341,7 +349,7 @@
 </head>
 <body>
 
-    <!-- 👑 HEADER PRINCIPAL -->
+    <!-- 👑 HEADER PRINCIPAL UNIFIÉ PC / MOBILE -->
     <header class="app-header">
         <div class="vape-logo-left">
             <img src="https://i.ibb.co/qMfNgwV9/Logo-Labvape.png" alt="Logo Labvape">
@@ -601,7 +609,7 @@
             executeDiagnostic();
         };
 
-        /* 🔒 VERROUILLAGE ANTI-QUITTER */
+        /* 🔒 PROTECTION CONTRE LA FERMETURE INTEMPESTIVE RESTAURÉE */
         window.addEventListener('beforeunload', function (e) {
             e.preventDefault();
             e.returnValue = 'Voulez-vous vraiment quitter l\'application LABVAPE ?';
