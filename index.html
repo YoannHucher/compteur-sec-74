@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>LABVAPE — Système Intelligent d'Aide à la Vente</title>
     
-    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-GBBR4R84TT"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -14,7 +13,6 @@
         gtag('config', 'G-GBBR4R84TT');
     </script>
 
-    <!-- LOGO DE L'ONGLET NAVIGATEUR (FAVICON) -->
     <link rel="icon" type="image/png" href="https://i.ibb.co/qMfNgwV9/Logo-Labvape.png">
 
     <style>
@@ -258,7 +256,7 @@
             box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.08);
         }
 
-        /* 🏹 CONTENEUR FLÈCHE SÉLECTEUR */
+        /* 🏹 CONTENEUR FLÈCHE SÉLECTEUR POUR TOUS LES DROPDOWNS */
         .select-wrapper {
             position: relative;
             width: 100%;
@@ -273,6 +271,42 @@
             transform: translateY(-50%);
             pointer-events: none;
         }
+
+        /* 🔍 COMPOSANT CUSTOM DE RECHERCHE INTEGRÉ (EVITE LES BUGS DE DEPASSEMENT) */
+        .custom-search-area {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        .custom-dropdown-panel {
+            position: absolute;
+            top: 54px;
+            left: 0;
+            width: 100%;
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: 14px;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.12);
+            max-height: 240px;
+            overflow-y: auto;
+            z-index: 999;
+            display: none;
+            box-sizing: border-box;
+        }
+        .custom-dropdown-row {
+            padding: 12px 16px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-main);
+            border-bottom: 1px solid var(--border-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .custom-dropdown-row:last-child { border-bottom: none; }
+        .custom-dropdown-row:hover { background: var(--bg-input); color: var(--primary); }
+        .custom-dropdown-row span { font-size: 11px; color: var(--text-muted); font-weight: 700; background: rgba(0,0,0,0.04); padding: 3px 8px; border-radius: 8px;}
+        [data-theme="dark"] .custom-dropdown-row span { background: rgba(255,255,255,0.05); }
 
         .result-panel {
             background: var(--bg-input);
@@ -407,7 +441,6 @@
 </head>
 <body>
 
-    <!-- 👑 HEADER PRINCIPAL COMPLETEMENT DEFILANT -->
     <header class="app-header">
         <nav class="tools-nav-horizontal">
             <div class="vape-logo-inline">
@@ -427,13 +460,11 @@
         </nav>
     </header>
 
-    <!-- 📦 BLOC DE CONTENU CENTRAL -->
     <main class="main-container">
         <div class="window-card">
             
             <div id="window-form-wrapper">
                 
-                <!-- CDR ACCU -->
                 <div id="panel-cdr">
                     <h2 class="window-title">Diagnostic dynamique — Accu</h2>
                     <div class="window-desc">Analyse en temps réel de la décharge d'ampères et conformité de sécurité.</div>
@@ -456,7 +487,6 @@
                     </div>
                 </div>
 
-                <!-- NICOTINE FUMEUR -->
                 <div id="panel-nicotine" class="hidden-tab">
                     <h2 class="window-title">Diagnostic dynamique — Nicotine</h2>
                     <div class="window-desc">Configuration personnalisée selon le profil de consommation du fumeur.</div>
@@ -482,127 +512,19 @@
                     <input type="number" id="ml" value="4" oninput="executeDiagnostic()">
                 </div>
 
-                <!-- PACK DIY RECETTE (100 ARÔMES ULTRA-POPULAIRES) -->
                 <div id="panel-diy" class="hidden-tab">
                     <h2 class="window-title">Diagnostic dynamique — Mix DIY</h2>
-                    <div class="window-desc">Sélectionnez ou recherchez un arôme parmi les 100 meilleures ventes de France.</div>
+                    <div class="window-desc">Sélectionnez ou recherchez un arôme pour configurer le % fabricant.</div>
                     
-                    <label>Rechercher ou Choisir un Arôme Concentré</label>
-                    <input type="text" id="diyAromeInput" list="aromeList" placeholder="Cliquez pour faire défiler ou écrivez le nom..." oninput="handleAromeSelection()">
-                    
-                    <datalist id="aromeList">
-                        <!-- ULTIMATE A&L (STARS) -->
-                        <option value="Ragnarok (A&L Ultimate) — 15%">
-                        <option value="Ragnarok Primal (A&L Ultimate) — 15%">
-                        <option value="Ragnarok Legend (A&L Ultimate) — 15%">
-                        <option value="Oni (A&L Ultimate) — 15%">
-                        <option value="Oni Sigurd (A&L Ultimate) — 15%">
-                        <option value="Shinigami (A&L Ultimate) — 15%">
-                        <option value="Shinigami Zero (A&L Ultimate) — 15%">
-                        <option value="Valkyrie (A&L Ultimate) — 15%">
-                        <option value="Valkyrie Zero (A&L Ultimate) — 15%">
-                        <option value="Nagato (A&L Ultimate) — 15%">
-                        <option value="Leviathan (A&L Ultimate) — 15%">
-                        <option value="Bahamut (A&L Ultimate) — 15%">
-                        <option value="Succube (A&L Ultimate) — 15%">
-                        <option value="Phoenix (A&L Ultimate) — 15%">
-                        <option value="Jiraya (A&L Ultimate) — 15%">
-                        <option value="Ifrit (A&L Ultimate) — 15%">
-                        <!-- VAMPIRE VAPE & T-JUICE -->
-                        <option value="Heisenberg (Vampire Vape) — 15%">
-                        <option value="Pinkman (Vampire Vape) — 15%">
-                        <option value="Attraction (Vampire Vape) — 15%">
-                        <option value="Blood Sukka (Vampire Vape) — 15%">
-                        <option value="Catapult (Vampire Vape) — 15%">
-                        <option value="Red Astaire (T-Juice) — 15%">
-                        <option value="Clara T (T-Juice) — 15%">
-                        <option value="Colonel Boom (T-Juice) — 15%">
-                        <option value="Minty T (T-Juice) — 15%">
-                        <!-- FRUIZEE & FRENCH LIQUIDE -->
-                        <option value="Bloody Summer (Fruizee) — 15%">
-                        <option value="Crazy Mango (Fruizee) — 15%">
-                        <option value="Ice Mint (Fruizee) — 15%">
-                        <option value="Citron Orange Mandarine (Fruizee) — 15%">
-                        <option value="Purple Beach (Fruizee) — 15%">
-                        <option value="Sunset Lover (Fruizee) — 15%">
-                        <option value="La Chose (Le French Liquide) — 15%">
-                        <option value="La Petite Chose (Le French Liquide) — 15%">
-                        <option value="Re-Animator (Le French Liquide) — 10%">
-                        <!-- HALO & DINNER LADY -->
-                        <option value="Sub Zero (Halo) — 25%">
-                        <option value="Tribeca (Halo) — 25%">
-                        <option value="Prime 15 (Halo) — 25%">
-                        <option value="Torque 56 (Halo) — 25%">
-                        <option value="Lemon Tart (Dinner Lady) — 20%">
-                        <option value="Corn Corn (Dinner Lady) — 20%">
-                        <option value="Strawberry Bikini (Dinner Lady) — 20%">
-                        <!-- VAPE INSTITUT & CLOUD'S OF LOLO -->
-                        <option value="Tallak (Vape Institut) — 15%">
-                        <option value="Mallok (Vape Institut) — 15%">
-                        <option value="Macadamia (Vape Institut) — 15%">
-                        <option value="Lion's Roar (Vape Institut) — 15%">
-                        <option value="Chimera (Vape Institut) — 15%">
-                        <option value="Magnum (Cloud's of Lolo) — 15%">
-                        <option value="Leccino (Cloud's of Lolo) — 15%">
-                        <option value="Pistacchio (Cloud's of Lolo) — 15%">
-                        <option value="Nougatine (Cloud's of Lolo) — 15%">
-                        <option value="Caramel Beurre Salé (Cloud's of Lolo) — 15%">
-                        <!-- REVOLUTE & DIY MONSTER -->
-                        <option value="Projet Lenny (Revolute) — 15%">
-                        <option value="Projet Amiami (Revolute) — 15%">
-                        <option value="Projet Drapaux (Revolute) — 15%">
-                        <option value="Umani (High End Revolute) — 10%">
-                        <option value="Dandy Puff (High End Revolute) — 10%">
-                        <option value="Snap Pear (High End Revolute) — 10%">
-                        <!-- SUPERVAPE -->
-                        <option value="Le Café (Supervape) — 10%">
-                        <option value="Biscuit Craquant (Supervape) — 10%">
-                        <option value="Cactus Citron (Supervape) — 10%">
-                        <option value="Crème Brûlée (Supervape) — 12%">
-                        <option value="Vanille Custard (Supervape) — 12%">
-                        <option value="Poire Amandine (Supervape) — 10%">
-                        <option value="Pop Corn Fondant (Supervape) — 11%">
-                        <!-- SOLUBAROME -->
-                        <option value="Menthe Glaciale (Solubarome) — 10%">
-                        <option value="Vanilla Custard (Solubarome) — 15%">
-                        <option value="Fraise à la Crème (Solubarome) — 15%">
-                        <option value="Poire Matinale (Solubarome) — 15%">
-                        <option value="Château Haut (Solubarome) — 15%">
-                        <option value="Fred Master (Solubarome) — 10%">
-                        <option value="Gorilla (Solubarome) — 15%">
-                        <!-- PGVG LABS, MONSTER VAPE LABS & ELIQUID FRANCE -->
-                        <option value="Don Cristo Original (PGVG Labs) — 20%">
-                        <option value="Don Cristo Custard (PGVG Labs) — 20%">
-                        <option value="Don Cristo XO (PGVG Labs) — 20%">
-                        <option value="Don Cristo Coffee (PGVG Labs) — 20%">
-                        <option value="Concentré Relax (Eliquid France) — 15%">
-                        <option value="Concentré Supreme (Eliquid France) — 15%">
-                        <option value="Strawberry Jam (Monster Vape Labs) — 20%">
-                        <option value="Blueberry Jam (Monster Vape Labs) — 20%">
-                        <option value="Butterscotch (Jam Monster) — 20%">
-                        <!-- KTS, SWOKE, FUR JONATHAN & AUTRES TRÈS VENDUS -->
-                        <option value="KTS Black (KTS) — 15%">
-                        <option value="KTS Gold (KTS) — 15%">
-                        <option value="Clone (Swoke) — 15%">
-                        <option value="Saiyen Vapors Frozen Buhon (Swoke) — 15%">
-                        <option value="Saiyen Vapors Frozen Païpaï (Swoke) — 15%">
-                        <option value="Furious Cookie (Moonshiners) — 15%">
-                        <option value="Big Apple (Moonshiners) — 15%">
-                        <option value="Old Nuts (Médiéval Vape) — 15%">
-                        <option value="La Recette Secrète (Custom) — 15%">
-                        <option value="Curaçao (Aroma Sense) — 15%">
-                        <option value="Guanabana (Solana) — 15%">
-                        <option value="Brocéliande (Flavour Power) — 15%">
-                        <option value="Macaron Framboise (Flavour Power) — 15%">
-                        <option value="Le Petit Blond (La Petite Vap) — 15%">
-                        <option value="Caramel vanille (Solubarome) — 15%">
-                        <option value="Pink Lady (Solana) — 15%">
-                        <option value="Café Gourmand (Solana) — 15%">
-                        <option value="Rediz Dead (Swoke) — 15%">
-                        <option value="Gamer (Vape Or DIY) — 15%">
-                        <option value="Mawashi (Vape Or DIY) — 15%">
-                        <option value="Kami (A&L Creation) — 10%">
-                    </datalist>
+                    <label>Rechercher ou Sélectionner un Arôme</label>
+                    <div class="custom-search-area">
+                        <div style="display: flex; gap: 8px;">
+                            <input type="text" id="diyAromeInput" placeholder="Tapez pour filtrer (ex: Ragnarok, Oni...)" oninput="filterAromeList()" onfocus="openAromeDropdown()" style="margin-bottom:0; flex-grow:1;">
+                            <button class="nav-item-btn" onclick="toggleAllAromes()" style="padding: 14px 16px; border-radius: 14px; background: var(--bg-input);">📋 Tout voir</button>
+                        </div>
+                        <div id="customDropdown" class="custom-dropdown-panel">
+                            </div>
+                    </div>
 
                     <div class="grid-2">
                         <div>
@@ -631,7 +553,6 @@
                     </div>
                 </div>
 
-                <!-- PG/VG VISCOSITÉ -->
                 <div id="panel-pgvg" class="hidden-tab">
                     <h2 class="window-title">Diagnostic dynamique — Matériel</h2>
                     <div class="window-desc">Vérification de la viscosité idéale du jus selon l'atomiseur.</div>
@@ -649,7 +570,6 @@
                     </div>
                 </div>
 
-                <!-- ELECTRICITE VOLT TO WATT -->
                 <div id="panel-volt" class="hidden-tab">
                     <h2 class="window-title">Diagnostic dynamique — Électricité</h2>
                     <div class="window-desc">Calcul de la puissance générée selon la tension délivrée.</div>
@@ -666,7 +586,6 @@
                     <input type="number" id="vwVolt" value="3.7" step="0.1" oninput="executeDiagnostic()">
                 </div>
 
-                <!-- AUTONOMIE PUFFS -->
                 <div id="panel-auto" class="hidden-tab">
                     <h2 class="window-title">Diagnostic dynamique — Capacité</h2>
                     <div class="window-desc">Estimation mathématique de la durée de vie de la batterie.</div>
@@ -685,7 +604,6 @@
                     <input type="number" id="autoWatts" value="40" oninput="executeDiagnostic()">
                 </div>
 
-                <!-- MIX LIQUIDES -->
                 <div id="panel-mix" class="hidden-tab">
                     <h2 class="window-title">Diagnostic dynamique — Recyclage</h2>
                     <div class="window-desc">Mélange de deux liquides aux taux différents.</div>
@@ -702,12 +620,10 @@
                     </div>
                 </div>
 
-                <!-- FINANCES SIMULATEUR ECONOMIE -->
                 <div id="panel-eco" class="hidden-tab">
                     <h2 class="window-title">Économies</h2>
                     <div class="window-desc">Bilan financier complet et comparatif direct.</div>
                     
-                    <!-- PARTIE TABAC -->
                     <div class="section-separator-title">🚬 1. Budget actuel Tabac</div>
                     <div class="grid-2">
                         <div>
@@ -720,7 +636,6 @@
                         </div>
                     </div>
 
-                    <!-- PARTIE VAPE -->
                     <div class="section-separator-title">🔮 2. Budget estimé Vape</div>
                     <div class="grid-2">
                         <div>
@@ -753,14 +668,12 @@
                     </div>
                 </div>
 
-                <!-- PANNEAU DE RÉSULTATS AUTOMATIQUES -->
                 <div class="result-panel">
                     <label id="result-label-text">Analyse de comptoir</label>
                     <div class="result-value" id="main-result-value">--</div>
                     <div class="status-text" id="main-status-text">✅ Diagnostic calculé instantanément</div>
                     <div class="sub-result-details" id="sub-result-text">Modifiez les données ci-dessus pour voir l'analyse se mettre à jour en temps réel.</div>
                     
-                    <!-- BLOC RECETTE DIY -->
                     <div class="big-recipe-box" id="recipe-block-view">
                         <div class="big-recipe-title">🧪 Recette à réaliser :</div>
                         <div class="big-recipe-grid">
@@ -792,10 +705,125 @@
     <script>
         let currentTab = 'cdr';
 
+        // 📊 LISTE DES 100 ARÔMES STARS DE FRANCE (RANGÉE SANS CONFLITS DE CONTENEUR HTML)
+        const MASTER_AROMES = [
+            { n: "Ragnarok", b: "A&L Ultimate", p: 15 },
+            { n: "Ragnarok Primal", b: "A&L Ultimate", p: 15 },
+            { n: "Ragnarok Legend", b: "A&L Ultimate", p: 15 },
+            { n: "Oni", b: "A&L Ultimate", p: 15 },
+            { n: "Oni Sigurd", b: "A&L Ultimate", p: 15 },
+            { n: "Shinigami", b: "A&L Ultimate", p: 15 },
+            { n: "Shinigami Zero", b: "A&L Ultimate", p: 15 },
+            { n: "Valkyrie", b: "A&L Ultimate", p: 15 },
+            { n: "Valkyrie Zero", b: "A&L Ultimate", p: 15 },
+            { n: "Nagato", b: "A&L Ultimate", p: 15 },
+            { n: "Leviathan", b: "A&L Ultimate", p: 15 },
+            { n: "Bahamut", b: "A&L Ultimate", p: 15 },
+            { n: "Succube", b: "A&L Ultimate", p: 15 },
+            { n: "Phoenix", b: "A&L Ultimate", p: 15 },
+            { n: "Jiraya", b: "A&L Ultimate", p: 15 },
+            { n: "Ifrit", b: "A&L Ultimate", p: 15 },
+            { n: "Heisenberg", b: "Vampire Vape", p: 15 },
+            { n: "Pinkman", b: "Vampire Vape", p: 15 },
+            { n: "Attraction", b: "Vampire Vape", p: 15 },
+            { n: "Blood Sukka", b: "Vampire Vape", p: 15 },
+            { n: "Catapult", b: "Vampire Vape", p: 15 },
+            { n: "Red Astaire", b: "T-Juice", p: 15 },
+            { n: "Clara T", b: "T-Juice", p: 15 },
+            { n: "Colonel Boom", b: "T-Juice", p: 15 },
+            { n: "Minty T", b: "T-Juice", p: 15 },
+            { n: "Bloody Summer", b: "Fruizee", p: 15 },
+            { n: "Crazy Mango", b: "Fruizee", p: 15 },
+            { n: "Ice Mint", b: "Fruizee", p: 15 },
+            { n: "Citron Orange Mandarine", b: "Fruizee", p: 15 },
+            { n: "Purple Beach", b: "Fruizee", p: 15 },
+            { n: "Sunset Lover", b: "Fruizee", p: 15 },
+            { n: "La Chose", b: "Le French Liquide", p: 15 },
+            { n: "La Petite Chose", b: "Le French Liquide", p: 15 },
+            { n: "Re-Animator", b: "Le French Liquide", p: 10 },
+            { n: "Sub Zero", b: "Halo", p: 25 },
+            { n: "Tribeca", b: "Halo", p: 25 },
+            { n: "Prime 15", b: "Halo", p: 25 },
+            { n: "Torque 56", b: "Halo", p: 25 },
+            { n: "Lemon Tart", b: "Dinner Lady", p: 20 },
+            { n: "Corn Corn", b: "Dinner Lady", p: 20 },
+            { n: "Strawberry Bikini", b: "Dinner Lady", p: 20 },
+            { n: "Tallak", b: "Vape Institut", p: 15 },
+            { n: "Mallok", b: "Vape Institut", p: 15 },
+            { n: "Macadamia", b: "Vape Institut", p: 15 },
+            { n: "Lion's Roar", b: "Vape Institut", p: 15 },
+            { n: "Chimera", b: "Vape Institut", p: 15 },
+            { n: "Magnum", b: "Cloud's of Lolo", p: 15 },
+            { n: "Leccino", b: "Cloud's of Lolo", p: 15 },
+            { n: "Pistacchio", b: "Cloud's of Lolo", p: 15 },
+            { n: "Nougatine", b: "Cloud's of Lolo", p: 15 },
+            { n: "Caramel Beurre Salé", b: "Cloud's of Lolo", p: 15 },
+            { n: "Projet Lenny", b: "Revolute", p: 15 },
+            { n: "Projet Amiami", b: "Revolute", p: 15 },
+            { n: "Projet Drapaux", b: "Revolute", p: 15 },
+            { n: "Umani", b: "High End Revolute", p: 10 },
+            { n: "Dandy Puff", b: "High End Revolute", p: 10 },
+            { n: "Snap Pear", b: "High End Revolute", p: 10 },
+            { n: "Le Café", b: "Supervape", p: 10 },
+            { n: "Biscuit Craquant", b: "Supervape", p: 10 },
+            { n: "Cactus Citron", b: "Supervape", p: 10 },
+            { n: "Crème Brûlée", b: "Supervape", p: 12 },
+            { n: "Vanille Custard", b: "Supervape", p: 12 },
+            { n: "Poire Amandine", b: "Supervape", p: 10 },
+            { n: "Pop Corn Fondant", b: "Supervape", p: 11 },
+            { n: "Menthe Glaciale", b: "Solubarome", p: 10 },
+            { n: "Vanilla Custard", b: "Solubarome", p: 15 },
+            { n: "Fraise à la Crème", b: "Solubarome", p: 15 },
+            { n: "Poire Matinale", b: "Solubarome", p: 15 },
+            { n: "Château Haut", b: "Solubarome", p: 15 },
+            { n: "Fred Master", b: "Solubarome", p: 10 },
+            { n: "Gorilla", b: "Solubarome", p: 15 },
+            { n: "Don Cristo Original", b: "PGVG Labs", p: 20 },
+            { n: "Don Cristo Custard", b: "PGVG Labs", p: 20 },
+            { n: "Don Cristo XO", b: "PGVG Labs", p: 20 },
+            { n: "Don Cristo Coffee", b: "PGVG Labs", p: 20 },
+            { n: "Concentré Relax", b: "Eliquid France", p: 15 },
+            { n: "Concentré Supreme", b: "Eliquid France", p: 15 },
+            { n: "Strawberry Jam", b: "Monster Vape Labs", p: 20 },
+            { n: "Blueberry Jam", b: "Monster Vape Labs", p: 20 },
+            { n: "Butterscotch", b: "Jam Monster", p: 20 },
+            { n: "KTS Black", b: "KTS", p: 15 },
+            { n: "KTS Gold", b: "KTS", p: 15 },
+            { n: "Clone", b: "Swoke", p: 15 },
+            { n: "Saiyen Vapors Frozen Buhon", b: "Swoke", p: 15 },
+            { n: "Saiyen Vapors Frozen Païpaï", b: "Swoke", p: 15 },
+            { n: "Furious Cookie", b: "Moonshiners", p: 15 },
+            { n: "Big Apple", b: "Moonshiners", p: 15 },
+            { n: "Old Nuts", b: "Médiéval Vape", p: 15 },
+            { n: "La Recette Secrète", b: "Custom", p: 15 },
+            { n: "Curaçao", b: "Aroma Sense", p: 15 },
+            { n: "Guanabana", b: "Solana", p: 15 },
+            { n: "Brocéliande", b: "Flavour Power", p: 15 },
+            { n: "Macaron Framboise", b: "Flavour Power", p: 15 },
+            { n: "Le Petit Blond", b: "La Petite Vap", p: 15 },
+            { n: "Caramel vanille", b: "Solubarome", p: 15 },
+            { n: "Pink Lady", b: "Solana", p: 15 },
+            { n: "Café Gourmand", b: "Solana", p: 15 },
+            { n: "Rediz Dead", b: "Swoke", p: 15 },
+            { n: "Gamer", b: "Vape Or DIY", p: 15 },
+            { n: "Mawashi", b: "Vape Or DIY", p: 15 },
+            { n: "Kami", b: "A&L Creation", p: 10 }
+        ];
+
         window.onload = function() {
             const savedTheme = localStorage.getItem('labvape-theme') || 'light';
             document.documentElement.setAttribute('data-theme', savedTheme);
             updateThemeButtonVisual(savedTheme);
+            
+            buildCustomDropdown(MASTER_AROMES);
+            
+            // Masque la boîte si on clique n'importe où ailleurs
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.custom-search-area')) {
+                    document.getElementById('customDropdown').style.display = 'none';
+                }
+            });
+
             executeDiagnostic();
         };
 
@@ -814,21 +842,58 @@
             btn.innerHTML = theme === 'dark' ? '🌙 Thème Sombre' : '☀️ Thème Clair';
         }
 
-        /* 🧪 AUTOMATISATION DE LA BASE DES 100 AROMES */
-        function handleAromeSelection() {
-            const inputVal = document.getElementById('diyAromeInput').value;
-            const percInput = document.getElementById('diyAromePerc');
+        /* 🧪 CONSTRUCTEUR DU COMPOSANT DE RECHERCHE PERSONNALISÉ */
+        function buildCustomDropdown(list) {
+            const panel = document.getElementById('customDropdown');
+            panel.innerHTML = '';
             
-            if (inputVal.includes('—')) {
-                const parts = inputVal.split('—');
-                if (parts.length > 1) {
-                    const extractedNum = parseInt(parts[1].trim());
-                    if (!isNaN(extractedNum)) {
-                        percInput.value = extractedNum;
-                    }
-                }
+            list.forEach(item => {
+                const row = document.createElement('div');
+                row.className = 'custom-dropdown-row';
+                row.innerHTML = `<div>${item.n} <small style="color:var(--text-muted); font-weight:normal; margin-left:5px;">${item.b}</small></div> <span>${item.p}%</span>`;
+                
+                row.onclick = function() {
+                    document.getElementById('diyAromeInput').value = `${item.n} (${item.b})`;
+                    document.getElementById('diyAromePerc').value = item.p;
+                    panel.style.display = 'none';
+                    executeDiagnostic();
+                };
+                panel.appendChild(row);
+            });
+        }
+
+        function filterAromeList() {
+            const input = document.getElementById('diyAromeInput');
+            const val = input.value.toLowerCase().trim();
+            const panel = document.getElementById('customDropdown');
+            
+            if(val === '') {
+                buildCustomDropdown(MASTER_AROMES);
+                panel.style.display = 'block';
+                return;
             }
-            executeDiagnostic();
+
+            const filtered = MASTER_AROMES.filter(item => 
+                item.n.toLowerCase().includes(val) || 
+                item.b.toLowerCase().includes(val)
+            );
+
+            buildCustomDropdown(filtered);
+            panel.style.display = 'block';
+        }
+
+        function openAromeDropdown() {
+            document.getElementById('customDropdown').style.display = 'block';
+        }
+
+        function toggleAllAromes() {
+            const panel = document.getElementById('customDropdown');
+            if(panel.style.display === 'block') {
+                panel.style.display = 'none';
+            } else {
+                buildCustomDropdown(MASTER_AROMES);
+                panel.style.display = 'block';
+            }
         }
 
         /* 🔄 SYNCHRONISATION DU NOMBRE DE CIGARETTES */
