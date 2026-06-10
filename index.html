@@ -18,29 +18,30 @@
     <link rel="icon" type="image/png" href="https://i.ibb.co/qMfNgwV9/Logo-Labvape.png">
 
     <style>
-        /* 🌌 REFONTE INSPIRÉE DE L'UNIVERS ARSÈNE VALENTIN */
+        /* ⚪️ NOUVELLE IDENTITÉ GRAPHIQUE : CLAIRE, ÉPURÉE & INSTANTANÉE */
         :root {
-            --bg-dark: #0a0b10; /* Fond noir profond typique */
-            --card-bg: #131520; /* Cartes grises/bleutées sombres pour le contraste */
-            --input-bg: #1a1d2e; /* Éléments de saisie légèrement plus clairs */
-            --border-color: rgba(255, 255, 255, 0.05);
+            --bg-body: #f8fafc; /* Fond très clair et propre */
+            --bg-card: rgba(255, 255, 255, 0.9); /* Effet verre blanc */
+            --bg-input: #ffffff;
+            --border-light: rgba(226, 232, 240, 0.6);
             
-            /* Les dégradés vifs et électriques de la vape moderne */
-            --vape-pink: #ff007f;
-            --vape-cyan: #00f0ff;
-            --vape-purple: #8b5cf6;
-            --text-main: #ffffff;
-            --text-muted: #94a3b8;
+            /* Couleurs d'accentuation vives et fraîches */
+            --primary: #8b5cf6; /* Violet moderne */
+            --primary-light: #ddd6fe;
+            --secondary: #06b6d4; /* Cyan énergisant */
+            --danger: #ef4444; /* Rouge alerte */
             
-            --gradient-accent: linear-gradient(90deg, #ff007f 0%, #7000ff 50%, #00f0ff 100%);
+            --text-main: #1e293b; /* Bleu/Gris très foncé pour le texte */
+            --text-muted: #64748b; /* Gris texte secondaire */
+            --text-on-accent: #ffffff;
         }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-dark);
+            background-color: var(--bg-body);
             background-image: 
-                radial-gradient(circle at 80% 20%, rgba(255, 0, 127, 0.06) 0%, transparent 40%),
-                radial-gradient(circle at 20% 80%, rgba(0, 240, 255, 0.05) 0%, transparent 40%);
+                radial-gradient(circle at 15% 15%, rgba(139, 92, 246, 0.03) 0%, transparent 25%),
+                radial-gradient(circle at 85% 85%, rgba(6, 182, 212, 0.03) 0%, transparent 25%);
             color: var(--text-main);
             margin: 0;
             padding: 15px;
@@ -54,71 +55,66 @@
         .top-bar {
             display: flex;
             justify-content: center;
+            align-items: center;
             max-width: 1300px;
             width: 100%;
-            margin: 15px auto 25px auto;
-            padding: 0 10px;
+            margin: 10px auto 10px auto;
+            padding: 10px;
         }
 
-        .top-logo-centered {
-            font-size: 26px;
-            font-weight: 900;
-            letter-spacing: 6px;
-            color: #ffffff;
-            text-transform: uppercase;
-            background: var(--gradient-accent);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+        /* 🏷️ Zone titre désactivée pour mettre le logo en valeur */
+        .top-logo-centered { display: none; }
 
         .dashboard-container {
             display: grid;
             grid-template-columns: 1fr;
             gap: 20px;
-            max-width: 1200px;
+            max-width: 1240px;
             width: 100%;
             margin: auto;
         }
 
         @media (min-width: 992px) {
             .dashboard-container {
-                grid-template-columns: 340px 1fr;
+                grid-template-columns: 360px 1fr;
                 align-items: start;
-                gap: 25px;
+                gap: 30px;
             }
         }
 
-        /* Style Bento-Box pour les cartes */
+        /* Style Bento-Box Clair et Glass-morphism */
         .window-card {
-            background: var(--card-bg);
-            border-radius: 20px;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 24px;
+            border: 1px solid var(--border-light);
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.04), 0 1px 2px rgba(0,0,0,0.01);
             padding: 25px;
             position: relative;
             transition: all 0.3s ease;
         }
 
         @media (min-width: 768px) {
-            .window-card { padding: 30px; }
+            .window-card { padding: 35px; }
         }
 
         .window-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 24px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-            padding-bottom: 14px;
+            margin-bottom: 25px;
+            border-bottom: 1px solid rgba(0,0,0,0.03);
+            padding-bottom: 15px;
         }
 
         .window-dots {
             display: flex;
-            gap: 6px;
+            gap: 7px;
         }
         .dot {
-            width: 11px;
-            height: 11px;
+            width: 12px;
+            height: 12px;
             border-radius: 50%;
         }
         .dot.red { background: #ff5f56; cursor: pointer; }
@@ -130,25 +126,26 @@
             font-size: 16px; 
             cursor: pointer; 
             padding: 4px 8px;
-            border-radius: 6px;
+            border-radius: 8px;
             transition: background 0.2s;
         }
         .window-close:hover {
-            background: rgba(255, 255, 255, 0.05);
-            color: #ffffff;
+            background: rgba(0,0,0,0.03);
+            color: var(--text-main);
         }
 
-        /* Cadre du Logo */
+        /* ✨ Intégration Libre du Logo (Plus de case grise) */
         .widget-logo-box {
             text-align: center;
-            padding: 20px; 
-            background: #171926;
-            border: 1px solid rgba(255, 255, 255, 0.03);
-            border-radius: 20px;
+            padding: 10px 0 25px 0; 
+            background: transparent;
+            border: none;
+            border-radius: 0;
+            box-shadow: none;
         }
 
         .vape-illustration {
-            width: 260px;
+            width: 290px;
             max-width: 100%;
             margin: 0 auto;
             display: flex;
@@ -161,73 +158,74 @@
             display: block;
         }
 
-        /* Navigation Menu */
+        /* Navigation Menu Claire */
         .tools-nav {
-            margin-top: 15px;
+            margin-top: 10px;
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
+            gap: 12px;
         }
 
         @media (min-width: 992px) {
             .tools-nav {
                 display: flex;
                 flex-direction: column;
-                gap: 10px;
+                gap: 12px;
             }
         }
 
         .nav-item-btn {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            color: #cbd5e1;
-            padding: 15px;
-            border-radius: 14px;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            color: var(--text-muted);
+            padding: 16px;
+            border-radius: 16px;
             cursor: pointer;
             text-align: left;
             font-weight: 600;
-            font-size: 13px;
+            font-size: 14px;
             transition: all 0.2s ease;
             display: flex;
             align-items: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
         }
 
         .nav-item-btn:hover {
-            border-color: rgba(255, 255, 255, 0.15);
+            border-color: #cbd5e1;
+            color: var(--text-main);
             transform: translateY(-1px);
         }
         
         .nav-item-btn.active {
-            background: #171926;
-            color: #ffffff;
-            border-color: transparent;
-            box-shadow: inset 0 0 0 1px rgba(255, 0, 127, 0.4), 0 4px 15px rgba(255, 0, 127, 0.15);
+            background: #ffffff;
+            color: var(--primary);
+            border-color: var(--primary-light);
+            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.08);
             position: relative;
         }
         .nav-item-btn.active::before {
             content: '';
             position: absolute;
-            left: 0;
+            left: -1px;
             top: 25%;
             height: 50%;
             width: 4px;
-            background: var(--vape-pink);
+            background: var(--primary);
             border-radius: 0 4px 4px 0;
         }
 
         .window-title {
-            font-size: 22px;
+            font-size: 24px;
             font-weight: 800;
-            margin: 0 0 6px 0;
-            color: #ffffff;
-            letter-spacing: -0.5px;
+            margin: 0 0 8px 0;
+            color: var(--text-main);
+            letter-spacing: -0.8px;
         }
         .window-desc {
-            font-size: 13px;
+            font-size: 14px;
             color: var(--text-muted);
-            margin-bottom: 24px;
-            line-height: 1.5;
+            margin-bottom: 30px;
+            line-height: 1.6;
         }
 
         label {
@@ -235,152 +233,133 @@
             font-size: 11px;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.2px;
             color: var(--text-muted);
-            margin-bottom: 8px;
+            margin-bottom: 9px;
         }
 
         .section-separator-title {
             font-size: 12px;
             font-weight: 800;
-            color: var(--vape-cyan);
+            color: var(--secondary);
             text-transform: uppercase;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            padding-bottom: 8px;
-            margin: 25px 0 18px 0;
-            letter-spacing: 1px;
+            border-bottom: 2px solid rgba(6, 182, 212, 0.06);
+            padding-bottom: 10px;
+            margin: 35px 0 22px 0;
+            letter-spacing: 1.2px;
         }
 
-        /* Éléments de formulaires arrondis et profonds */
+        /* Éléments de formulaires clairs et arrondis */
         input, select {
             width: 100%;
-            background: var(--input-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 15px;
-            color: #ffffff;
-            font-size: 15px;
+            background: var(--bg-input);
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 16px;
+            color: var(--text-main);
+            font-size: 16px;
             font-weight: 600;
             box-sizing: border-box;
             outline: none;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             transition: all 0.2s;
             -webkit-appearance: none;
         }
         input:focus, select:focus {
-            border-color: var(--vape-pink);
-            box-shadow: 0 0 10px rgba(255, 0, 127, 0.15);
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
         }
 
-        /* Bouton "Arsène style" aux bords très ronds et dégradé flashy */
-        .action-gradient-btn {
-            width: 100%;
-            background: var(--gradient-accent);
-            border: none;
-            border-radius: 50px;
-            padding: 18px 24px;
-            color: #ffffff;
-            font-size: 14px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            cursor: pointer;
-            box-shadow: 0 6px 20px rgba(112, 0, 255, 0.3);
-            transition: all 0.2s ease;
-            margin-top: 10px;
-        }
-        .action-gradient-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(255, 0, 127, 0.4);
-            filter: brightness(1.1);
-        }
+        /* ❌ Bouton "Lancer le diagnostic" SUPPRIMÉ ❌ */
+        .action-gradient-btn { display: none; }
 
-        /* Panneau de résultats hyper contrasté */
+        /* Panneau de résultats hyper contrasté en mode clair */
         .result-panel {
-            background: #0d0e15;
-            border-radius: 16px;
-            padding: 24px;
-            margin-top: 28px;
-            border: 1px solid rgba(255, 255, 255, 0.02);
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 10px;
+            border: 1px solid var(--primary-light);
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.06);
         }
         .result-panel label {
             font-size: 11px;
             color: var(--text-muted);
+            letter-spacing: 1.5px;
         }
         
-        /* Chiffres géants et lumineux */
+        /* Chiffres géants et clairs */
         .result-value {
-            font-size: 40px;
+            font-size: 44px;
             font-weight: 900;
-            color: #ffffff;
-            margin: 6px 0 14px 0;
-            letter-spacing: -1px;
+            color: var(--text-main);
+            margin: 8px 0 18px 0;
+            letter-spacing: -1.5px;
         }
 
         .status-text {
             font-size: 13px;
             font-weight: 700;
             text-transform: uppercase;
-            margin-bottom: 12px;
-            color: var(--vape-cyan);
-            letter-spacing: 0.5px;
+            margin-bottom: 14px;
+            color: var(--secondary);
+            letter-spacing: 0.8px;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 7px;
         }
-        .status-text.danger { color: var(--vape-pink); }
+        .status-text.danger { color: var(--danger); }
 
         .sub-result-details {
-            font-size: 14px;
-            line-height: 1.5;
-            color: #94a3b8;
-            background: rgba(255, 255, 255, 0.02);
-            padding: 14px;
-            border-radius: 12px;
-            border-left: 3px solid var(--vape-purple);
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-main);
+            background: #f1f5f9;
+            padding: 16px;
+            border-radius: 14px;
+            border-left: 4px solid var(--primary);
         }
 
-        /* Blocs de recettes bento */
+        /* Blocs de recettes clairs */
         .big-recipe-box {
             display: none;
-            margin-top: 20px;
-            padding: 18px;
-            background: rgba(139, 92, 246, 0.05);
-            border: 1px solid rgba(139, 92, 246, 0.15);
-            border-radius: 16px;
+            margin-top: 25px;
+            padding: 22px;
+            background: rgba(139, 92, 246, 0.03);
+            border: 1px solid var(--primary-light);
+            border-radius: 20px;
         }
         .big-recipe-title {
             font-size: 12px;
             font-weight: 800;
-            color: #ffffff;
-            margin-bottom: 14px;
+            color: var(--text-main);
+            margin-bottom: 16px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.2px;
         }
         .big-recipe-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
+            gap: 12px;
         }
         .recipe-block {
-            background: var(--input-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 14px 6px;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 16px 8px;
             text-align: center;
         }
         .recipe-block-val {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 800;
-            color: var(--vape-cyan);
+            color: var(--primary);
         }
         .recipe-block-lbl {
-            font-size: 9px;
+            font-size: 10px;
             font-weight: 700;
             color: var(--text-muted);
             text-transform: uppercase;
-            margin-top: 5px;
+            margin-top: 6px;
         }
 
         .empty-window-state {
@@ -388,48 +367,50 @@
             text-align: center;
             padding: 60px 20px;
         }
-        .empty-window-state h3 { font-size: 22px; margin-bottom: 10px; color: #fff;}
+        .empty-window-state h3 { font-size: 22px; margin-bottom: 10px; color: var(--text-main);}
         .empty-window-state p { color: var(--text-muted); font-size: 14px; margin-bottom: 20px;}
 
-        /* Boutons d'options pré-configurés */
+        /* Boutons d'options pré-configurés clairs */
         .preset-row {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
-            margin-bottom: 20px;
+            gap: 10px;
+            margin-bottom: 25px;
         }
         .preset-item {
-            background: var(--input-bg);
-            border: 1px solid var(--border-color);
-            color: #fff;
-            padding: 13px 8px;
-            font-size: 12px;
-            border-radius: 10px;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            color: var(--text-main);
+            padding: 15px 10px;
+            font-size: 13px;
+            border-radius: 12px;
             cursor: pointer;
             font-weight: 600;
             text-align: center;
             transition: all 0.2s;
         }
         .preset-item:hover {
-            border-color: rgba(255,255,255,0.15);
+            border-color: #cbd5e1;
+            background: #f8fafc;
         }
         .preset-item.active { 
-            background: rgba(255, 0, 127, 0.1);
-            border-color: var(--vape-pink); 
-            color: var(--vape-pink); 
+            background: rgba(139, 92, 246, 0.06);
+            border-color: var(--primary); 
+            color: var(--primary); 
+            box-shadow: 0 2px 6px rgba(139, 92, 246, 0.06);
         }
 
         footer {
             text-align: center;
             margin-top: auto;
-            padding: 40px 10px 15px 10px;
-            font-size: 11px;
-            color: rgba(255,255,255,0.15);
+            padding: 50px 10px 20px 10px;
+            font-size: 12px;
+            color: var(--text-muted);
             letter-spacing: 0.5px;
         }
-        footer a { color: rgba(255,255,255,0.25); text-decoration: none; }
+        footer a { color: var(--primary); text-decoration: none; font-weight: 600;}
 
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
         .hidden-tab { display: none; }
     </style>
 </head>
@@ -443,7 +424,8 @@
         
         <!-- MODULE DE GAUCHE : NAVIGATION -->
         <div>
-            <div class="window-card widget-logo-box">
+            <!-- ✨ Logo Libre et Mieux Intégré -->
+            <div class="widget-logo-box">
                 <div class="vape-illustration">
                     <img src="https://i.ibb.co/qMfNgwV9/Logo-Labvape.png" alt="Logo Labvape">
                 </div>
@@ -462,7 +444,7 @@
         </div>
 
         <!-- MODULE DE DROITE : INTERFACE APPLICATIVE -->
-        <div class="window-card" id="main-application-window" style="box-shadow: 0 20px 45px rgba(0,0,0,0.6), 0 0 40px rgba(255, 0, 127, 0.04);">
+        <div class="window-card" id="main-application-window">
             
             <div class="window-header">
                 <div class="window-dots">
@@ -481,19 +463,19 @@
                     <div class="window-desc">Analyse en temps réel de la décharge d'ampères et conformité de sécurité.</div>
                     
                     <label>Puissance demandée (Watts)</label>
-                    <input type="number" id="w" value="50">
+                    <input type="number" id="w" value="50" oninput="executeDiagnostic()">
                     
                     <label>Tension mini par accu (Volts)</label>
-                    <input type="number" id="v" value="3.2" step="0.1">
+                    <input type="number" id="v" value="3.2" step="0.1" oninput="executeDiagnostic()">
                     
                     <div class="grid-2">
                         <div>
                             <label>Nombre d'accus</label>
-                            <input type="number" id="n" value="1">
+                            <input type="number" id="n" value="1" oninput="executeDiagnostic()">
                         </div>
                         <div>
                             <label>CDR Continu (A)</label>
-                            <input type="number" id="c" value="25">
+                            <input type="number" id="c" value="25" oninput="executeDiagnostic()">
                         </div>
                     </div>
                 </div>
@@ -504,18 +486,18 @@
                     <div class="window-desc">Configuration personnalisée selon le profil de consommation du fumeur.</div>
                     
                     <label>Cigarettes fumées par jour</label>
-                    <input type="number" id="cigs" value="15">
+                    <input type="number" id="cigs" value="15" oninput="executeDiagnostic()">
                     
                     <label>Intensité par cigarette (mg)</label>
-                    <input type="number" id="nicPerCig" value="2.0" step="0.1">
+                    <input type="number" id="nicPerCig" value="2.0" step="0.1" oninput="executeDiagnostic()">
                     
                     <label>Consommation e-liquide estimée</label>
                     <div class="preset-row">
-                        <div class="preset-item" onclick="setMl(2)">2 ml (Pod)</div>
-                        <div class="preset-item" onclick="setMl(4)">4 ml (Moyen)</div>
-                        <div class="preset-item" onclick="setMl(8)">8 ml (Cloud)</div>
+                        <div class="preset-item" onclick="setMl(2, this)">2 ml (Pod)</div>
+                        <div class="preset-item active" onclick="setMl(4, this)">4 ml (Moyen)</div>
+                        <div class="preset-item" onclick="setMl(8, this)">8 ml (Cloud)</div>
                     </div>
-                    <input type="number" id="ml" value="4">
+                    <input type="number" id="ml" value="4" oninput="executeDiagnostic()">
                 </div>
 
                 <!-- PACK DIY RECETTE -->
@@ -526,21 +508,21 @@
                     <div class="grid-2">
                         <div>
                             <label>Volume Total (ml)</label>
-                            <input type="number" id="diyTotal" value="100">
+                            <input type="number" id="diyTotal" value="100" oninput="executeDiagnostic()">
                         </div>
                         <div>
                             <label>Taux visé (mg/ml)</label>
-                            <input type="number" id="diyNic" value="3" step="0.5">
+                            <input type="number" id="diyNic" value="3" step="0.5" oninput="executeDiagnostic()">
                         </div>
                     </div>
                     <div class="grid-2">
                         <div>
                             <label>% Arôme préconisé</label>
-                            <input type="number" id="diyAromePerc" value="15">
+                            <input type="number" id="diyAromePerc" value="15" oninput="executeDiagnostic()">
                         </div>
                         <div>
                             <label>Taux du booster</label>
-                            <select id="diyBoosterTaux">
+                            <select id="diyBoosterTaux" onchange="executeDiagnostic()">
                                 <option value="20">20 mg/ml</option>
                                 <option value="18">18 mg/ml</option>
                             </select>
@@ -554,7 +536,7 @@
                     <div class="window-desc">Vérification de la viscosité idéale du jus selon l'atomiseur.</div>
                     
                     <label>Valeur de la résistance (Ohm)</label>
-                    <input type="number" id="resval" value="0.3" step="0.1">
+                    <input type="number" id="resval" value="0.3" step="0.1" oninput="executeDiagnostic()">
                     
                     <label>Type de tirage recherché</label>
                     <select id="vapestyle" onchange="syncResValue()">
@@ -570,15 +552,15 @@
                     <div class="window-desc">Calcul de la puissance générée selon la tension délivrée.</div>
                     
                     <label>Résistance (Ohm)</label>
-                    <input type="number" id="vwOhm" value="0.5">
+                    <input type="number" id="vwOhm" value="0.5" oninput="executeDiagnostic()">
                     
                     <label>Tension sélectionnée (Volts)</label>
                     <div class="preset-row">
-                        <div class="preset-item" onclick="setVolt(4.2)">4.2 V</div>
-                        <div class="preset-item" onclick="setVolt(3.7)">3.7 V</div>
-                        <div class="preset-item" onclick="setVolt(3.2)">3.2 V</div>
+                        <div class="preset-item" onclick="setVolt(4.2, this)">4.2 V</div>
+                        <div class="preset-item active" onclick="setVolt(3.7, this)">3.7 V</div>
+                        <div class="preset-item" onclick="setVolt(3.2, this)">3.2 V</div>
                     </div>
-                    <input type="number" id="vwVolt" value="3.7" step="0.1">
+                    <input type="number" id="vwVolt" value="3.7" step="0.1" oninput="executeDiagnostic()">
                 </div>
 
                 <!-- AUTONOMIE PUFFS -->
@@ -589,15 +571,15 @@
                     <div class="grid-2">
                         <div>
                             <label>mAh de la cellule</label>
-                            <input type="number" id="autoMah" value="3000" step="500">
+                            <input type="number" id="autoMah" value="3000" step="500" oninput="executeDiagnostic()">
                         </div>
                         <div>
                             <label>Quantité</label>
-                            <input type="number" id="autoNb" value="1">
+                            <input type="number" id="autoNb" value="1" oninput="executeDiagnostic()">
                         </div>
                     </div>
                     <label>Puissance d'utilisation (Watts)</label>
-                    <input type="number" id="autoWatts" value="40">
+                    <input type="number" id="autoWatts" value="40" oninput="executeDiagnostic()">
                 </div>
 
                 <!-- MIX LIQUIDES -->
@@ -605,15 +587,15 @@
                     <h2 class="window-title">Diagnostic dynamic — Recyclage</h2>
                     <div class="window-desc">Mélange de deux liquides aux taux différents.</div>
                     
-                    <label style="color:var(--vape-cyan)">Liquide Source A</label>
+                    <label style="color:var(--secondary)">Liquide Source A</label>
                     <div class="grid-2">
-                        <input type="number" id="mixVolA" value="50" placeholder="Vol ml">
-                        <input type="number" id="mixNicA" value="3" placeholder="Taux mg">
+                        <input type="number" id="mixVolA" value="50" placeholder="Vol ml" oninput="executeDiagnostic()">
+                        <input type="number" id="mixNicA" value="3" placeholder="Taux mg" oninput="executeDiagnostic()">
                     </div>
-                    <label style="color:var(--vape-pink)">Liquide Source B</label>
+                    <label style="color:var(--primary)">Liquide Source B</label>
                     <div class="grid-2">
-                        <input type="number" id="mixVolB" value="10" placeholder="Vol ml">
-                        <input type="number" id="mixNicB" value="12" placeholder="Taux mg">
+                        <input type="number" id="mixVolB" value="10" placeholder="Vol ml" oninput="executeDiagnostic()">
+                        <input type="number" id="mixNicB" value="12" placeholder="Taux mg" oninput="executeDiagnostic()">
                     </div>
                 </div>
 
@@ -627,11 +609,11 @@
                     <div class="grid-2">
                         <div>
                             <label>Cigarettes / jour</label>
-                            <input type="number" id="ecoCigs" value="20">
+                            <input type="number" id="ecoCigs" value="20" oninput="executeDiagnostic()">
                         </div>
                         <div>
                             <label>Prix Paquet (€)</label>
-                            <input type="number" id="ecoPrice" value="12.50">
+                            <input type="number" id="ecoPrice" value="12.50" oninput="executeDiagnostic()">
                         </div>
                     </div>
 
@@ -640,11 +622,11 @@
                     <div class="grid-2">
                         <div>
                             <label>Flacons / mois</label>
-                            <input type="number" id="ecoNbFlacons" value="5">
+                            <input type="number" id="ecoNbFlacons" value="5" oninput="executeDiagnostic()">
                         </div>
                         <div>
                             <label>Prix Moyen Unit. (€)</label>
-                            <input type="number" id="ecoPriceFlacon" value="5.90">
+                            <input type="number" id="ecoPriceFlacon" value="5.90" oninput="executeDiagnostic()">
                         </div>
                     </div>
                     
@@ -659,23 +641,21 @@
                     <div class="grid-2">
                         <div>
                             <label>Résistances / mois (€)</label>
-                            <input type="number" id="ecoResPerMonth" value="10">
+                            <input type="number" id="ecoResPerMonth" value="10" oninput="executeDiagnostic()">
                         </div>
                         <div>
                             <label>Kit Initial Achat (€)</label>
-                            <input type="number" id="ecoKitInitial" value="59.90">
+                            <input type="number" id="ecoKitInitial" value="59.90" oninput="executeDiagnostic()">
                         </div>
                     </div>
                 </div>
 
-                <button class="action-gradient-btn" onclick="executeDiagnostic()">Lancer le diagnostic</button>
-
                 <!-- BOÎTE DES RÉSULTATS VISUELS TRÈS LISIBLES -->
                 <div class="result-panel">
-                    <label id="result-label-text">Analyse en attente</label>
+                    <label id="result-label-text">Analyse de comptoir</label>
                     <div class="result-value" id="main-result-value">--</div>
-                    <div class="status-text" id="main-status-text">🔵 En attente de lancement</div>
-                    <div class="sub-result-details" id="sub-result-text">Cliquez sur le bouton ci-dessus pour générer les données de comptoir.</div>
+                    <div class="status-text" id="main-status-text">✅ Diagnostic calculé instantanément</div>
+                    <div class="sub-result-details" id="sub-result-text">Modifiez les données ci-dessus pour voir l'analyse se mettre à jour en temps réel.</div>
                     
                     <!-- BLOC AFFICHAGE GRANDES PROPORTIONS RECETTE DIY -->
                     <div class="big-recipe-box" id="recipe-block-view">
@@ -703,7 +683,6 @@
             <div class="empty-window-state" id="empty-state-view">
                 <h3>Fenêtre fermée</h3>
                 <p>Veuillez sélectionner un outil dans le menu de gauche pour ouvrir un nouveau diagnostic.</p>
-                <button class="action-gradient-btn" style="max-width: 250px; margin: auto; padding: 12px;" onclick="switchTab('cdr')">Ouvrir l'outil par défaut</button>
             </div>
 
         </div>
@@ -715,6 +694,11 @@
 
     <script>
         let currentTab = 'cdr';
+
+        // ✅ Lancer le diagnostic au chargement pour la première tabulation
+        window.onload = function() {
+            executeDiagnostic();
+        };
 
         // Commutateur d'onglets
         function switchTab(tabId) {
@@ -741,11 +725,8 @@
 
             document.getElementById('recipe-block-view').style.display = 'none';
 
-            document.getElementById('result-label-text').innerText = "Analyse mise à jour";
-            document.getElementById('main-result-value').innerText = "--";
-            document.getElementById('main-status-text').innerText = "🔵 Données modifiées. Prêt à calculer.";
-            document.getElementById('main-status-text').className = "status-text";
-            document.getElementById('sub-result-text').innerText = "Cliquez sur 'Lancer le diagnostic' pour valider.";
+            // ✅ Lancer le calcul automatiquement lors du changement d'onglet
+            executeDiagnostic();
         }
 
         // Fermeture de la fenêtre principale
@@ -756,23 +737,29 @@
         }
 
         // Configuration simplifiée via les boutons d'options
-        function setMl(val) { 
+        function setMl(val, element) { 
             document.getElementById('ml').value = val; 
             // Update active preset class
             const items = document.querySelectorAll('#panel-nicotine .preset-item');
             items.forEach(i => i.classList.remove('active'));
-            event.target.classList.add('active');
+            element.classList.add('active');
+            // ✅ Lancer le calcul automatiquement
+            executeDiagnostic();
         }
-        function setVolt(val) { 
+        function setVolt(val, element) { 
             document.getElementById('vwVolt').value = val; 
             const items = document.querySelectorAll('#panel-volt .preset-item');
             items.forEach(i => i.classList.remove('active'));
-            event.target.classList.add('active');
+            element.classList.add('active');
+            // ✅ Lancer le calcul automatiquement
+            executeDiagnostic();
         }
         function setSizePreset(size, element) {
             document.getElementById('ecoSizeFlacon').value = size;
             document.querySelectorAll('#size-preset-row .preset-item').forEach(item => item.classList.remove('active'));
             element.classList.add('active');
+            // ✅ Lancer le calcul automatiquement
+            executeDiagnostic();
         }
 
         // Alignement des ohms selon le tirage
@@ -782,9 +769,11 @@
             if(style === "dl") resInput.value = "0.2";
             else if(style === "rdl") resInput.value = "0.5";
             else if(style === "mtl") resInput.value = "1.2";
+            // ✅ Lancer le calcul automatiquement
+            executeDiagnostic();
         }
 
-        // Exécution des calculs
+        // 🧠 FONCTION CORE : EXÉCUTION DES CALCULS (INSTANTANÉE)
         function executeDiagnostic() {
             try {
                 const labelText = document.getElementById('result-label-text');
@@ -812,7 +801,7 @@
                         statusTxt.innerText = "🚨 DANGER : SEUIL DE L'ACCU SURPASSÉ";
                         statusTxt.className = "status-text danger";
                     } else {
-                        statusTxt.innerText = "🟢 CONFIGURATION SÉCURISÉE";
+                        statusTxt.innerText = "✅ CONFIGURATION SÉCURISÉE";
                         statusTxt.className = "status-text";
                     }
                 } 
@@ -833,7 +822,7 @@
                         statusTxt.innerText = "⚠️ SEUIL LIMITE LÉGAL TPD (20MG) DÉPASSÉ";
                         statusTxt.className = "status-text danger";
                     } else {
-                        statusTxt.innerText = "🟢 RECOMMANDATION CONFORME";
+                        statusTxt.innerText = "✅ RECOMMANDATION CONFORME";
                         statusTxt.className = "status-text";
                     }
                 } 
@@ -950,7 +939,7 @@
                     
                     // Rendu UI
                     mainVal.innerText = gainNetParMois.toFixed(2) + " € / mois";
-                    subTxt.innerHTML = "Soit un gain de <strong>" + gainNetParAn.toFixed(2) + " € d'économies sur votre première année</strong> ! <br><span style='font-size:12px; opacity:0.8;'>(Consommation de " + (flaconsMois * tailleFlacon) + " ml/mois. Kit de départ déduit).</span>";
+                    subTxt.innerHTML = "Soit un gain colossal de <strong>" + gainNetParAn.toFixed(2) + " € d'économies sur votre première année</strong> ! <br><span style='font-size:12px; opacity:0.8;'>(Matériel de départ déduit).</span>";
                     
                     statusTxt.innerText = "💰 BILAN FINANCIER ANNUEL RENTABLE";
                     statusTxt.className = "status-text";
