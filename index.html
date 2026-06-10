@@ -46,14 +46,14 @@
             box-sizing: border-box;
         }
 
-        /* 👑 HEADER GLOBAL (Logo à gauche + Outils alignés) */
+        /* 👑 HEADER GLOBAL (Logo agrandi à gauche + Outils alignés) */
         .app-header {
             background: var(--bg-card);
             border-bottom: 1px solid var(--border-light);
-            padding: 10px 20px;
+            padding: 15px 20px;
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 20px;
             position: sticky;
             top: 0;
             z-index: 100;
@@ -65,19 +65,19 @@
                 flex-direction: row;
                 align-items: center;
                 justify-content: flex-start;
-                padding: 12px 40px;
-                gap: 40px;
+                padding: 15px 40px;
+                gap: 50px;
             }
         }
 
-        /* Intégration libre du logo en haut à gauche */
+        /* Intégration libre et plus grande du logo en haut à gauche */
         .vape-logo-left {
             display: flex;
             align-items: center;
             flex-shrink: 0;
         }
         .vape-logo-left img {
-            height: 42px;
+            height: 65px; /* Logo plus gros et plus visible */
             width: auto;
             display: block;
         }
@@ -93,7 +93,7 @@
             width: 100%;
         }
 
-        /* Masquer la barre de défilement sur les navigateurs modernes tout en gardant le swipe */
+        /* Masquer la barre de défilement */
         .tools-nav-horizontal::-webkit-scrollbar {
             display: none;
         }
@@ -106,12 +106,12 @@
             background: var(--bg-input);
             border: 1px solid var(--border-light);
             color: var(--text-muted);
-            padding: 10px 18px;
+            padding: 12px 20px;
             border-radius: 30px;
             cursor: pointer;
             font-weight: 600;
-            font-size: 13px;
-            white-space: nowrap; /* Évite le retour à la ligne des boutons */
+            font-size: 14px;
+            white-space: nowrap;
             transition: all 0.2s ease;
             display: flex;
             align-items: center;
@@ -150,32 +150,11 @@
             border-radius: 24px;
             border: 1px solid var(--border-light);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
-            padding: 25px;
+            padding: 30px; /* Espace interne légèrement augmenté */
         }
 
         @media (min-width: 768px) {
-            .window-card { padding: 40px; }
-        }
-
-        .window-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 25px;
-            border-bottom: 1px solid rgba(0,0,0,0.03);
-            padding-bottom: 15px;
-        }
-
-        .window-dots { display: flex; gap: 7px; }
-        .dot { width: 12px; height: 12px; border-radius: 50%; }
-        .dot.red { background: #ff5f56; cursor: pointer; }
-        .dot.yellow { background: #ffbd2e; }
-        .dot.green { background: #27c93f; }
-        
-        .window-close { 
-            color: var(--text-muted); 
-            font-size: 16px; 
-            cursor: pointer; 
+            .window-card { padding: 45px; }
         }
 
         .window-title {
@@ -352,12 +331,6 @@
             box-shadow: 0 4px 10px rgba(139, 92, 246, 0.06);
         }
 
-        .empty-window-state {
-            display: none;
-            text-align: center;
-            padding: 40px 20px;
-        }
-
         footer {
             text-align: center;
             margin-top: auto;
@@ -373,7 +346,7 @@
 </head>
 <body>
 
-    <!-- 👑 HEADER PRINCIPAL : LOGO EN HAUT À GAUCHE + MENU HORIZONTAL -->
+    <!-- 👑 HEADER PRINCIPAL : LOGO GROS EN HAUT À GAUCHE + MENU HORIZONTAL -->
     <header class="app-header">
         <div class="vape-logo-left">
             <img src="https://i.ibb.co/qMfNgwV9/Logo-Labvape.png" alt="Logo Labvape">
@@ -391,19 +364,10 @@
         </nav>
     </header>
 
-    <!-- 📦 BLOC DE CONTENU CENTRAL -->
+    <!-- 📦 BLOC DE CONTENU CENTRAL (SANS BARRE SUPÉRIEURE DE FERMETURE) -->
     <main class="main-container">
-        <div class="window-card" id="main-application-window">
+        <div class="window-card">
             
-            <div class="window-header">
-                <div class="window-dots">
-                    <div class="dot red" onclick="closeWindow()"></div>
-                    <div class="dot yellow"></div>
-                    <div class="dot green"></div>
-                </div>
-                <div class="window-close" onclick="closeWindow()">✕</div>
-            </div>
-
             <div id="window-form-wrapper">
                 
                 <!-- CDR ACCU -->
@@ -628,12 +592,6 @@
 
             </div>
 
-            <!-- ÉCRAN DE FERMETURE -->
-            <div class="empty-window-state" id="empty-state-view">
-                <h3>Diagnostic masqué</h3>
-                <p>Sélectionnez un outil dans le menu horizontal supérieur pour faire réapparaître l'analyse.</p>
-            </div>
-
         </div>
     </main>
 
@@ -648,12 +606,15 @@
             executeDiagnostic();
         };
 
+        /* 🔒 DESACTIVATION DE LA POSSIBILITÉ DE QUITTER RAPIDEMENT LA PAGE */
+        window.addEventListener('beforeunload', function (e) {
+            e.preventDefault();
+            e.returnValue = 'Voulez-vous vraiment quitter l\'application LABVAPE ?';
+        });
+
         function switchTab(tabId) {
             currentTab = tabId;
             
-            document.getElementById('window-form-wrapper').style.display = 'block';
-            document.getElementById('empty-state-view').style.display = 'none';
-
             document.querySelectorAll('.nav-item-btn').forEach(btn => btn.classList.remove('active'));
             document.getElementById('nav-' + tabId).classList.add('active');
             
@@ -670,12 +631,6 @@
             document.getElementById('recipe-block-view').style.display = 'none';
 
             executeDiagnostic();
-        }
-
-        function closeWindow() {
-            document.getElementById('window-form-wrapper').style.display = 'none';
-            document.getElementById('empty-state-view').style.display = 'block';
-            document.querySelectorAll('.nav-item-btn').forEach(btn => btn.classList.remove('active'));
         }
 
         function setMl(val, element) { 
