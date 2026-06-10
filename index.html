@@ -18,7 +18,7 @@
     <link rel="icon" type="image/png" href="https://i.ibb.co/qMfNgwV9/Logo-Labvape.png">
 
     <style>
-        /* 📱 DESIGN HARMONIEUX ET FLUIDE — SANS FORCE BRUTE */
+        /* 📱 DESIGN HARMONIEUX ET FLUIDE */
         :root {
             --bg-body: #f3f7fa; 
             --bg-card: #ffffff; 
@@ -46,7 +46,7 @@
             box-sizing: border-box;
         }
 
-        /* 👑 HEADER PRINCIPAL SOLIDE */
+        /* 👑 HEADER PRINCIPAL */
         .app-header {
             background: var(--bg-card);
             border-bottom: 1px solid var(--border-light);
@@ -100,7 +100,7 @@
                 gap: 40px;
             }
             .vape-logo-left img {
-                height: 90px; /* Taille élégante et harmonieuse */
+                height: 90px; 
             }
             .tools-nav-horizontal {
                 flex-grow: 0;
@@ -145,7 +145,6 @@
             flex-grow: 1;
         }
 
-        /* PLUS DE HAUTEUR FIXE BRUTALE, RETOUR À UNE STRUCTURE NATURELLE */
         .window-card {
             background: var(--bg-card);
             border-radius: 24px;
@@ -195,7 +194,6 @@
             letter-spacing: 1.2px;
         }
 
-        /* Inputs confortables et bien proportionnés */
         input, select {
             width: 100%;
             background: var(--bg-input);
@@ -217,7 +215,6 @@
             box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.08);
         }
 
-        /* Panneau de résultats qualitatif */
         .result-panel {
             background: var(--bg-input);
             border-radius: 20px;
@@ -604,13 +601,15 @@
         let currentTab = 'cdr';
 
         window.onload = function() {
+            /* 🔄 DEBUT DE FORÇAGE POUR ACTIVER LE VERROUILLAGE DES LE CHARGEMENT */
+            window.history.pushState({}, ''); 
             executeDiagnostic();
         };
 
-        /* 🔒 PROTECTION DE SÉCURITÉ ACTIVE CONTRE LA FERMETURE */
+        /* 🔒 SÉCURITÉ ABSOLUE : ALERTE TOUT LE TEMPS DISPONIBLE */
         window.addEventListener('beforeunload', function (e) {
             e.preventDefault();
-            e.returnValue = 'Voulez-vous vraiment quitter l\'application LABVAPE ?';
+            e.returnValue = 'Attention : vous allez quitter l\'application LABVAPE. Toutes vos données non sauvegardées seront perdues.';
         });
 
         function switchTab(tabId) {
@@ -722,7 +721,7 @@
                     let total = parseFloat(document.getElementById("diyTotal").value) || 0;
                     let nic = parseFloat(document.getElementById("diyNic").value) || 0;
                     let perc = parseFloat(document.getElementById("diyAromePerc").value) || 0;
-                    let boostTaux = parseFloat(document.getElementById("diyBoosterTaux").value) || 20;
+                    let boostTaux = parseFloat(document.getElementById("diyBooster Taux").value) || 20;
                     
                     let boostMl = (nic * total) / boostTaux;
                     let aromeMl = total * (perc / 100);
