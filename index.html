@@ -58,7 +58,7 @@
             transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        /* 👑 HEADER PRINCIPAL COMPLETEMENT DEFILANT */
+        /* 👑 HEADER PRINCIPAL ENTIÈREMENT DÉROULANT */
         .app-header {
             background: var(--bg-card);
             border-bottom: 1px solid var(--border-light);
@@ -66,24 +66,11 @@
             display: flex;
             flex-direction: row;
             align-items: center;
-            justify-content: flex-start;
-            gap: 15px;
             position: sticky;
             top: 0;
             z-index: 100;
             box-shadow: 0 4px 20px rgba(139, 92, 246, 0.02);
             transition: background-color 0.3s ease, border-color 0.3s ease;
-        }
-
-        .vape-logo-left {
-            display: flex;
-            align-items: center;
-            flex-shrink: 0;
-        }
-        .vape-logo-left img {
-            height: 45px;
-            width: auto;
-            display: block;
         }
 
         .tools-nav-horizontal {
@@ -95,6 +82,7 @@
             -webkit-overflow-scrolling: touch;
             flex-grow: 1;
             align-items: center;
+            width: 100%;
         }
 
         .tools-nav-horizontal::-webkit-scrollbar {
@@ -105,7 +93,20 @@
             scrollbar-width: none;
         }
 
-        /* 🌓 BOUTON TOGGLE THÈME UNIQUE (DANS LE FLUX DE DEFILEMENT HORIZONTAL) */
+        /* 🌀 LOGO FLUIDE DANS LE MENU */
+        .vape-logo-inline {
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+            margin-right: 6px;
+        }
+        .vape-logo-inline img {
+            height: 42px;
+            width: auto;
+            display: block;
+        }
+
+        /* 🌓 BOUTON TOGGLE THÈME UNIQUE DANS LE MENU */
         .theme-toggle-btn {
             background: var(--bg-input);
             border: 1px solid var(--border-light);
@@ -130,18 +131,18 @@
             .app-header {
                 justify-content: center;
                 padding: 12px 40px;
-                gap: 40px;
             }
-            .vape-logo-left img {
-                height: 90px; 
+            .vape-logo-inline img {
+                height: 70px; 
+                margin-right: 20px;
             }
             .tools-nav-horizontal {
                 flex-grow: 0;
                 overflow-x: visible;
+                justify-content: center;
             }
             .theme-toggle-btn {
                 padding: 10px 16px;
-                font-size: 13px;
             }
         }
 
@@ -409,13 +410,14 @@
 </head>
 <body>
 
-    <!-- 👑 HEADER PRINCIPAL COMPLETEMENT DEFILANT -->
+    <!-- 👑 HEADER PRINCIPAL COMPLETEMENT DEFILANT (LOGO + MENU + THEME) -->
     <header class="app-header">
-        <div class="vape-logo-left">
-            <img src="https://i.ibb.co/qMfNgwV9/Logo-Labvape.png" alt="Logo Labvape">
-        </div>
-        
         <nav class="tools-nav-horizontal">
+            <!-- 🌀 LE LOGO INCORPORÉ AU FLUX HORIZONTAL -->
+            <div class="vape-logo-inline">
+                <img src="https://i.ibb.co/qMfNgwV9/Logo-Labvape.png" alt="Logo Labvape">
+            </div>
+            
             <button id="nav-cdr" class="nav-item-btn active" onclick="switchTab('cdr')">⚡ Sécurité Accu</button>
             <button id="nav-nicotine" class="nav-item-btn" onclick="switchTab('nicotine')">💧 Profil Nicotine</button>
             <button id="nav-diy" class="nav-item-btn" onclick="switchTab('diy')">🧪 Calcul Pack DIY</button>
@@ -425,7 +427,7 @@
             <button id="nav-mix" class="nav-item-btn" onclick="switchTab('mix')">🔀 Mélange Taux</button>
             <button id="nav-eco" class="nav-item-btn" onclick="switchTab('eco')">💰 Économies</button>
             
-            <!-- 🌓 LE BOUTON COMMUTATEUR EST DESORMAIS INTEGRE ICI ET DEFILE AVEC LE RESTE -->
+            <!-- 🌓 LE BOUTON COMMUTATEUR INTEGRÉ EN FIN DE FLUX -->
             <button class="theme-toggle-btn" id="theme-button" onclick="toggleTheme()" title="Changer de thème">☀️ Thème</button>
         </nav>
     </header>
@@ -685,7 +687,7 @@
             executeDiagnostic();
         };
 
-        /* 🌓 LOGIQUE DU THEME ET INTERRUPTEUR DE SYMBOLE */
+        /* 🌓 LOGIQUE DU THÈME ET INTERRUPTEUR DE SYMBOLE */
         function toggleTheme() {
             const currentTheme = document.documentElement.getAttribute('data-theme');
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
