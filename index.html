@@ -492,6 +492,30 @@
                     <h2 class="window-title">Diagnostic dynamique — Mix DIY</h2>
                     <div class="window-desc">Calcul précis pour les préparations e-liquides sur mesure.</div>
                     
+                    <label>Sélectionner un arôme connu</label>
+                    <div class="select-wrapper">
+                        <select id="diyAromePreset" onchange="applyAromePreset()">
+                            <option value="custom" selected>✨ Autre (Saisie manuelle du %)</option>
+                            <!-- A&L Ultimate -->
+                            <option value="15">Ragnarok / Valkyrie (A&L) — 15%</option>
+                            <option value="15">Shinigami / Oni (A&L) — 15%</option>
+                            <!-- Vampire Vape -->
+                            <option value="15">Heisenberg / Pinkman (Vampire Vape) — 15%</option>
+                            <!-- T-Juice -->
+                            <option value="15">Red Astaire (T-Juice) — 15%</option>
+                            <!-- Fruizee -->
+                            <option value="15">Fruizee (Tous arômes) — 15%</option>
+                            <!-- Dinner Lady -->
+                            <option value="20">Lemon Tart (Dinner Lady) — 20%</option>
+                            <!-- La Vape Insulaire / Le French Liquide -->
+                            <option value="15">La Chose (Le French Liquide) — 15%</option>
+                            <!-- Halo -->
+                            <option value="25">Sub Zero / Tribeca (Halo) — 25%</option>
+                            <!-- Vape Institut -->
+                            <option value="15">Tallak (Vape Institut) — 15%</option>
+                        </select>
+                    </div>
+
                     <div class="grid-2">
                         <div>
                             <label>Volume Total (ml)</label>
@@ -505,7 +529,7 @@
                     <div class="grid-2">
                         <div>
                             <label>% Arôme préconisé</label>
-                            <input type="number" id="diyAromePerc" value="15" oninput="executeDiagnostic()">
+                            <input type="number" id="diyAromePerc" value="15" oninput="resetAromeDropdownToCustom()">
                         </div>
                         <div>
                             <label>Taux du booster</label>
@@ -700,6 +724,22 @@
         function updateThemeButtonVisual(theme) {
             const btn = document.getElementById('theme-button');
             btn.innerHTML = theme === 'dark' ? '🌙 Thème Sombre' : '☀️ Thème Clair';
+        }
+
+        /* 🧪 GESTION DE LA BASE DE DONNÉES ARÔME EN LOCAL */
+        function applyAromePreset() {
+            const select = document.getElementById('diyAromePreset');
+            const percInput = document.getElementById('diyAromePerc');
+            
+            if (select.value !== 'custom') {
+                percInput.value = select.value;
+            }
+            executeDiagnostic();
+        }
+
+        function resetAromeDropdownToCustom() {
+            document.getElementById('diyAromePreset').value = 'custom';
+            executeDiagnostic();
         }
 
         /* 🔄 SYNCHRONISATION DU NOMBRE DE CIGARETTES */
