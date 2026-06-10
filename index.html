@@ -14,8 +14,8 @@
         gtag('config', 'G-GBBR4R84TT');
     </script>
 
-    <!-- 1️⃣ LOGO DE L'ONGLET NAVIGATEUR (FAVICON) -->
-    <link rel="icon" type="image/png" href="https://i.ibb.co/cKqKQpkJ/Logo-Labvape-Photoroom.png">
+    <!-- 1️⃣ LOGO DE L'ONGLET NAVIGATEUR (FAVICON MAJ) -->
+    <link rel="icon" type="image/png" href="https://i.ibb.co/3yGcL2WS/Logo-Labvape-blanc.png">
 
     <style>
         /* 🌌 STYLING ET ADAPTATION ERGONOMIQUE LABVAPE */
@@ -140,7 +140,7 @@
             border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
-        /* ✨ Zone du logo agrandie au maximum, sans filtres ni halos pour une netteté parfaite */
+        /* ✨ Zone du logo avec les dimensions préservées (250px) et affichage net */
         .vape-illustration {
             width: 250px;
             margin: 0 auto;
@@ -415,9 +415,9 @@
         <!-- MODULE DE GAUCHE : NAVIGATION TACTILE -->
         <div>
             <div class="window-card widget-logo-box">
-                <!-- 2️⃣ LOGO SUR LE SITE À GAUCHE (Agrandissement maximal et suppression du flou) -->
+                <!-- 2️⃣ NOUVEAU LOGO BLANC INTÉGRÉ ICI -->
                 <div class="vape-illustration">
-                    <img src="https://i.ibb.co/cKqKQpkJ/Logo-Labvape-Photoroom.png" alt="Labvape Logo">
+                    <img src="https://i.ibb.co/3yGcL2WS/Logo-Labvape-blanc.png" alt="Logo Labvape Blanc">
                 </div>
             </div>
 
@@ -899,7 +899,7 @@
                     let kitInitial = parseFloat(document.getElementById("ecoKitInitial").value) || 0;
                     let tailleFlacon = parseInt(document.getElementById("ecoSizeFlacon").value) || 10;
                     
-                    // 1. Calculs sur l'ANNÉE complète (permet de déduire le kit de départ 1 seule fois)
+                    // 1. Calculs sur l'ANNÉE complète
                     let coutTabacAnnuel = (cigs / 20) * priceTabacPaquet * 365.25;
                     let coutVapeAnnuelRecurrent = ((flaconsMois * priceFlaconVape) + resMois) * 12;
                     let coutVapeTotalAnnuel = coutVapeAnnuelRecurrent + kitInitial;
@@ -907,7 +907,7 @@
                     let gainNetParAn = coutTabacAnnuel - coutVapeTotalAnnuel;
                     if(gainNetParAn < 0) gainNetParAn = 0;
                     
-                    // 2. Calcul du bilan Mensuel lissé (avec amortissement du kit sur 12 mois)
+                    // 2. Calcul du bilan Mensuel lissé
                     let gainNetParMois = gainNetParAn / 12;
                     
                     // Rendu UI
