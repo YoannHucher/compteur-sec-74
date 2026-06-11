@@ -420,7 +420,7 @@
             box-shadow: 0 4px 10px rgba(139, 92, 246, 0.06);
         }
 
-        /* 🎓 ARCHITECTURE DE L'ONGLET SÉCURISÉ COACHING */
+        /* 🎓 ARCHITECTURE DE L'ONGLET COACHING */
         .coaching-section {
             background: var(--bg-input);
             border-radius: 16px;
@@ -724,8 +724,8 @@
 
                 <!-- 🎓 PANNEAU SECRET : TECHNIQUES DE VENTE PROTEGEES -->
                 <div id="panel-coaching" class="hidden-tab">
-                    <h2 class="window-title">Management — Techniques de Vente (SBAME)</h2>
-                    <div class="window-desc">Protocole commercial obligatoire pour les conseillers LABVAPE.</div>
+                    <h2 class="window-title">Techniques de Vente</h2>
+                    <div class="window-desc">Méthodes de commerce et grilles psychologiques.</div>
                     
                     <div class="coaching-section">
                         <h3>📋 Les 7 Étapes de la Vente (Résumé)</h3>
@@ -791,7 +791,7 @@
 
                         <div class="coaching-step">
                             <h4>6. La vente additionnelle</h4>
-                            <p><strong>Objectif :</strong> Augmenter le panier moyen en proposant un produit complémentaire utile.</p>
+                            <p><strong>Objectif :</strong> Augmenter le panier moyen en proposing un produit complémentaire utile.</p>
                             <p><em>Consommables indispensables en vape : Résistances d'avance, E-liquides, Pyrex/Verre de remplacement, Étui de protection, Chargeur externe.</em></p>
                             <div class="coaching-quote">« Pensez également à prendre une résistance d'avance pour éviter d'être bloqué. »</div>
                         </div>
@@ -1103,7 +1103,6 @@
             document.getElementById('panel-' + tabId).className = '';
             document.getElementById('recipe-block-view').style.display = 'none';
 
-            // Masquer le panneau de calcul global si on est sur l'onglet Coaching Vente
             if (tabId === 'coaching') document.getElementById('mainResultPanel').style.display = 'none';
             else document.getElementById('mainResultPanel').style.display = 'block';
 
