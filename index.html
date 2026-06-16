@@ -326,6 +326,7 @@
             color: var(--text-main);
             margin: 6px 0 14px 0;
             letter-spacing: -1.5px;
+            line-height: 1.1;
         }
         .status-text {
             font-size: 13px;
@@ -1000,6 +1001,7 @@
             updateThemeButtonVisual(newTheme);
         }
 
+        /* METTRE À JOUR LE TEXTE DU BOUTON DE THÈME */
         function updateThemeButtonVisual(theme) {
             const btn = document.getElementById('theme-button');
             btn.innerHTML = theme === 'dark' ? '🌙 Thème Sombre' : '☀️ Thème Clair';
@@ -1241,13 +1243,18 @@
                     let priceFlaconVape = parseFloat(document.getElementById("ecoPriceFlacon").value) || 0;
                     let resMois = parseFloat(document.getElementById("ecoResPerMonth").value) || 0;
                     let kitInitial = parseFloat(document.getElementById("ecoKitInitial").value) || 0;
+                    
                     let coutTabacAnnuel = (cigs / 20) * priceTabacPaquet * 365.25;
                     let coutVapeAnnuelRecurrent = ((flaconsMois * priceFlaconVape) + resMois) * 12;
                     let coutVapeTotalAnnuel = coutVapeAnnuelRecurrent + kitInitial;
-                    let gainNetParAn = coutTabacAnnuel - coutVapeTotalAnnuel; if(gainNetParAn < 0) gainNetParAn = 0;
+                    
+                    let gainNetParAn = coutTabacAnnuel - coutVapeTotalAnnuel; 
+                    if(gainNetParAn < 0) gainNetParAn = 0;
                     let gainNetParMois = gainNetParAn / 12;
-                    mainVal.innerText = gainNetParMois.toFixed(2) + " € / mois";
-                    subTxt.innerHTML = "Soit un gain de <strong>" + gainNetParAn.toFixed(2) + " € d'économies sur votre première année</strong> !";
+                    
+                    // 💰 AFFICHAGE MODIFIÉ : Annuel en gros, mensuel en tout petit
+                    mainVal.innerHTML = gainNetParAn.toFixed(2) + " € / an<br><span style='font-size: 14px; font-weight: 600; color: var(--text-muted); opacity: 0.8;'>Soit " + gainNetParMois.toFixed(2) + " € / mois</span>";
+                    subTxt.innerHTML = "Félicitations ! Ce bilan prend en compte vos consommables ainsi que l'amortissement de votre kit initial de départ.";
                     statusTxt.innerText = "💰 BILAN FINANCIER ANNUEL RENTABLE"; statusTxt.className = "status-text";
                 }
             } catch (e) { console.error(e); }
