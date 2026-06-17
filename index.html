@@ -210,6 +210,8 @@
             position: absolute; top: 54px; left: 0; width: 100%; background: var(--bg-card); border: 1px solid var(--border-light); border-radius: 14px;
             box-shadow: 0 12px 35px rgba(0,0,0,0.12); max-height: 240px; overflow-y: auto; z-index: 999; display: none; box-sizing: border-box;
         }
+        .custom-dropdown-panel::-webkit-scrollbar { width: 6px; }
+        .custom-dropdown-panel::-webkit-scrollbar-thumb { background: var(--border-light); border-radius: 10px; }
         .custom-dropdown-row { padding: 12px 16px; cursor: pointer; font-size: 14px; font-weight: 600; color: var(--text-main); border-bottom: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center; }
         .custom-dropdown-row:last-child { border-bottom: none; }
         .custom-dropdown-row:hover { background: var(--bg-input); color: var(--primary); }
@@ -280,10 +282,10 @@
             
             <div id="window-form-wrapper">
                 
-                <!-- ⚡ SÉCURITÉ ACCU ÉPURÉ ET INTELLIGENT -->
+                <!-- ⚡ SÉCURITÉ ACCU EXPÉRIMENTALE -->
                 <div id="panel-cdr">
-                    <h2 class="window-title">Analyse & Recommandation Accu</h2>
-                    <div class="window-desc">Entrez la configuration électrique demandée par le client pour trouver instantanément l'accu idéal et ses caractéristiques.</div>
+                    <h2 class="window-title">Analyse des Limites Électriques de l'Accu</h2>
+                    <div class="window-desc">Entrez les configurations de vape du matériel du client pour générer instantanément la fiche technique minimale requise.</div>
                     
                     <div class="grid-2">
                         <div>
@@ -622,26 +624,6 @@
         let currentTab = 'cdr';
         let isCoachingUnlocked = false;
 
-        // 🔋 BASE DE DONNÉES EXPERTE DES ACCUS DU MARCHÉ (18650 & 21700)
-        const MASTER_ACCUS = [
-            { id: "vtc5a", marque: "Sony / Murata", nom: "VTC5A", format: "18650", cdr: 25, mah: 2600, wMax: 75, ohmMin: 0.17, note: "Idéal puissance & mods mécaniques" },
-            { id: "vtc6", marque: "Sony / Murata", nom: "VTC6", format: "18650", cdr: 15, mah: 3000, wMax: 45, ohmMin: 0.28, note: "Autonomie maximale sous 45W" },
-            { id: "p28a", marque: "Molicel", nom: "P28A / P28B", format: "18650", cdr: 25, mah: 2800, wMax: 75, ohmMin: 0.17, note: "Le meilleur accu format 18650 du marché" },
-            { id: "s25r", marque: "Samsung", nom: "25R", format: "18650", cdr: 20, mah: 2500, wMax: 60, ohmMin: 0.21, note: "La référence historique increvable" },
-            { id: "s30q", marque: "Samsung", nom: "30Q", format: "18650", cdr: 15, mah: 3000, wMax: 45, ohmMin: 0.28, note: "Excellente autonomie à basse puissance" },
-            { id: "s20s", marque: "Samsung", nom: "20S", format: "18650", cdr: 30, mah: 2000, wMax: 90, ohmMin: 0.14, note: "Puissance extrême / Très basse res" },
-            { id: "procell18650", marque: "Procell / Duracell", nom: "Intense 18650", format: "18650", cdr: 20, mah: 2500, wMax: 60, ohmMin: 0.21, note: "Stabilité industrielle haut de gamme" },
-            { id: "mxjo18650", marque: "MXJO", nom: "Yellow 3000mAh", format: "18650", cdr: 20, mah: 3000, wMax: 60, ohmMin: 0.21, note: "Grand classique des boutiques" },
-            
-            // 21700
-            { id: "p45b", marque: "Molicel", nom: "P45B", format: "21700", cdr: 45, mah: 4500, wMax: 135, ohmMin: 0.10, note: "Performances monstrueuses, le roi absolu" },
-            { id: "p42a", marque: "Molicel", nom: "P42A", format: "21700", cdr: 40, mah: 4200, wMax: 120, ohmMin: 0.11, note: "Extrêmement stable et performant" },
-            { id: "s40t", marque: "Samsung", nom: "40T", format: "21700", cdr: 30, mah: 4000, wMax: 90, ohmMin: 0.14, note: "Équilibre parfait puissance/autonomie" },
-            { id: "s30t", marque: "Samsung", nom: "30T", format: "21700", cdr: 35, mah: 3000, wMax: 105, ohmMin: 0.12, note: "Idéal puissance brute sur mods méca" },
-            { id: "s50s", marque: "Samsung", nom: "50S", format: "21700", cdr: 25, mah: 5000, wMax: 75, ohmMin: 0.17, note: "Capacité d'autonomie gigantesque" },
-            { id: "mxjo21700", marque: "MXJO", nom: "Yellow 21700", format: "21700", cdr: 20, mah: 4000, wMax: 60, ohmMin: 0.21, note: "Parfait pour box électronique classique" }
-        ];
-
         // 🧪 BASE DE DONNÉES INTACTE DE 100 ARÔMES ET MARQUES DU MARCHÉ
         const MASTER_AROMES = [
             { n: "Ragnarok", b: "A&L Ultimate", p: 15 }, { n: "Oni", b: "A&L Ultimate", p: 15 }, { n: "Shinigami", b: "A&L Ultimate", p: 15 }, { n: "Leviathan", b: "A&L Ultimate", p: 15 }, { n: "Valalk", b: "A&L Ultimate", p: 15 }, { n: "Phoenix", b: "A&L Ultimate", p: 15 }, { n: "Bahamut", b: "A&L Ultimate", p: 15 }, { n: "Succube", b: "A&L Ultimate", p: 15 }, { n: "Jiraya", b: "A&L Ultimate", p: 15 }, { n: "Nagato", b: "A&L Ultimate", p: 15 },
@@ -748,7 +730,7 @@
             executeDiagnostic();
         }
 
-        /* 🧮 ALGORITHME ALGORITHMIQUE DE COMPTOIR */
+        /* 🧮 ALGORITHME MATHÉMATIQUE DE COMPTOIR */
         function executeDiagnostic() {
             try {
                 const labelText = document.getElementById('result-label-text');
@@ -760,52 +742,43 @@
 
                 if (currentTab === 'coaching') return;
 
-                // ⚡ DIAGNOSTIC INTELLIGENT ACCU
+                // ⚡ CALCULATEUR DE CRITÈRES ACCU (SANS FIXER DE MODÈLE)
                 if (currentTab === 'cdr') {
-                    labelText.innerText = "Modèle d'accu conseillé pour le client :";
+                    labelText.innerText = "Critère de Décharge Continu (CDR) minimum exigé :";
                     
                     let w = parseFloat(document.getElementById("w").value) || 0;
                     let ohm = parseFloat(document.getElementById("cdrOhm").value) || 0;
                     let n = parseInt(document.getElementById("n").value) || 1;
                     let formatTarget = document.getElementById("accuFormat").value;
                     
-                    // Calcul mathématique de l'intensité d'ampérage requise par la configuration
+                    // Calculs physiques basés sur la Loi d'Ohm et la décharge de tension sous coupure électronique (3.2V)
                     let ampsByWatts = (n > 0) ? (w / (3.2 * n * 0.9)) : 0;
                     let ampsByOhm = (ohm > 0) ? (4.2 / ohm) : 0;
+                    
+                    // L'intensité critique requise pour la cellule
                     let finalAmpsRequired = Math.max(ampsByWatts, ampsByOhm);
                     
-                    let accuTrouve = null;
-                    
-                    let candidates = MASTER_ACCUS.filter(a => a.format === formatTarget && a.cdr >= finalAmpsRequired);
-                    if (candidates.length > 0) {
-                        candidates.sort((a, b) => b.mah - a.mah); // Propose l'accu avec le maximum d'autonomie
-                        accuTrouve = candidates[0];
-                    } else {
-                        // En cas de surcharge, sélectionne l'accu le plus puissant de ce format
-                        accuTrouve = MASTER_ACCUS.filter(a => a.format === formatTarget).sort((a, b) => b.cdr - a.cdr)[0];
-                    }
+                    // Calcul de la recommandation d'autonomie standard selon la charge de puissance
+                    let recommendedMah = 3000;
+                    if (finalAmpsRequired > 20) recommendedMah = (formatTarget === "21700") ? 4200 : 2600;
+                    if (finalAmpsRequired > 30) recommendedMah = (formatTarget === "21700") ? 3000 : 2000;
 
-                    if (accuTrouve) {
-                        let boxWMax = accuTrouve.wMax * n;
-                        mainVal.innerHTML = `${accuTrouve.marque} — ${accuTrouve.nom}`;
-                        
-                        let safeCondition = (finalAmpsRequired <= (accuTrouve.cdr * n));
-                        
-                        if (!safeCondition || finalAmpsRequired > 45) {
-                            statusTxt.innerText = "🚨 ALERTE : ACCU SURCHARGÉ / SÉCURITÉ COMPROMISE";
-                            statusTxt.className = "status-text danger";
-                        } else {
-                            statusTxt.innerText = `✅ CONFIGURATION EN TOUTE SÉCURITÉ (${accuTrouve.format})`;
-                            statusTxt.className = "status-text";
-                        }
-                        
+                    mainVal.innerHTML = `${finalAmpsRequired.toFixed(1)} A <span style='font-size:18px; font-weight:600; color:var(--text-muted);'>minimum</span>`;
+                    
+                    if (finalAmpsRequired > 45) {
+                        statusTxt.innerText = "🚨 ATTENTION : CONFIGURATION COMPROMISE / DANGER EXTRÊME";
+                        statusTxt.className = "status-text danger";
+                        subTxt.innerHTML = `Le courant demandé (<strong>${finalAmpsRequired.toFixed(2)} A</strong>) dépasse les limites physiques des accumulateurs actuels du marché (Max 45A continus en 21700). Réduisez la puissance ou augmentez la valeur de la résistance.`;
+                    } else {
+                        statusTxt.innerText = `✅ SPÉCIFICATIONS CALCULÉES AVEC SÉCURITÉ (${formatTarget})`;
+                        statusTxt.className = "status-text";
                         subTxt.innerHTML = `
-                            <strong>Fiche Technique Détaillée :</strong><br>
-                            • Autonomie Nominale : <strong>${accuTrouve.mah} mAh</strong><br>
-                            • Courant de Décharge Continu (CDR) : <strong>${accuTrouve.cdr} A</strong><br>
-                            • Puissance Maximale de Sécurité : <strong>${boxWMax} Watts</strong> (Pour ${n} accu(s))<br>
-                            • Limite Basse de Résistance : <strong>${accuTrouve.ohmMin} Ω</strong><br>
-                            <small style="display:block; margin-top:8px; color:var(--text-muted);">Intensité calculée requise : ${finalAmpsRequired.toFixed(2)} A</small>
+                            <strong>Caractéristiques de l'accu à installer :</strong><br>
+                            • Capacité de Décharge Continue (CDR) : <strong>${finalAmpsRequired.toFixed(1)} Ampères</strong> (ou plus).<br>
+                            • Autonomie conseillée pour ce profil : ~<strong>${recommendedMah} mAh</strong>.<br>
+                            • Puissance maximale supportable pour ce profil : <strong>${w} Watts</strong>.<br>
+                            • Résistance de coupure limite basse tolérée : <strong>${ohm} Ω</strong>.<br>
+                            <small style="display:block; margin-top:8px; color:var(--text-muted);">Calcul de sécurité basé sur ${n} accu(s) en série/régulé avec un rendement de chipset à 90%.</small>
                         `;
                     }
                 } 
