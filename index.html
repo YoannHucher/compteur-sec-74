@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>LABVAPE — Système Intelligent d'Aide à la Vente</title>
     
-    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-GBBR4R84TT"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -14,7 +13,6 @@
         gtag('config', 'G-GBBR4R84TT');
     </script>
 
-    <!-- LOGO DE L'ONGLET NAVIGATEUR (FAVICON) -->
     <link rel="icon" type="image/png" href="https://i.ibb.co/qMfNgwV9/Logo-Labvape.png">
 
     <style>
@@ -196,6 +194,8 @@
             box-sizing: border-box;
             outline: none;
             transition: all 0.2s, background-color 0.3s ease, border-color 0.3s ease;
+            appearance: none; /* Uniformise le design partout */
+            -webkit-appearance: none;
         }
         input:focus, select:focus { border-color: var(--primary); background: var(--bg-card); box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.08); }
 
@@ -251,7 +251,6 @@
 </head>
 <body>
 
-    <!-- 👑 HEADER -->
     <header class="app-header">
         <nav class="tools-nav-horizontal">
             <div class="vape-logo-inline">
@@ -272,26 +271,24 @@
         </nav>
     </header>
 
-    <!-- 📦 APP CONTAINER -->
     <main class="main-container">
         <div class="window-card">
             
             <div id="window-form-wrapper">
                 
-                <!-- ⚡ SÉCURITÉ ACCU -->
                 <div id="panel-cdr">
                     <h2 class="window-title">Diagnostic & Fiche Technique Accu</h2>
-                    <div class="window-desc">Renseignez la configuration pour trouver l'accu idéal, ou choisissez un modèle précis pour analyser ses limites.</div>
+                    <div class="window-desc">Entrez vos Watts/Ohms pour laisser le site calculer le besoin, ou forcez un modèle pour voir ses caractéristiques.</div>
                     
-                    <div class="section-separator-title">🔍 Option A : Saisie manuelle (Calculateur)</div>
+                    <div class="section-separator-title">🔍 Configuration Électrique Souhaitée</div>
                     <div class="grid-2">
                         <div>
                             <label>Puissance (Watts)</label>
-                            <input type="number" id="w" value="45" oninput="resetAccuSelect(); executeDiagnostic();">
+                            <input type="number" id="w" value="45" oninput="executeDiagnostic();">
                         </div>
                         <div>
                             <label>Résistance (Ohms)</label>
-                            <input type="number" id="cdrOhm" value="0.3" step="0.05" oninput="resetAccuSelect(); executeDiagnostic();">
+                            <input type="number" id="cdrOhm" value="0.3" step="0.05" oninput="executeDiagnostic();">
                         </div>
                     </div>
                     
@@ -311,17 +308,15 @@
                         </div>
                     </div>
 
-                    <div class="section-separator-title">🔋 Option B : Sélectionner un accu précis</div>
-                    <label>Fiche technique d'un modèle en Stock</label>
+                    <div class="section-separator-title">🔋 Forcer l'analyse d'un Accu précis (Optionnel)</div>
+                    <label>Modèle en Stock de la Boutique</label>
                     <div class="select-wrapper">
-                        <select id="accuSelector" onchange="handleAccuSelectChange()">
-                            <option value="auto" selected>-- Laisser le site choisir l'accu idéal --</option>
-                            <!-- Rempli en JS -->
-                        </select>
+                        <select id="accuSelector" onchange="executeDiagnostic()">
+                            <option value="auto" selected>-- Mode Automatique (Laisser le site choisir) --</option>
+                            </select>
                     </div>
                 </div>
 
-                <!-- NICOTINE FUMEUR -->
                 <div id="panel-nicotine" class="hidden-tab">
                     <h2 class="window-title">Diagnostic dynamique — Nicotine</h2>
                     <div class="window-desc">Configuration personnalisée selon le profil de consommation du fumeur.</div>
@@ -347,7 +342,6 @@
                     <input type="number" id="ml" value="4" oninput="executeDiagnostic()">
                 </div>
 
-                <!-- PACK DIY RECETTE -->
                 <div id="panel-diy" class="hidden-tab">
                     <h2 class="window-title">Diagnostic dynamique — Mix DIY</h2>
                     <div class="window-desc">Sélectionnez ou recherchez un arôme pour configurer le % fabricant.</div>
@@ -388,7 +382,6 @@
                     </div>
                 </div>
 
-                <!-- PG/VG VISCOSITÉ -->
                 <div id="panel-pgvg" class="hidden-tab">
                     <h2 class="window-title">Diagnostic dynamique — Matériel</h2>
                     <div class="window-desc">Vérification de la viscosité idéale du jus selon l'atomiseur.</div>
@@ -406,7 +399,6 @@
                     </div>
                 </div>
 
-                <!-- ELECTRICITE VOLT TO WATT -->
                 <div id="panel-volt" class="hidden-tab">
                     <h2 class="window-title">Diagnostic dynamique — Électricité</h2>
                     <div class="window-desc">Calcul de la puissance générée selon la tension délivrée.</div>
@@ -423,7 +415,6 @@
                     <input type="number" id="vwVolt" value="3.7" step="0.1" oninput="executeDiagnostic()">
                 </div>
 
-                <!-- AUTONOMIE PUFFS -->
                 <div id="panel-auto" class="hidden-tab">
                     <h2 class="window-title">Diagnostic dynamique — Capacité</h2>
                     <div class="window-desc">Estimation mathématique de la durée de vie de la batterie.</div>
@@ -442,7 +433,6 @@
                     <input type="number" id="autoWatts" value="40" oninput="executeDiagnostic()">
                 </div>
 
-                <!-- MIX LIQUIDES -->
                 <div id="panel-mix" class="hidden-tab">
                     <h2 class="window-title">Diagnostic dynamique — Recyclage</h2>
                     <div class="window-desc">Mélange de deux liquides aux taux différents.</div>
@@ -459,7 +449,6 @@
                     </div>
                 </div>
 
-                <!-- SIMULATEUR ECONOMIE -->
                 <div id="panel-eco" class="hidden-tab">
                     <h2 class="window-title">Économies</h2>
                     <div class="window-desc">Bilan financier complet et comparatif direct.</div>
@@ -508,7 +497,6 @@
                     </div>
                 </div>
 
-                <!-- TECHNIQUES DE VENTE COMPLET -->
                 <div id="panel-coaching" class="hidden-tab">
                     <h2 class="window-title">🎓 École de Vente LABVAPE — Excellence de Comptoir</h2>
                     <div class="window-desc">Grilles d'entretien opérationnelles et techniques psychologiques de conversion.</div>
@@ -556,7 +544,7 @@
                         <div class="coaching-step">
                             <h4>7. La Prise de Congé (Fidélisation)</h4>
                             <p>Laisser une impression finale mémorable. Valoriser le choix du client.</p>
-                            <div class="coaching-quote">« Félicitations pour ce premier pas aujourd'tui. Passez au shop si vous avez la moindre question, on est là pour ça ! »</div>
+                            <div class="coaching-quote">« Félicitations pour ce premier pas aujourd'hui. Passez au shop si vous avez la moindre question, on est là pour ça ! »</div>
                         </div>
                     </div>
 
@@ -591,7 +579,6 @@
                     </div>
                 </div>
 
-                <!-- PANNEAU DE RÉSULTATS DYNAMIQUES -->
                 <div class="result-panel" id="mainResultPanel">
                     <label id="result-label-text">Analyse de comptoir</label>
                     <div class="result-value" id="main-result-value">--</div>
@@ -630,7 +617,7 @@
         let currentTab = 'cdr';
         let isCoachingUnlocked = false;
 
-        // 🔋 BASE DE DONNÉES EXPERTE DES ACCUS DU MARCHÉ
+        // 🔋 BASE DE DONNÉES EXPERTE DES ACCUS DU MARCHÉ (18650 & 21700)
         const MASTER_ACCUS = [
             { id: "vtc5a", marque: "Sony / Murata", nom: "VTC5A", format: "18650", cdr: 25, mah: 2600, wMax: 75, ohmMin: 0.17, note: "Idéal puissance & mods mécaniques" },
             { id: "vtc6", marque: "Sony / Murata", nom: "VTC6", format: "18650", cdr: 15, mah: 3000, wMax: 45, ohmMin: 0.28, note: "Autonomie maximale sous 45W" },
@@ -695,27 +682,12 @@
             MASTER_ACCUS.forEach(accu => {
                 const opt = document.createElement('option');
                 opt.value = accu.id;
-                opt.innerText = `[${accu.format}] ${accu.marque} - ${accu.nom} (${accu.mah}mAh)`;
+                opt.innerText = `[${accu.format}] ${accu.marque} - ${accu.nom} (${accu.mah} mAh)`;
                 selector.appendChild(opt);
             });
         }
 
-        function handleAccuSelectChange() {
-            const selectVal = document.getElementById('accuSelector').value;
-            if (selectVal !== 'auto') {
-                const accu = MASTER_ACCUS.find(a => a.id === selectVal);
-                document.getElementById('accuFormat').value = accu.format;
-                document.getElementById('w').value = accu.wMax;
-                document.getElementById('cdrOhm').value = accu.ohmMin;
-            }
-            executeDiagnostic();
-        }
-
-        function resetAccuSelect() {
-            document.getElementById('accuSelector').value = 'auto';
-        }
-
-        /* 🌓 THÈME */
+        /* 🌓 LOGIQUE DU THÈME */
         function toggleTheme() {
             const currentTheme = document.documentElement.getAttribute('data-theme');
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
@@ -727,7 +699,7 @@
             document.getElementById('theme-button').innerHTML = theme === 'dark' ? '🌙 Thème Sombre' : '☀️ Thème Clair';
         }
 
-        /* 🔐 COACHING */
+        /* 🔐 SÉCURISATION DU COACHING */
         function tryAccessCoaching() {
             if (isCoachingUnlocked) { switchTab('coaching'); return; }
             const passwordAttempt = prompt("🔒 Code de sécurité LABVAPE :");
@@ -782,7 +754,7 @@
             executeDiagnostic();
         }
 
-        /* 🧮 CALCULS COMPTOIR */
+        /* 🧮 ALGORITHME ALGORITHMIQUE DE COMPTOIR */
         function executeDiagnostic() {
             try {
                 const labelText = document.getElementById('result-label-text');
@@ -794,6 +766,7 @@
 
                 if (currentTab === 'coaching') return;
 
+                // ⚡ DIAGNOSTIC AVANCÉ ACCU (DOUBLE SYSTÈME INTELLIGENT)
                 if (currentTab === 'cdr') {
                     let w = parseFloat(document.getElementById("w").value) || 0;
                     let ohm = parseFloat(document.getElementById("cdrOhm").value) || 0;
@@ -801,22 +774,27 @@
                     let formatTarget = document.getElementById("accuFormat").value;
                     let selectedAccuId = document.getElementById("accuSelector").value;
                     
+                    // Calcul mathématique de l'intensité d'ampérage requise par la configuration
                     let ampsByWatts = (n > 0) ? (w / (3.2 * n * 0.9)) : 0;
                     let ampsByOhm = (ohm > 0) ? (4.2 / ohm) : 0;
                     let finalAmpsRequired = Math.max(ampsByWatts, ampsByOhm);
                     
                     let accuTrouve = null;
                     
+                    // BRANCHE A : MODE AUTOMATIQUE (Le site choisit selon la puissance renseignée)
                     if (selectedAccuId === 'auto') {
                         labelText.innerText = "Modèle conseillé pour cette configuration :";
                         let candidates = MASTER_ACCUS.filter(a => a.format === formatTarget && a.cdr >= finalAmpsRequired);
                         if (candidates.length > 0) {
-                            candidates.sort((a, b) => b.mah - a.mah);
+                            candidates.sort((a, b) => b.mah - a.mah); // Sélectionne celui avec le plus d'autonomie
                             accuTrouve = candidates[0];
                         } else {
+                            // Si hors limite, propose le plus solide disponible dans ce format
                             accuTrouve = MASTER_ACCUS.filter(a => a.format === formatTarget).sort((a, b) => b.cdr - a.cdr)[0];
                         }
-                    } else {
+                    } 
+                    // BRANCHE B : MODE MANUEL FORCÉ (L'utilisateur étudie un accu spécifique du menu déroulant)
+                    else {
                         labelText.innerText = "Analyse technique du modèle sélectionné :";
                         accuTrouve = MASTER_ACCUS.find(a => a.id === selectedAccuId);
                     }
