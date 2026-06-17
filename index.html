@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>LABVAPE — Système Intelligent d'Aide à la Vente</title>
     
+    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-GBBR4R84TT"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -13,6 +14,7 @@
         gtag('config', 'G-GBBR4R84TT');
     </script>
 
+    <!-- LOGO DE L'ONGLET NAVIGATEUR (FAVICON) -->
     <link rel="icon" type="image/png" href="https://i.ibb.co/qMfNgwV9/Logo-Labvape.png">
 
     <style>
@@ -56,7 +58,7 @@
             transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        /* 👑 HEADER PRINCIPAL ENTIÈREMENT DÉROULANT */
+        /* 👑 HEADER PRINCIPAL */
         .app-header {
             background: var(--bg-card);
             border-bottom: 1px solid var(--border-light);
@@ -83,13 +85,8 @@
             width: 100%;
         }
 
-        .tools-nav-horizontal::-webkit-scrollbar {
-            display: none;
-        }
-        .tools-nav-horizontal {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
+        .tools-nav-horizontal::-webkit-scrollbar { display: none; }
+        .tools-nav-horizontal { -ms-overflow-style: none; scrollbar-width: none; }
 
         .vape-logo-inline {
             display: flex;
@@ -97,11 +94,7 @@
             flex-shrink: 0;
             margin-right: 6px;
         }
-        .vape-logo-inline img {
-            height: 42px;
-            width: auto;
-            display: block;
-        }
+        .vape-logo-inline img { height: 42px; width: auto; display: block; }
 
         .theme-toggle-btn {
             background: var(--bg-input);
@@ -123,22 +116,10 @@
         }
 
         @media (min-width: 900px) {
-            .app-header {
-                justify-content: center;
-                padding: 12px 40px;
-            }
-            .vape-logo-inline img {
-                height: 70px; 
-                margin-right: 20px;
-            }
-            .tools-nav-horizontal {
-                flex-grow: 0;
-                overflow-x: visible;
-                justify-content: center;
-            }
-            .theme-toggle-btn {
-                padding: 10px 16px;
-            }
+            .app-header { justify-content: center; padding: 12px 40px; }
+            .vape-logo-inline img { height: 70px; margin-right: 20px; }
+            .tools-nav-horizontal { flex-grow: 0; overflow-x: visible; justify-content: center; }
+            .theme-toggle-btn { padding: 10px 16px; }
         }
 
         .nav-item-btn {
@@ -157,12 +138,7 @@
             gap: 5px;
             flex-shrink: 0;
         }
-
-        .nav-item-btn:hover {
-            border-color: #cbd5e1;
-            color: var(--text-main);
-        }
-        
+        .nav-item-btn:hover { border-color: #cbd5e1; color: var(--text-main); }
         .nav-item-btn.active {
             background: var(--bg-card);
             color: var(--primary);
@@ -190,34 +166,11 @@
             width: 100%;
             transition: background-color 0.3s ease, border-color 0.3s ease;
         }
+        @media (min-width: 768px) { .window-card { padding: 40px; } }
 
-        @media (min-width: 768px) {
-            .window-card { padding: 40px; }
-        }
-
-        .window-title {
-            font-size: 24px;
-            font-weight: 800;
-            margin: 0 0 6px 0;
-            color: var(--text-main);
-            letter-spacing: -0.8px;
-        }
-        .window-desc {
-            font-size: 14px;
-            color: var(--text-muted);
-            margin-bottom: 25px;
-            line-height: 1.5;
-        }
-
-        label {
-            display: block;
-            font-size: 11px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1.2px;
-            color: var(--text-muted);
-            margin-bottom: 8px;
-        }
+        .window-title { font-size: 24px; font-weight: 800; margin: 0 0 6px 0; color: var(--text-main); letter-spacing: -0.8px; }
+        .window-desc { font-size: 14px; color: var(--text-muted); margin-bottom: 25px; line-height: 1.5; }
+        label { display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; color: var(--text-muted); margin-bottom: 8px; }
 
         .section-separator-title {
             font-size: 12px;
@@ -230,10 +183,7 @@
             letter-spacing: 1.2px;
         }
 
-        input, .select-wrapper {
-            margin-bottom: 20px;
-        }
-
+        input, .select-wrapper { margin-bottom: 20px; }
         input, select {
             width: 100%;
             background: var(--bg-input);
@@ -247,243 +197,61 @@
             outline: none;
             transition: all 0.2s, background-color 0.3s ease, border-color 0.3s ease;
         }
-        input:focus, select:focus {
-            border-color: var(--primary);
-            background: var(--bg-card);
-            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.08);
-        }
+        input:focus, select:focus { border-color: var(--primary); background: var(--bg-card); box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.08); }
 
-        .select-wrapper {
-            position: relative;
-            width: 100%;
-        }
-        .select-wrapper::after {
-            content: "▼";
-            font-size: 11px;
-            color: var(--text-muted);
-            position: absolute;
-            right: 16px;
-            top: 50%;
-            transform: translateY(-50%);
-            pointer-events: none;
-        }
+        .select-wrapper { position: relative; width: 100%; }
+        .select-wrapper::after { content: "▼"; font-size: 11px; color: var(--text-muted); position: absolute; right: 16px; top: 50%; transform: translateY(-50%); pointer-events: none; }
 
-        /* 🔍 MODULE DE RECHERCHE DIY */
-        .custom-search-area {
-            position: relative;
-            margin-bottom: 20px;
-        }
+        /* 🔍 DROP PANEL DIY */
+        .custom-search-area { position: relative; margin-bottom: 20px; }
         .custom-dropdown-panel {
-            position: absolute;
-            top: 54px;
-            left: 0;
-            width: 100%;
-            background: var(--bg-card);
-            border: 1px solid var(--border-light);
-            border-radius: 14px;
-            box-shadow: 0 12px 35px rgba(0,0,0,0.12);
-            max-height: 240px;
-            overflow-y: auto;
-            z-index: 999;
-            display: none;
-            box-sizing: border-box;
+            position: absolute; top: 54px; left: 0; width: 100%; background: var(--bg-card); border: 1px solid var(--border-light); border-radius: 14px;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.12); max-height: 240px; overflow-y: auto; z-index: 999; display: none; box-sizing: border-box;
         }
-        .custom-dropdown-row {
-            padding: 12px 16px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--text-main);
-            border-bottom: 1px solid var(--border-light);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+        .custom-dropdown-row { padding: 12px 16px; cursor: pointer; font-size: 14px; font-weight: 600; color: var(--text-main); border-bottom: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center; }
         .custom-dropdown-row:last-child { border-bottom: none; }
         .custom-dropdown-row:hover { background: var(--bg-input); color: var(--primary); }
         .custom-dropdown-row span { font-size: 11px; color: var(--text-muted); font-weight: 700; background: rgba(0,0,0,0.04); padding: 3px 8px; border-radius: 8px;}
         [data-theme="dark"] .custom-dropdown-row span { background: rgba(255,255,255,0.05); }
 
         /* PANNEAU DE RÉSULTAT */
-        .result-panel {
-            background: var(--bg-input);
-            border-radius: 20px;
-            padding: 25px;
-            margin-top: 15px;
-            border: 1px solid var(--border-light);
-            transition: background-color 0.3s ease, border-color 0.3s ease;
-        }
-        .result-panel label {
-            font-size: 11px;
-            color: var(--text-muted);
-            letter-spacing: 1.5px;
-        }
-        .result-value {
-            font-size: 38px;
-            font-weight: 900;
-            color: var(--text-main);
-            margin: 6px 0 14px 0;
-            letter-spacing: -1.5px;
-            line-height: 1.1;
-        }
-        .status-text {
-            font-size: 13px;
-            font-weight: 700;
-            text-transform: uppercase;
-            margin-bottom: 12px;
-            color: var(--secondary);
-            letter-spacing: 0.8px;
-            display: flex;
-            align-items: center;
-            gap: 7px;
-        }
+        .result-panel { background: var(--bg-input); border-radius: 20px; padding: 25px; margin-top: 15px; border: 1px solid var(--border-light); transition: background-color 0.3s ease, border-color 0.3s ease; }
+        .result-panel label { font-size: 11px; color: var(--text-muted); letter-spacing: 1.5px; }
+        .result-value { font-size: 34px; font-weight: 900; color: var(--text-main); margin: 6px 0 14px 0; letter-spacing: -1px; line-height: 1.1; }
+        .status-text { font-size: 13px; font-weight: 700; text-transform: uppercase; margin-bottom: 12px; color: var(--secondary); letter-spacing: 0.8px; display: flex; align-items: center; gap: 7px; }
         .status-text.danger { color: var(--danger); }
-        .sub-result-details {
-            font-size: 15px;
-            line-height: 1.6;
-            color: var(--text-main);
-            background: var(--bg-card);
-            padding: 14px 16px;
-            border-radius: 14px;
-            border-left: 4px solid var(--primary);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.01);
-            transition: background-color 0.3s ease;
-        }
+        .sub-result-details { font-size: 15px; line-height: 1.6; color: var(--text-main); background: var(--bg-card); padding: 14px 16px; border-radius: 14px; border-left: 4px solid var(--primary); box-shadow: 0 2px 8px rgba(0,0,0,0.01); transition: background-color 0.3s ease; }
 
-        .big-recipe-box {
-            display: none;
-            margin-top: 20px;
-            padding: 20px;
-            background: var(--bg-card);
-            border: 1px solid var(--border-light);
-            border-radius: 20px;
-            transition: background-color 0.3s ease, border-color 0.3s ease;
-        }
-        .big-recipe-title {
-            font-size: 12px;
-            font-weight: 800;
-            color: var(--text-main);
-            margin-bottom: 16px;
-            text-transform: uppercase;
-            letter-spacing: 1.2px;
-        }
-        .big-recipe-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-        }
-        .recipe-block {
-            background: var(--bg-input);
-            border: 1px solid var(--border-light);
-            border-radius: 14px;
-            padding: 16px 8px;
-            text-align: center;
-            transition: background-color 0.3s ease, border-color 0.3s ease;
-        }
-        .recipe-block-val {
-            font-size: 18px;
-            font-weight: 800;
-            color: var(--primary);
-        }
-        .recipe-block-lbl {
-            font-size: 10px;
-            font-weight: 700;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            margin-top: 6px;
-        }
+        .big-recipe-box { display: none; margin-top: 20px; padding: 20px; background: var(--bg-card); border: 1px solid var(--border-light); border-radius: 20px; transition: background-color 0.3s ease, border-color 0.3s ease; }
+        .big-recipe-title { font-size: 12px; font-weight: 800; color: var(--text-main); margin-bottom: 16px; text-transform: uppercase; letter-spacing: 1.2px; }
+        .big-recipe-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+        .recipe-block { background: var(--bg-input); border: 1px solid var(--border-light); border-radius: 14px; padding: 16px 8px; text-align: center; transition: background-color 0.3s ease, border-color 0.3s ease; }
+        .recipe-block-val { font-size: 18px; font-weight: 800; color: var(--primary); }
+        .recipe-block-lbl { font-size: 10px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-top: 6px; }
 
-        .preset-row {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-        .preset-item {
-            background: var(--bg-input);
-            border: 1px solid var(--border-light);
-            color: var(--text-main);
-            padding: 14px 10px;
-            font-size: 13px;
-            border-radius: 12px;
-            cursor: pointer;
-            font-weight: 600;
-            text-align: center;
-            transition: all 0.2s, background-color 0.3s ease, border-color 0.3s ease;
-        }
+        .preset-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 20px; }
+        .preset-item { background: var(--bg-input); border: 1px solid var(--border-light); color: var(--text-main); padding: 14px 10px; font-size: 13px; border-radius: 12px; cursor: pointer; font-weight: 600; text-align: center; transition: all 0.2s, background-color 0.3s ease, border-color 0.3s ease; }
         .preset-item:hover { border-color: #cbd5e1; }
-        .preset-item.active { 
-            background: var(--bg-card);
-            border-color: var(--primary); 
-            color: var(--primary); 
-            box-shadow: 0 4px 10px rgba(139, 92, 246, 0.06);
-        }
+        .preset-item.active { background: var(--bg-card); border-color: var(--primary); color: var(--primary); box-shadow: 0 4px 10px rgba(139, 92, 246, 0.06); }
 
-        /* 🎓 ARCHITECTURE DE L'ONGLET COACHING */
-        .coaching-section {
-            background: var(--bg-input);
-            border-radius: 16px;
-            padding: 20px;
-            margin-bottom: 20px;
-            border: 1px solid var(--border-light);
-        }
-        .coaching-section h3 {
-            margin-top: 0;
-            font-size: 16px;
-            font-weight: 800;
-            color: var(--primary);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .coaching-step {
-            background: var(--bg-card);
-            border-radius: 12px;
-            padding: 15px;
-            margin-bottom: 12px;
-            border-left: 4px solid var(--secondary);
-        }
+        /* COACHING */
+        .coaching-section { background: var(--bg-input); border-radius: 16px; padding: 20px; margin-bottom: 20px; border: 1px solid var(--border-light); }
+        .coaching-section h3 { margin-top: 0; font-size: 16px; font-weight: 800; color: var(--primary); text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 8px; }
+        .coaching-step { background: var(--bg-card); border-radius: 12px; padding: 15px; margin-bottom: 12px; border-left: 4px solid var(--secondary); }
         .coaching-step:last-child { margin-bottom: 0; }
         .coaching-step h4 { margin: 0 0 6px 0; font-size: 14px; font-weight: 700; color: var(--text-main); }
         .coaching-step p { margin: 0 0 8px 0; font-size: 13px; color: var(--text-muted); line-height: 1.4; }
-        .coaching-quote {
-            background: var(--bg-input);
-            padding: 10px 12px;
-            border-radius: 8px;
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--text-main);
-            font-style: italic;
-            margin-top: 5px;
-        }
-        .badge-method {
-            display: inline-block;
-            background: var(--primary-light);
-            color: var(--primary);
-            font-size: 10px;
-            font-weight: 800;
-            padding: 2px 6px;
-            border-radius: 4px;
-            margin-bottom: 5px;
-            text-transform: uppercase;
-        }
+        .coaching-quote { background: var(--bg-input); padding: 10px 12px; border-radius: 8px; font-size: 13px; font-weight: 600; color: var(--text-main); font-style: italic; margin-top: 5px; }
+        .badge-method { display: inline-block; background: var(--primary-light); color: var(--primary); font-size: 10px; font-weight: 800; padding: 2px 6px; border-radius: 4px; margin-bottom: 5px; text-transform: uppercase; }
 
-        footer {
-            text-align: center;
-            margin-top: auto;
-            padding: 30px 10px 20px 10px;
-            font-size: 12px;
-            color: var(--text-muted);
-        }
-
+        footer { text-align: center; margin-top: auto; padding: 30px 10px 20px 10px; font-size: 12px; color: var(--text-muted); }
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
         .hidden-tab { display: none; }
     </style>
 </head>
 <body>
 
+    <!-- 👑 HEADER -->
     <header class="app-header">
         <nav class="tools-nav-horizontal">
             <div class="vape-logo-inline">
@@ -504,33 +272,36 @@
         </nav>
     </header>
 
+    <!-- 📦 APP CONTAINER -->
     <main class="main-container">
         <div class="window-card">
             
             <div id="window-form-wrapper">
                 
+                <!-- ⚡ SÉCURITÉ ACCU -->
                 <div id="panel-cdr">
-                    <h2 class="window-title">Analyse & Recommandation Accu</h2>
-                    <div class="window-desc">Entrez la configuration du client pour trouver instantanément l'accu le plus adapté de votre stock.</div>
+                    <h2 class="window-title">Diagnostic & Fiche Technique Accu</h2>
+                    <div class="window-desc">Renseignez la configuration pour trouver l'accu idéal, ou choisissez un modèle précis pour analyser ses limites.</div>
                     
+                    <div class="section-separator-title">🔍 Option A : Saisie manuelle (Calculateur)</div>
                     <div class="grid-2">
                         <div>
                             <label>Puissance (Watts)</label>
-                            <input type="number" id="w" value="45" oninput="executeDiagnostic()">
+                            <input type="number" id="w" value="45" oninput="resetAccuSelect(); executeDiagnostic();">
                         </div>
                         <div>
                             <label>Résistance (Ohms)</label>
-                            <input type="number" id="cdrOhm" value="0.3" step="0.05" oninput="executeDiagnostic()">
+                            <input type="number" id="cdrOhm" value="0.3" step="0.05" oninput="resetAccuSelect(); executeDiagnostic();">
                         </div>
                     </div>
                     
                     <div class="grid-2">
                         <div>
-                            <label>Nombre d'accus</label>
+                            <label>Nombre d'accus de la Box</label>
                             <input type="number" id="n" value="1" min="1" oninput="executeDiagnostic()">
                         </div>
                         <div>
-                            <label>Format d'accu recherché</label>
+                            <label>Format d'accu visé</label>
                             <div class="select-wrapper">
                                 <select id="accuFormat" onchange="executeDiagnostic()">
                                     <option value="18650" selected>Format 18650</option>
@@ -539,8 +310,18 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="section-separator-title">🔋 Option B : Sélectionner un accu précis</div>
+                    <label>Fiche technique d'un modèle en Stock</label>
+                    <div class="select-wrapper">
+                        <select id="accuSelector" onchange="handleAccuSelectChange()">
+                            <option value="auto" selected>-- Laisser le site choisir l'accu idéal --</option>
+                            <!-- Rempli en JS -->
+                        </select>
+                    </div>
                 </div>
 
+                <!-- NICOTINE FUMEUR -->
                 <div id="panel-nicotine" class="hidden-tab">
                     <h2 class="window-title">Diagnostic dynamique — Nicotine</h2>
                     <div class="window-desc">Configuration personnalisée selon le profil de consommation du fumeur.</div>
@@ -566,6 +347,7 @@
                     <input type="number" id="ml" value="4" oninput="executeDiagnostic()">
                 </div>
 
+                <!-- PACK DIY RECETTE -->
                 <div id="panel-diy" class="hidden-tab">
                     <h2 class="window-title">Diagnostic dynamique — Mix DIY</h2>
                     <div class="window-desc">Sélectionnez ou recherchez un arôme pour configurer le % fabricant.</div>
@@ -573,7 +355,7 @@
                     <label>Rechercher ou Sélectionner un Arôme</label>
                     <div class="custom-search-area">
                         <div style="display: flex; gap: 8px;">
-                            <input type="text" id="diyAromeInput" placeholder="Tapez pour filtrer (ex: Ragnarok, Oni...)" oninput="filterAromeList()" onfocus="openAromeDropdown()" style="margin-bottom:0; flex-grow:1;">
+                            <input type="text" id="diyAromeInput" placeholder="Tapez pour filtrer (ex: Ragnarok...)" oninput="filterAromeList()" onfocus="openAromeDropdown()" style="margin-bottom:0; flex-grow:1;">
                             <button class="nav-item-btn" onclick="toggleAllAromes()" style="padding: 14px 16px; border-radius: 14px; background: var(--bg-input);">📋 Tout voir</button>
                         </div>
                         <div id="customDropdown" class="custom-dropdown-panel"></div>
@@ -606,6 +388,7 @@
                     </div>
                 </div>
 
+                <!-- PG/VG VISCOSITÉ -->
                 <div id="panel-pgvg" class="hidden-tab">
                     <h2 class="window-title">Diagnostic dynamique — Matériel</h2>
                     <div class="window-desc">Vérification de la viscosité idéale du jus selon l'atomiseur.</div>
@@ -623,6 +406,7 @@
                     </div>
                 </div>
 
+                <!-- ELECTRICITE VOLT TO WATT -->
                 <div id="panel-volt" class="hidden-tab">
                     <h2 class="window-title">Diagnostic dynamique — Électricité</h2>
                     <div class="window-desc">Calcul de la puissance générée selon la tension délivrée.</div>
@@ -639,6 +423,7 @@
                     <input type="number" id="vwVolt" value="3.7" step="0.1" oninput="executeDiagnostic()">
                 </div>
 
+                <!-- AUTONOMIE PUFFS -->
                 <div id="panel-auto" class="hidden-tab">
                     <h2 class="window-title">Diagnostic dynamique — Capacité</h2>
                     <div class="window-desc">Estimation mathématique de la durée de vie de la batterie.</div>
@@ -657,6 +442,7 @@
                     <input type="number" id="autoWatts" value="40" oninput="executeDiagnostic()">
                 </div>
 
+                <!-- MIX LIQUIDES -->
                 <div id="panel-mix" class="hidden-tab">
                     <h2 class="window-title">Diagnostic dynamique — Recyclage</h2>
                     <div class="window-desc">Mélange de deux liquides aux taux différents.</div>
@@ -673,6 +459,7 @@
                     </div>
                 </div>
 
+                <!-- SIMULATEUR ECONOMIE -->
                 <div id="panel-eco" class="hidden-tab">
                     <h2 class="window-title">Économies</h2>
                     <div class="window-desc">Bilan financier complet et comparatif direct.</div>
@@ -721,120 +508,95 @@
                     </div>
                 </div>
 
+                <!-- TECHNIQUES DE VENTE COMPLET -->
                 <div id="panel-coaching" class="hidden-tab">
-                    <h2 class="window-title">Techniques de Vente</h2>
-                    <div class="window-desc">Méthodes de commerce et grilles psychologiques.</div>
+                    <h2 class="window-title">🎓 École de Vente LABVAPE — Excellence de Comptoir</h2>
+                    <div class="window-desc">Grilles d'entretien opérationnelles et techniques psychologiques de conversion.</div>
                     
                     <div class="coaching-section">
-                        <h3>📋 Les 7 Étapes de la Vente (Résumé)</h3>
-                        <div style="font-size: 13px; line-height: 1.6; font-weight: 600; padding: 5px 0;">
-                            1. Accueil ➔ 2. Découverte des besoins ➔ 3. Argumentation ➔ 4. Traitement des objections ➔ 5. Conclusion de la vente ➔ 6. Vente additionnelle ➔ 7. Prise de congé et fidélisation.
+                        <h3>📋 Les 7 Étapes Fondamentales de la Vente</h3>
+                        
+                        <div class="coaching-step">
+                            <h4>1. L'Accueil (Les 20 premières secondes)</h4>
+                            <p>Sourire physique, regard franc, posture ouverte. Briser immédiatement la barrière vendeur/client.</p>
+                            <div class="coaching-quote">« Bonjour ! Installez-vous, je m'occupe de vous tout de suite. »</div>
+                        </div>
+
+                        <div class="coaching-step">
+                            <h4>2. La Découverte (La règle des 80/20)</h4>
+                            <div class="badge-method">Méthode Entonnoir</div>
+                            <p>Écouter 80% du temps, parler 20%. Utiliser exclusivement des questions ouvertes.</p>
+                            <div class="coaching-quote">« Racontez-moi votre expérience avec le tabac ? Quel type de saveurs vous fait plaisir au quotidien ? »</div>
+                        </div>
+
+                        <div class="coaching-step">
+                            <h4>3. L'Argumentation C.A.P (Caractéristiques, Avantages, Preuves)</h4>
+                            <p>Ne jamais vendre un produit brut. Lier chaque donnée technique à un bénéfice pour le client.</p>
+                            <div class="coaching-quote">« Cette box intègre un chipset intelligent (C), ce qui évite de brûler votre résistance par erreur (A), regardez c'est le modèle que j'utilise personnellement tous les jours (P). »</div>
+                        </div>
+
+                        <div class="coaching-step">
+                            <h4>4. Le Traitement des Objections (Méthode C.R.E.R)</h4>
+                            <p><strong>Centraliser - Reformuler - Élever - Rassurer.</strong> Une objection est une marque d'intérêt.</p>
+                            <div class="coaching-quote">« Je comprends tout à fait que 60€ semble être un budget au départ... Cependant, si l'on regarde votre économie de 200€ dès le premier mois, ce matériel est amorti en seulement 9 jours. »</div>
+                        </div>
+
+                        <div class="coaching-step">
+                            <h4>5. La Conclusion de la Vente (L'engagement)</h4>
+                            <p>Verrouiller par choix alternatif. Ne jamais demander "Est-ce que vous le prenez ?".</p>
+                            <div class="coaching-quote">« On part sur le modèle Noir mat plus discret ou le Gunmetal brossé ? »</div>
+                        </div>
+
+                        <div class="coaching-step">
+                            <h4>6. La Vente Additionnelle (Le panier moyen)</h4>
+                            <p>Proposer systématiquement le consommable ou l'accessoire indispensable avant d'encaisser.</p>
+                            <div class="coaching-quote">« Pour éviter de tomber en panne ce week-end, on ajoute la boîte de résistances adaptées et une protection d'accu ? »</div>
+                        </div>
+
+                        <div class="coaching-step">
+                            <h4>7. La Prise de Congé (Fidélisation)</h4>
+                            <p>Laisser une impression finale mémorable. Valoriser le choix du client.</p>
+                            <div class="coaching-quote">« Félicitations pour ce premier pas aujourd'tui. Passez au shop si vous avez la moindre question, on est là pour ça ! »</div>
                         </div>
                     </div>
 
                     <div class="coaching-section">
-                        <h3>⚡ Guide complet et Opérationnel</h3>
+                        <h3>🧠 Le Levier Psychologique S.O.N.C.A.S</h3>
+                        <p>Identifiez la typologie du client en moins de 3 minutes pour utiliser les bons mots clés :</p>
                         
-                        <div class="coaching-step">
-                            <h4>1. L'accueil</h4>
-                            <p><strong>Objectif :</strong> Mettre le client à l'aise et créer un premier contact chaleureux.</p>
-                            <p><em>Sourire, regard direct, attitude positive et ouverte.</em></p>
-                            <div class="coaching-quote">« Bonjour, bienvenue ! »</div>
+                        <div class="coaching-step" style="border-left-color: #ef4444;">
+                            <h4>Sécurité</h4>
+                            <p><strong>Mots clés :</strong> Fiable, Garanti, Certifié, Anti-fuite, Autonomie testée, Simplicité.</p>
                         </div>
-
-                        <div class="coaching-step">
-                            <h4>2. La découverte des besoins</h4>
-                            <p><strong>Objectif :</strong> Comprendre précisément et sans filtre ce que recherche le client.</p>
-                            <div class="badge-method">Méthode questions ouvertes (Conseillé)</div>
-                            <p>Évite les questions fermées où le client répond seulement par oui ou par non pour récolter un maximum d'informations.</p>
-                            <p>❌ « Vous aimez les fruités ? »<br>✅ « Quelles saveurs aimez-vous habituellement ? »</p>
-                            <div class="coaching-quote">
-                                « Que recherchez-vous aujourd'hui ? »<br>
-                                « Quel matériel utilisez-vous actuellement ? »<br>
-                                « Vous vapotez quel taux de nicotine ? »
-                            </div>
-                            <div class="badge-method" style="background:#cbd5e1; color:#475569;">Questions fermées (Pour cibler)</div>
-                            <div class="coaching-quote">
-                                « C'est pour vous ou pour offrir ? »<br>
-                                « Vous préférez les saveurs fruitées ou gourmandes ? »
-                            </div>
+                        <div class="coaching-step" style="border-left-color: #f59e0b;">
+                            <h4>Orgueil</h4>
+                            <p><strong>Mots clés :</strong> Haut de gamme, Exclusif, Édition limitée, Le meilleur du marché, Performant.</p>
                         </div>
-
-                        <div class="coaching-step">
-                            <h4>3. L'argumentation et la proposition</h4>
-                            <p><strong>Objectif :</strong> Présenter le produit parfaitement adapté aux besoins découverts.</p>
-                            <div class="badge-method">Méthode C.A.P</div>
-                            <p><strong>Caractéristique :</strong> « Cette cigarette électronique possède une batterie de 3000 mAh. »</p>
-                            <p><strong>Avantage :</strong> « Vous n'aurez pas besoin de la recharger dans la journée. »</p>
-                            <p><strong>Preuve :</strong> « C'est l'un de nos modèles les plus vendus. »</p>
+                        <div class="coaching-step" style="border-left-color: #10b981;">
+                            <h4>Nouveauté</h4>
+                            <p><strong>Mots clés :</strong> Dernier cri, Technologie OLED, Révolutionnaire, Vient de sortir, Tendance.</p>
                         </div>
-
-                        <div class="coaching-step">
-                            <h4>4. Le traitement des objections</h4>
-                            <p><strong>Objectif :</strong> Rassurer le client lorsqu'il montre des signes d'hésitation.</p>
-                            <p><em>Protocole : Reformuler l'objection ➔ Apporter une solution technique claire ➔ Vérifier que le client est pleinement rassuré.</em></p>
-                            <div class="coaching-quote">
-                                Client : « C'est un peu cher. » ou J'ai peur que ce soit trop compliqué. »
-                            </div>
+                        <div class="coaching-step" style="border-left-color: #3b82f6;">
+                            <h4>Confort</h4>
+                            <p><strong>Mots clés :</strong> Facile, Automatique, Ergonomique, Sans entretien, Léger, Remplissage rapide.</p>
                         </div>
-
-                        <div class="coaching-step">
-                            <h4>5. La conclusion de la vente</h4>
-                            <p><strong>Objectif :</strong> Obtenir l'accord ferme et naturel du client.</p>
-                            <div class="coaching-quote">
-                                « Souhaitez-vous partir sur ce modèle ? »<br>
-                                « Je vous prépare ça ? »
-                            </div>
+                        <div class="coaching-step" style="border-left-color: #8b5cf6;">
+                            <h4>Argent</h4>
+                            <p><strong>Mots clés :</strong> Économique, Rentable, Prix bas, Offre packagée, Durable, Moins cher.</p>
                         </div>
-
-                        <div class="coaching-step">
-                            <h4>6. La vente additionnelle</h4>
-                            <p><strong>Objectif :</strong> Augmenter le panier moyen en proposant un produit complémentaire utile.</p>
-                            <p><em>Consommables indispensables en vape : Résistances d'avance, E-liquides, Pyrex/Verre de remplacement, Étui de protection, Chargeur externe.</em></p>
-                            <div class="coaching-quote">« Pensez également à prendre une résistance d'avance pour éviter d'être bloqué. »</div>
-                        </div>
-
-                        <div class="coaching-step">
-                            <h4>7. La prise de congé (Fidélisation)</h4>
-                            <p><strong>Objectif :</strong> Laisser une impression mémorable et favoriser le retour du client.</p>
-                            <div class="coaching-quote">
-                                « Merci de votre visite. »<br>
-                                « N'hésitez pas à revenir si vous avez des questions. »<br>
-                                « Bonne journée à vous ! »
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="coaching-section">
-                        <h3>🧠 Grille de Lecture : La Méthode S.O.N.C.A.S</h3>
-                        <p style="font-size:13px; color:var(--text-muted); margin-top:0;">Déchiffrer la psychologie et la motivation profonde d'achat du client pour ajuster votre discours.</p>
-                        
-                        <div class="coaching-step" style="border-left-color: var(--primary);">
-                            <p><strong>S — Sécurité :</strong> Le client cherche la fiabilité absolue.<br><em>« Je veux quelque chose de fiable. »</em> ➔ <strong>Argument :</strong> Simplicité, garantie réseau, marque reconnue.</p>
-                        </div>
-                        <div class="coaching-step" style="border-left-color: var(--primary);">
-                            <p><strong>O — Orgueil :</strong> Le client cherche le prestige ou l'image.<br><em>« Je veux le meilleur modèle. »</em> ➔ <strong>Argument :</strong> Éditions limitées, haut de gamme, design, performances brutes.</p>
-                        </div>
-                        <div class="coaching-step" style="border-left-color: var(--primary);">
-                            <p><strong>N — Nouveauté :</strong> Le client cherche l'exclusivité et le changement.<br><em>« Qu'est-ce qui vient de sortir ? »</em> ➔ <strong>Argument :</strong> Nouveaux e-liquides, arrivages de boxs, nouvelles technologies.</p>
-                        </div>
-                        <div class="coaching-step" style="border-left-color: var(--primary);">
-                            <p><strong>C — Confort :</strong> Le client fuit les contraintes techniques.<br><em>« Je veux quelque chose de simple. »</em> ➔ <strong>Argument :</strong> Remplissage propre, changement de cartouche aimantée, grande autonomie.</p>
-                        </div>
-                        <div class="coaching-step" style="border-left-color: var(--primary);">
-                            <p><strong>A — Argent :</strong> Le client est ultra-sensible au prix.<br><em>« Je cherche le meilleur rapport qualité-prix. »</em> ➔ <strong>Argument :</strong> Calcul des économies massives réalisées par rapport au tabac.</p>
-                        </div>
-                        <div class="coaching-step" style="border-left-color: var(--primary);">
-                            <p><strong>S — Sympathie :</strong> Le client fonctionne au feeling humain.<br>Le client achète avant tout parce qu'il apprécie l'accueil du vendeur et l'ambiance du magasin. Écoute active.</p>
+                        <div class="coaching-step" style="border-left-color: #ec4899;">
+                            <h4>Sympathie</h4>
+                            <p><strong>Mots clés :</strong> Partage, Convivial, Plaisir, Goût incroyable, Cadeau, Communauté.</p>
                         </div>
                     </div>
                 </div>
 
+                <!-- PANNEAU DE RÉSULTATS DYNAMIQUES -->
                 <div class="result-panel" id="mainResultPanel">
                     <label id="result-label-text">Analyse de comptoir</label>
                     <div class="result-value" id="main-result-value">--</div>
                     <div class="status-text" id="main-status-text">✅ Diagnostic calculé instantanément</div>
-                    <div class="sub-result-details" id="sub-result-text">Modifiez les données ci-dessus pour voir l'analyse se mettre à jour en temps réel.</div>
+                    <div class="sub-result-details" id="sub-result-text">Modifiez les données ci-dessus pour lancer l'analyse comptoir.</div>
                     
                     <div class="big-recipe-box" id="recipe-block-view">
                         <div class="big-recipe-title">🧪 Recette à réaliser :</div>
@@ -868,130 +630,49 @@
         let currentTab = 'cdr';
         let isCoachingUnlocked = false;
 
-        // 🔋 BASE DE DONNÉES EXPERTE DES ACCUS DU MARCHÉ (18650 & 21700)
+        // 🔋 BASE DE DONNÉES EXPERTE DES ACCUS DU MARCHÉ
         const MASTER_ACCUS = [
-            { marque: "Sony / Murata", nom: "VTC5A", format: "18650", cdr: 25, mah: 2600, note: "Idéal puissance & méca" },
-            { marque: "Sony / Murata", nom: "VTC6", format: "18650", cdr: 15, mah: 3000, note: "Max autonomie sous 45W" },
-            { marque: "Molicel", nom: "P28A / P28B", format: "18650", cdr: 25, mah: 2800, note: "Le roi du 18650 actuel" },
-            { marque: "Samsung", nom: "25R", format: "18650", cdr: 20, mah: 2500, note: "La référence increvable" },
-            { marque: "Samsung", nom: "30Q", format: "18650", cdr: 15, mah: 3000, note: "Excellente autonomie" },
-            { marque: "Samsung", nom: "20S", format: "18650", cdr: 30, mah: 2000, note: "Urbain extrême / Très basse res" },
-            { marque: "Procell / Duracell", nom: "Intense 18650", format: "18650", cdr: 20, mah: 2500, note: "Qualité industrielle stable" },
-            { marque: "MXJO", nom: "Yellow 3000mAh", format: "18650", cdr: 20, mah: 3000, note: "Grand classique des shops" },
-            { marque: "Efest", nom: "Purple 3000mAh", format: "18650", cdr: 20, mah: 3000, note: "Usage polyvalent" },
+            { id: "vtc5a", marque: "Sony / Murata", nom: "VTC5A", format: "18650", cdr: 25, mah: 2600, wMax: 75, ohmMin: 0.17, note: "Idéal puissance & mods mécaniques" },
+            { id: "vtc6", marque: "Sony / Murata", nom: "VTC6", format: "18650", cdr: 15, mah: 3000, wMax: 45, ohmMin: 0.28, note: "Autonomie maximale sous 45W" },
+            { id: "p28a", marque: "Molicel", nom: "P28A / P28B", format: "18650", cdr: 25, mah: 2800, wMax: 75, ohmMin: 0.17, note: "Le meilleur accu format 18650 du marché" },
+            { id: "s25r", marque: "Samsung", nom: "25R", format: "18650", cdr: 20, mah: 2500, wMax: 60, ohmMin: 0.21, note: "La référence historique increvable" },
+            { id: "s30q", marque: "Samsung", nom: "30Q", format: "18650", cdr: 15, mah: 3000, wMax: 45, ohmMin: 0.28, note: "Excellente autonomie à basse puissance" },
+            { id: "s20s", marque: "Samsung", nom: "20S", format: "18650", cdr: 30, mah: 2000, wMax: 90, ohmMin: 0.14, note: "Puissance extrême / Très basse res" },
+            { id: "procell18650", marque: "Procell / Duracell", nom: "Intense 18650", format: "18650", cdr: 20, mah: 2500, wMax: 60, ohmMin: 0.21, note: "Stabilité industrielle haut de gamme" },
+            { id: "mxjo18650", marque: "MXJO", nom: "Yellow 3000mAh", format: "18650", cdr: 20, mah: 3000, wMax: 60, ohmMin: 0.21, note: "Grand classique des boutiques" },
             
             // 21700
-            { marque: "Molicel", nom: "P45B", format: "21700", cdr: 45, mah: 4500, note: "Le meilleur accu 21700 au monde" },
-            { marque: "Molicel", nom: "P42A", format: "21700", cdr: 40, mah: 4200, note: "Ultra performant et stable" },
-            { marque: "Samsung", nom: "40T", format: "21700", cdr: 30, mah: 4000, note: "Équilibre parfait puissance/autonomie" },
-            { marque: "Samsung", nom: "30T", format: "21700", cdr: 35, mah: 3000, note: "Puissance brute / Idéal Méca" },
-            { marque: "Samsung", nom: "50S", format: "21700", cdr: 25, mah: 5000, note: "Monstrueuse autonomie" },
-            { marque: "MXJO", nom: "Yellow 21700", format: "21700", cdr: 20, mah: 4000, note: "Parfait pour box électronique" }
+            { id: "p45b", marque: "Molicel", nom: "P45B", format: "21700", cdr: 45, mah: 4500, wMax: 135, ohmMin: 0.10, note: "Performances monstrueuses, le roi absolu" },
+            { id: "p42a", marque: "Molicel", nom: "P42A", format: "21700", cdr: 40, mah: 4200, wMax: 120, ohmMin: 0.11, note: "Extrêmement stable et performant" },
+            { id: "s40t", marque: "Samsung", nom: "40T", format: "21700", cdr: 30, mah: 4000, wMax: 90, ohmMin: 0.14, note: "Équilibre parfait puissance/autonomie" },
+            { id: "s30t", marque: "Samsung", nom: "30T", format: "21700", cdr: 35, mah: 3000, wMax: 105, ohmMin: 0.12, note: "Idéal puissance brute sur mods méca" },
+            { id: "s50s", marque: "Samsung", nom: "50S", format: "21700", cdr: 25, mah: 5000, wMax: 75, ohmMin: 0.17, note: "Capacité d'autonomie gigantesque" },
+            { id: "mxjo21700", marque: "MXJO", nom: "Yellow 21700", format: "21700", cdr: 20, mah: 4000, wMax: 60, ohmMin: 0.21, note: "Parfait pour box électronique classique" }
         ];
 
-        // 📊 PACK DES 100 ARÔMES STARS DE FRANCE
+        // 🧪 BASE DE DONNÉES INTACTE DE 100 ARÔMES ET MARQUES DU MARCHÉ
         const MASTER_AROMES = [
-            { n: "Ragnarok", b: "A&L Ultimate", p: 15 },
-            { n: "Ragnarok Primal", b: "A&L Ultimate", p: 15 },
-            { n: "Ragnarok Legend", b: "A&L Ultimate", p: 15 },
-            { n: "Oni", b: "A&L Ultimate", p: 15 },
-            { n: "Oni Sigurd", b: "A&L Ultimate", p: 15 },
-            { n: "Shinigami", b: "A&L Ultimate", p: 15 },
-            { n: "Shinigami Zero", b: "A&L Ultimate", p: 15 },
-            { n: "Valkyrie", b: "A&L Ultimate", p: 15 },
-            { n: "Valkyrie Zero", b: "A&L Ultimate", p: 15 },
-            { n: "Nagato", b: "A&L Ultimate", p: 15 },
-            { n: "Leviathan", b: "A&L Ultimate", p: 15 },
-            { n: "Bahamut", b: "A&L Ultimate", p: 15 },
-            { n: "Succube", b: "A&L Ultimate", p: 15 },
-            { n: "Phoenix", b: "A&L Ultimate", p: 15 },
-            { n: "Jiraya", b: "A&L Ultimate", p: 15 },
-            { n: "Ifrit", b: "A&L Ultimate", p: 15 },
-            { n: "Heisenberg", b: "Vampire Vape", p: 15 },
-            { n: "Pinkman", b: "Vampire Vape", p: 15 },
-            { n: "Attraction", b: "Vampire Vape", p: 15 },
-            { n: "Blood Sukka", b: "Vampire Vape", p: 15 },
-            { n: "Catapult", b: "Vampire Vape", p: 15 },
-            { n: "Red Astaire", b: "T-Juice", p: 15 },
-            { n: "Clara T", b: "T-Juice", p: 15 },
-            { n: "Colonel Boom", b: "T-Juice", p: 15 },
-            { n: "Minty T", b: "T-Juice", p: 15 },
-            { n: "Bloody Summer", b: "Fruizee", p: 15 },
-            { n: "Crazy Mango", b: "Fruizee", p: 15 },
-            { n: "Ice Mint", b: "Fruizee", p: 15 },
-            { n: "Citron Orange Mandarine", b: "Fruizee", p: 15 },
-            { n: "Purple Beach", b: "Fruizee", p: 15 },
-            { n: "Sunset Lover", b: "Fruizee", p: 15 },
-            { n: "La Chose", b: "Le French Liquide", p: 15 },
-            { n: "La Petite Chose", b: "Le French Liquide", p: 15 },
-            { n: "Re-Animator", b: "Le French Liquide", p: 10 },
-            { n: "Sub Zero", b: "Halo", p: 25 },
-            { n: "Tribeca", b: "Halo", p: 25 },
-            { n: "Prime 15", b: "Halo", p: 25 },
-            { n: "Torque 56", b: "Halo", p: 25 },
-            { n: "Lemon Tart", b: "Dinner Lady", p: 20 },
-            { n: "Corn Corn", b: "Dinner Lady", p: 20 },
-            { n: "Strawberry Bikini", b: "Dinner Lady", p: 20 },
-            { n: "Tallak", b: "Vape Institut", p: 15 },
-            { n: "Mallok", b: "Vape Institut", p: 15 },
-            { n: "Macadamia", b: "Vape Institut", p: 15 },
-            { n: "Lion's Roar", b: "Vape Institut", p: 15 },
-            { n: "Chimera", b: "Vape Institut", p: 15 },
-            { n: "Magnum", b: "Cloud's of Lolo", p: 15 },
-            { n: "Leccino", b: "Cloud's of Lolo", p: 15 },
-            { n: "Pistacchio", b: "Cloud's of Lolo", p: 15 },
-            { n: "Nougatine", b: "Cloud's of Lolo", p: 15 },
-            { n: "Caramel Beurre Salé", b: "Cloud's of Lolo", p: 15 },
-            { n: "Projet Lenny", b: "Revolute", p: 15 },
-            { n: "Projet Amiami", b: "Revolute", p: 15 },
-            { n: "Projet Drapaux", b: "Revolute", p: 15 },
-            { n: "Umani", b: "High End Revolute", p: 10 },
-            { n: "Dandy Puff", b: "High End Revolute", p: 10 },
-            { n: "Snap Pear", b: "High End Revolute", p: 10 },
-            { n: "Le Café", b: "Supervape", p: 10 },
-            { n: "Biscuit Craquant", b: "Supervape", p: 10 },
-            { n: "Cactus Citron", b: "Supervape", p: 10 },
-            { n: "Crème Brûlée", b: "Supervape", p: 12 },
-            { n: "Vanille Custard", b: "Supervape", p: 12 },
-            { n: "Poire Amandine", b: "Supervape", p: 10 },
-            { n: "Pop Corn Fondant", b: "Supervape", p: 11 },
-            { n: "Menthe Glaciale", b: "Solubarome", p: 10 },
-            { n: "Vanilla Custard", b: "Solubarome", p: 15 },
-            { n: "Fraise à la Crème", b: "Solubarome", p: 15 },
-            { n: "Poire Matinale", b: "Solubarome", p: 15 },
-            { n: "Château Haut", b: "Solubarome", p: 15 },
-            { n: "Fred Master", b: "Solubarome", p: 10 },
-            { n: "Gorilla", b: "Solubarome", p: 15 },
-            { n: "Don Cristo Original", b: "PGVG Labs", p: 20 },
-            { n: "Don Cristo Custard", b: "PGVG Labs", p: 20 },
-            { n: "Don Cristo XO", b: "PGVG Labs", p: 20 },
-            { n: "Don Cristo Coffee", b: "PGVG Labs", p: 20 },
-            { n: "Concentré Relax", b: "Eliquid France", p: 15 },
-            { n: "Concentré Supreme", b: "Eliquid France", p: 15 },
-            { n: "Strawberry Jam", b: "Monster Vape Labs", p: 20 },
-            { n: "Blueberry Jam", b: "Monster Vape Labs", p: 20 },
-            { n: "Butterscotch", b: "Jam Monster", p: 20 },
-            { n: "KTS Black", b: "KTS", p: 15 },
-            { n: "KTS Gold", b: "KTS", p: 15 },
-            { n: "Clone", b: "Swoke", p: 15 },
-            { n: "Saiyen Vapors Frozen Buhon", b: "Swoke", p: 15 },
-            { n: "Saiyen Vapors Frozen Païpaï", b: "Swoke", p: 15 },
-            { n: "Furious Cookie", b: "Moonshiners", p: 15 },
-            { n: "Big Apple", b: "Moonshiners", p: 15 },
-            { n: "Old Nuts", b: "Médiéval Vape", p: 15 },
-            { n: "La Recette Secrète", b: "Custom", p: 15 },
-            { n: "Curaçao", b: "Aroma Sense", p: 15 },
-            { n: "Guanabana", b: "Solana", p: 15 },
-            { n: "Brocéliande", b: "Flavour Power", p: 15 },
-            { n: "Macaron Framboise", b: "Flavour Power", p: 15 },
-            { n: "Le Petit Blond", b: "La Petite Vap", p: 15 },
-            { n: "Caramel vanille", b: "Solubarome", p: 15 },
-            { n: "Pink Lady", b: "Solana", p: 15 },
-            { n: "Café Gourmand", b: "Solana", p: 15 },
-            { n: "Rediz Dead", b: "Swoke", p: 15 },
-            { n: "Gamer", b: "Vape Or DIY", p: 15 },
-            { n: "Mawashi", b: "Vape Or DIY", p: 15 },
-            { n: "Kami", b: "A&L Creation", p: 10 }
+            { n: "Ragnarok", b: "A&L Ultimate", p: 15 }, { n: "Oni", b: "A&L Ultimate", p: 15 }, { n: "Shinigami", b: "A&L Ultimate", p: 15 }, { n: "Leviathan", b: "A&L Ultimate", p: 15 }, { n: "Valalk", b: "A&L Ultimate", p: 15 }, { n: "Phoenix", b: "A&L Ultimate", p: 15 }, { n: "Bahamut", b: "A&L Ultimate", p: 15 }, { n: "Succube", b: "A&L Ultimate", p: 15 }, { n: "Jiraya", b: "A&L Ultimate", p: 15 }, { n: "Nagato", b: "A&L Ultimate", p: 15 },
+            { n: "Heisenberg", b: "Vampire Vape", p: 15 }, { n: "Pinkman", b: "Vampire Vape", p: 15 }, { n: "Blood Sukka", b: "Vampire Vape", p: 15 }, { n: "All Day Grape", b: "Vampire Vape", p: 15 }, { n: "Catapult", b: "Vampire Vape", p: 15 }, { n: "Charger", b: "Vampire Vape", p: 15 }, { n: "Sweet Tobacco", b: "Vampire Vape", p: 20 }, { n: "Smooth Tobacco", b: "Vampire Vape", p: 20 },
+            { n: "Red Astaire", b: "T-Juice", p: 15 }, { n: "Clara T", b: "T-Juice", p: 15 }, { n: "Minty Jones", b: "T-Juice", p: 15 }, { n: "Colonel Boom", b: "T-Juice", p: 15 }, { n: "High Voltage", b: "T-Juice", p: 15 }, { n: "Jack the Ripple", b: "T-Juice", p: 15 },
+            { n: "La Chose", b: "Le French Liquide", p: 15 }, { n: "La Petite Chose", b: "Le French Liquide", p: 15 }, { n: "Re-Animator", b: "Le French Liquide", p: 10 }, { n: "Re-Animator II", b: "Le French Liquide", p: 10 }, { n: "Re-Animator III", b: "Le French Liquide", p: 10 },
+            { n: "Tribeca", b: "Halo", p: 25 }, { n: "SubZero", b: "Halo", p: 15 }, { n: "Prime 15", b: "Halo", p: 25 }, { n: "Torque 56", b: "Halo", p: 25 }, { n: "Freedom Juice", b: "Halo", p: 25 }, { n: "Malibu", b: "Halo", p: 20 },
+            { n: "Lemon Tart", b: "Dinner Lady", p: 20 }, { n: "Strawberry Macaroon", b: "Dinner Lady", p: 20 }, { n: "Blackberry Crumble", b: "Dinner Lady", p: 20 }, { n: "Berry Tart", b: "Dinner Lady", p: 20 }, { n: "Cola Shades", b: "Dinner Lady", p: 20 },
+            { n: "Guanabana", b: "Solana", p: 15 }, { n: "Café Gourmand", b: "Solana", p: 15 }, { n: "Broceliande", b: "Solana", p: 15 }, { n: "Malokaia", b: "Solana", p: 15 }, { n: "Ti Mang", b: "Solana", p: 15 }, { n: "Wanaka", b: "Solana", p: 15 }, { n: "Atacama", b: "Solana", p: 15 },
+            { n: "Projet Lenny", b: "Vape Or DIY", p: 15 }, { n: "Maw Gane", b: "Vape Or DIY", p: 15 }, { n: "Maw Lee", b: "Vape Or DIY", p: 15 }, { n: "Maw Tus", b: "Vape Or DIY", p: 15 },
+            { n: "Menthe Glaciale", b: "D'Lice", p: 15 }, { n: "USA Classic", b: "D'Lice", p: 15 }, { n: "Le Validé", b: "D'Lice", p: 15 }, { n: "Caramel Mou", b: "D'Lice", p: 15 },
+            { n: "Pop Corn Gourmand", b: "Supervape", p: 10 }, { n: "Biscuit Crackers", b: "Supervape", p: 10 }, { n: "Vanilla Custard", b: "Supervape", p: 12 }, { n: "Cactus Citron", b: "Supervape", p: 10 }, { n: "Poire Amandine", b: "Supervape", p: 12 }, { n: "Cappuccino", b: "Supervape", p: 10 },
+            { n: "Mangue Passion", b: "Juice Head", p: 15 }, { n: "Pastèque Fraise", b: "Juice Head", p: 15 }, { n: "Myrtille Citron", b: "Juice Head", p: 15 },
+            { n: "Pêche Abricot", b: "Cirkus", p: 15 }, { n: "Menthe Polaire", b: "Cirkus", p: 15 }, { n: "Classic FR", b: "Cirkus", p: 15 }, { n: "Absinthe Pomme", b: "Cirkus", p: 15 },
+            { n: "Don Cristo Original", b: "PGVG Labs", p: 20 }, { n: "Don Cristo XO", b: "PGVG Labs", p: 20 }, { n: "Don Cristo Pistache", b: "PGVG Labs", p: 20 }, { n: "Don Cristo Custard", b: "PGVG Labs", p: 20 },
+            { n: "Croissant Beurre", b: "La Fabrique Française", p: 20 }, { n: "Le Mille-Feuille", b: "La Fabrique Française", p: 20 }, { n: "Paris-Brest", b: "La Fabrique Française", p: 20 }, { n: "Île Flottante", b: "La Fabrique Française", p: 20 },
+            { n: "Symphonie", b: "Eliquid France", p: 10 }, { n: "Relax", b: "Eliquid France", p: 20 }, { n: "Supreme", b: "Eliquid France", p: 20 }, { n: "Famous", b: "Eliquid France", p: 20 },
+            { n: "FR-M", b: "Alfaliquid", p: 15 }, { n: "FR-4", b: "Alfaliquid", p: 15 }, { n: "Menthocalyptus", b: "Alfaliquid", p: 15 }, { n: "Vanilla Custard", b: "Alfaliquid", p: 15 },
+            { n: "Macadamia Gourmand", b: "Cloud's Of Lolo", p: 15 }, { n: "Nougatine Lecc", b: "Cloud's Of Lolo", p: 15 }, { n: "Pistachio Custard", b: "Cloud's Of Lolo", p: 15 },
+            { n: "Bounty Hunters", b: "Savourea", p: 15 }, { n: "Dictator Dulce", b: "Savourea", p: 15 }, { n: "Dictator Delirio", b: "Savourea", p: 15 }, { n: "Dictator El Presidente", b: "Savourea", p: 15 },
+            { n: "Limonade Violette", b: "Big Mouth", p: 15 }, { n: "Watermelon Bubblegum", b: "Big Mouth", p: 15 }, { n: "Nutty Elixir", b: "Big Mouth", p: 15 },
+            { n: "Ryan USA", b: "A&L Ryan", p: 10 }, { n: "Crumble Pomme", b: "Bio France", p: 15 }, { n: "Fraise Givrée", b: "Bio France", p: 15 },
+            { n: "Snake Oil", b: "Tmax Juices", p: 20 }, { n: "Kryptonite", b: "Cosmic Fog", p: 15 }, { n: "Milk & Honey", b: "Cosmic Fog", p: 15 }
         ];
 
         window.onload = function() {
@@ -999,6 +680,7 @@
             document.documentElement.setAttribute('data-theme', savedTheme);
             updateThemeButtonVisual(savedTheme);
             buildCustomDropdown(MASTER_AROMES);
+            buildAccuSelectorOptions();
             
             document.addEventListener('click', function(e) {
                 if (!e.target.closest('.custom-search-area')) {
@@ -1008,7 +690,32 @@
             executeDiagnostic();
         };
 
-        /* 🌓 LOGIQUE DU THÈME */
+        function buildAccuSelectorOptions() {
+            const selector = document.getElementById('accuSelector');
+            MASTER_ACCUS.forEach(accu => {
+                const opt = document.createElement('option');
+                opt.value = accu.id;
+                opt.innerText = `[${accu.format}] ${accu.marque} - ${accu.nom} (${accu.mah}mAh)`;
+                selector.appendChild(opt);
+            });
+        }
+
+        function handleAccuSelectChange() {
+            const selectVal = document.getElementById('accuSelector').value;
+            if (selectVal !== 'auto') {
+                const accu = MASTER_ACCUS.find(a => a.id === selectVal);
+                document.getElementById('accuFormat').value = accu.format;
+                document.getElementById('w').value = accu.wMax;
+                document.getElementById('cdrOhm').value = accu.ohmMin;
+            }
+            executeDiagnostic();
+        }
+
+        function resetAccuSelect() {
+            document.getElementById('accuSelector').value = 'auto';
+        }
+
+        /* 🌓 THÈME */
         function toggleTheme() {
             const currentTheme = document.documentElement.getAttribute('data-theme');
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
@@ -1016,59 +723,38 @@
             localStorage.setItem('labvape-theme', newTheme);
             updateThemeButtonVisual(newTheme);
         }
-
         function updateThemeButtonVisual(theme) {
-            const btn = document.getElementById('theme-button');
-            btn.innerHTML = theme === 'dark' ? '🌙 Thème Sombre' : '☀️ Thème Clair';
+            document.getElementById('theme-button').innerHTML = theme === 'dark' ? '🌙 Thème Sombre' : '☀️ Thème Clair';
         }
 
-        /* 🔐 SÉCURISATION AVANCÉE DE L'ONGLET COACHING */
+        /* 🔐 COACHING */
         function tryAccessCoaching() {
-            if (isCoachingUnlocked) {
-                switchTab('coaching');
-                return;
-            }
-            
-            const passwordAttempt = prompt("🔒 Accès Restreint — Entrez le code secret LABVAPE :");
-            if (passwordAttempt === "labvape2026") {
-                isCoachingUnlocked = true;
-                switchTab('coaching');
-            } else if (passwordAttempt !== null) {
-                alert("❌ Mot de passe incorrect. Zone protégée.");
-            }
+            if (isCoachingUnlocked) { switchTab('coaching'); return; }
+            const passwordAttempt = prompt("🔒 Code de sécurité LABVAPE :");
+            if (passwordAttempt === "labvape2026") { isCoachingUnlocked = true; switchTab('coaching'); }
         }
 
-        /* 🧪 FILTRAGE ET CONTRÔLEUR DU SÉLECTEUR DIY */
+        /* 🧪 FILTRAGE DÉROULANT ARÔMES */
         function buildCustomDropdown(list) {
-            const panel = document.getElementById('customDropdown');
-            panel.innerHTML = '';
+            const panel = document.getElementById('customDropdown'); panel.innerHTML = '';
             list.forEach(item => {
-                const row = document.createElement('div');
-                row.className = 'custom-dropdown-row';
-                row.innerHTML = `<div>${item.n} <small style="color:var(--text-muted); font-weight:normal; margin-left:5px;">${item.b}</small></div> <span>${item.p}%</span>`;
+                const row = document.createElement('div'); row.className = 'custom-dropdown-row';
+                row.innerHTML = `<div>${item.n} <small style="color:var(--text-muted);">${item.b}</small></div> <span>${item.p}%</span>`;
                 row.onclick = function() {
                     document.getElementById('diyAromeInput').value = `${item.n} (${item.b})`;
                     document.getElementById('diyAromePerc').value = item.p;
-                    panel.style.display = 'none';
-                    executeDiagnostic();
+                    panel.style.display = 'none'; executeDiagnostic();
                 };
                 panel.appendChild(row);
             });
         }
-
         function filterAromeList() {
             const val = document.getElementById('diyAromeInput').value.toLowerCase().trim();
             const panel = document.getElementById('customDropdown');
-            if(val === '') {
-                buildCustomDropdown(MASTER_AROMES);
-                panel.style.display = 'block';
-                return;
-            }
+            if(val === '') { buildCustomDropdown(MASTER_AROMES); panel.style.display = 'block'; return; }
             const filtered = MASTER_AROMES.filter(item => item.n.toLowerCase().includes(val) || item.b.toLowerCase().includes(val));
-            buildCustomDropdown(filtered);
-            panel.style.display = 'block';
+            buildCustomDropdown(filtered); panel.style.display = 'block';
         }
-
         function openAromeDropdown() { document.getElementById('customDropdown').style.display = 'block'; }
         function toggleAllAromes() {
             const panel = document.getElementById('customDropdown');
@@ -1076,69 +762,27 @@
             else { buildCustomDropdown(MASTER_AROMES); panel.style.display = 'block'; }
         }
 
-        /* 🔄 INTER-CONNECTIVITÉ ET SYNCHRO */
-        function syncCigarettes(value) {
-            document.getElementById('cigs').value = value;
-            document.getElementById('ecoCigs').value = value;
-            executeDiagnostic();
-        }
-
-        window.addEventListener('beforeunload', function (e) {
-            e.preventDefault(); e.returnValue = 'Attention : LABVAPE va être réinitialisé.';
-        });
-
-        /* 🔄 ROUTAGE DES ONGLETS */
-        function switchTab(tabId) {
-            currentTab = tabId;
-            document.querySelectorAll('.nav-item-btn').forEach(btn => btn.classList.remove('active'));
-            
-            if (tabId === 'coaching') document.getElementById('nav-coaching').classList.add('active');
-            else document.getElementById('nav-' + tabId).classList.add('active');
-            
-            document.getElementById('panel-cdr').className = 'hidden-tab';
-            document.getElementById('panel-nicotine').className = 'hidden-tab';
-            document.getElementById('panel-diy').className = 'hidden-tab';
-            document.getElementById('panel-pgvg').className = 'hidden-tab';
-            document.getElementById('panel-volt').className = 'hidden-tab';
-            document.getElementById('panel-auto').className = 'hidden-tab';
-            document.getElementById('panel-mix').className = 'hidden-tab';
-            document.getElementById('panel-eco').className = 'hidden-tab';
-            document.getElementById('panel-coaching').className = 'hidden-tab';
-            
-            document.getElementById('panel-' + tabId).className = '';
-            document.getElementById('recipe-block-view').style.display = 'none';
-
-            if (tabId === 'coaching') document.getElementById('mainResultPanel').style.display = 'none';
-            else document.getElementById('mainResultPanel').style.display = 'block';
-
-            executeDiagnostic();
-        }
-
-        function setMl(val, element) { 
-            document.getElementById('ml').value = val; 
-            document.querySelectorAll('#panel-nicotine .preset-item').forEach(i => i.classList.remove('active'));
-            element.classList.add('active'); executeDiagnostic();
-        }
-        function setVolt(val, element) { 
-            document.getElementById('vwVolt').value = val; 
-            document.querySelectorAll('#panel-volt .preset-item').forEach(i => i.classList.remove('active'));
-            element.classList.add('active'); executeDiagnostic();
-        }
-        function setSizePreset(size, element) {
-            document.getElementById('ecoSizeFlacon').value = size;
-            document.querySelectorAll('#size-preset-row .preset-item').forEach(item => item.classList.remove('active'));
-            element.classList.add('active'); executeDiagnostic();
-        }
+        function syncCigarettes(value) { document.getElementById('cigs').value = value; document.getElementById('ecoCigs').value = value; executeDiagnostic(); }
+        function setMl(val, element) { document.getElementById('ml').value = val; document.querySelectorAll('#panel-nicotine .preset-item').forEach(i => i.classList.remove('active')); element.classList.add('active'); executeDiagnostic(); }
+        function setVolt(val, element) { document.getElementById('vwVolt').value = val; document.querySelectorAll('#panel-volt .preset-item').forEach(i => i.classList.remove('active')); element.classList.add('active'); executeDiagnostic(); }
+        function setSizePreset(size, element) { document.getElementById('ecoSizeFlacon').value = size; document.querySelectorAll('#size-preset-row .preset-item').forEach(item => item.classList.remove('active')); element.classList.add('active'); executeDiagnostic(); }
         function syncResValue() {
-            const style = document.getElementById("vapestyle").value;
-            const resInput = document.getElementById("resval");
-            if(style === "dl") resInput.value = "0.2";
-            else if(style === "rdl") resInput.value = "0.5";
-            else if(style === "mtl") resInput.value = "1.2";
+            const style = document.getElementById("vapestyle").value; const resInput = document.getElementById("resval");
+            if(style === "dl") resInput.value = "0.2"; else if(style === "rdl") resInput.value = "0.5"; else if(style === "mtl") resInput.value = "1.2";
             executeDiagnostic();
         }
 
-        /* 🧮 ALGORITHME AVANCÉ DE COMPTOIR */
+        /* 🔄 CHANGEMENT D'ONGLET */
+        function switchTab(tabId) {
+            currentTab = tabId; document.querySelectorAll('.nav-item-btn').forEach(btn => btn.classList.remove('active'));
+            if (tabId === 'coaching') document.getElementById('nav-coaching').classList.add('active'); else document.getElementById('nav-' + tabId).classList.add('active');
+            document.getElementById('panel-cdr').className = document.getElementById('panel-nicotine').className = document.getElementById('panel-diy').className = document.getElementById('panel-pgvg').className = document.getElementById('panel-volt').className = document.getElementById('panel-auto').className = document.getElementById('panel-mix').className = document.getElementById('panel-eco').className = document.getElementById('panel-coaching').className = 'hidden-tab';
+            document.getElementById('panel-' + tabId).className = ''; document.getElementById('recipe-block-view').style.display = 'none';
+            if (tabId === 'coaching') document.getElementById('mainResultPanel').style.display = 'none'; else document.getElementById('mainResultPanel').style.display = 'block';
+            executeDiagnostic();
+        }
+
+        /* 🧮 CALCULS COMPTOIR */
         function executeDiagnostic() {
             try {
                 const labelText = document.getElementById('result-label-text');
@@ -1150,49 +794,55 @@
 
                 if (currentTab === 'coaching') return;
 
-                // ⚡ NOUVEL ALGORITHME SÉCURITÉ & ANALYSE DE COMPTOIR ACCU
                 if (currentTab === 'cdr') {
-                    labelText.innerText = "Accu recommandé pour le client :";
-                    
                     let w = parseFloat(document.getElementById("w").value) || 0;
                     let ohm = parseFloat(document.getElementById("cdrOhm").value) || 0;
                     let n = parseInt(document.getElementById("n").value) || 1;
                     let formatTarget = document.getElementById("accuFormat").value;
+                    let selectedAccuId = document.getElementById("accuSelector").value;
                     
-                    // Calcul de l'ampérage requis basé sur la tension critique de décharge (3.2V)
                     let ampsByWatts = (n > 0) ? (w / (3.2 * n * 0.9)) : 0;
-                    
-                    // Calcul bypass alternatif (Loi d'ohm pure si utilisation sur Mod Méca régulé à 4.2V plein accu)
                     let ampsByOhm = (ohm > 0) ? (4.2 / ohm) : 0;
-                    
-                    // Prendre la contrainte la plus haute pour une sécurité absolue en boutique
                     let finalAmpsRequired = Math.max(ampsByWatts, ampsByOhm);
                     
-                    // Recherche dynamique de l'accu idéal dans le stock virtuel
                     let accuTrouve = null;
-                    let candidates = MASTER_ACCUS.filter(a => a.format === formatTarget && a.cdr >= finalAmpsRequired);
                     
-                    // Trier pour proposer l'accu qui a le plus de mAh (donc un meilleur confort pour le client)
-                    if (candidates.length > 0) {
-                        candidates.sort((a, b) => b.mah - a.mah);
-                        accuTrouve = candidates[0];
+                    if (selectedAccuId === 'auto') {
+                        labelText.innerText = "Modèle conseillé pour cette configuration :";
+                        let candidates = MASTER_ACCUS.filter(a => a.format === formatTarget && a.cdr >= finalAmpsRequired);
+                        if (candidates.length > 0) {
+                            candidates.sort((a, b) => b.mah - a.mah);
+                            accuTrouve = candidates[0];
+                        } else {
+                            accuTrouve = MASTER_ACCUS.filter(a => a.format === formatTarget).sort((a, b) => b.cdr - a.cdr)[0];
+                        }
                     } else {
-                        // Si aucun accu ne supporte une telle décharge, on prend le plus puissant existant dans le format
-                        let allInFormat = MASTER_ACCUS.filter(a => a.format === formatTarget);
-                        allInFormat.sort((a, b) => b.cdr - a.cdr);
-                        accuTrouve = allInFormat[0];
+                        labelText.innerText = "Analyse technique du modèle sélectionné :";
+                        accuTrouve = MASTER_ACCUS.find(a => a.id === selectedAccuId);
                     }
 
-                    if (finalAmpsRequired > 45) {
-                        mainVal.innerHTML = "<span style='color:var(--danger);'>Limite Dépassée</span>";
-                        statusTxt.innerText = "🚨 CONFIGURATION ULTRA DANGEREUSE"; 
-                        statusTxt.className = "status-text danger";
-                        subTxt.innerHTML = "Le courant requis est de <strong>" + finalAmpsRequired.toFixed(1) + " A</strong>. Aucun accu du marché ne peut assumer cette charge seul de manière continue.";
-                    } else if (accuTrouve) {
-                        mainVal.innerHTML = accuTrouve.marque + " — " + accuTrouve.nom;
-                        statusTxt.innerText = "✅ ACCU VALIDÉ (" + accuTrouve.cdr + "A CONTINU — " + accuTrouve.mah + "mAh)";
-                        statusTxt.className = "status-text";
-                        subTxt.innerHTML = "<strong>Conseil comptoir :</strong> " + accuTrouve.note + ". Intensité max requise calculée : <strong>" + finalAmpsRequired.toFixed(2) + " A</strong>.";
+                    if (accuTrouve) {
+                        let boxWMax = accuTrouve.wMax * n;
+                        mainVal.innerHTML = `${accuTrouve.marque} — ${accuTrouve.nom}`;
+                        
+                        let safeCondition = (finalAmpsRequired <= (accuTrouve.cdr * n));
+                        
+                        if (!safeCondition || finalAmpsRequired > 45) {
+                            statusTxt.innerText = "🚨 ALERTE : ACCU SURCHARGÉ / SÉCURITÉ COMPROMISE";
+                            statusTxt.className = "status-text danger";
+                        } else {
+                            statusTxt.innerText = `✅ CONFIGURATION EN TOUTE SÉCURITÉ (${accuTrouve.format})`;
+                            statusTxt.className = "status-text";
+                        }
+                        
+                        subTxt.innerHTML = `
+                            <strong>Fiche Technique Détaillée :</strong><br>
+                            • Autonomie Nominale : <strong>${accuTrouve.mah} mAh</strong><br>
+                            • Courant de Décharge Continu (CDR) : <strong>${accuTrouve.cdr} A</strong><br>
+                            • Puissance Maximale de Sécurité : <strong>${boxWMax} Watts</strong> (Pour ${n} accu(s))<br>
+                            • Limite Basse de Résistance : <strong>${accuTrouve.ohmMin} Ω</strong><br>
+                            <small style="display:block; margin-top:8px; color:var(--text-muted);">Intensité calculée requise : ${finalAmpsRequired.toFixed(2)} A</small>
+                        `;
                     }
                 } 
                 else if (currentTab === 'nicotine') {
@@ -1203,11 +853,8 @@
                     let besoin = cigs * nicPerCig; let taux = besoin / ml;
                     mainVal.innerText = taux.toFixed(1) + " mg/ml";
                     subTxt.innerText = "Besoin quotidien total assimilé : " + besoin.toFixed(0) + " mg";
-                    if (taux > 20) {
-                        statusTxt.innerText = "⚠️ SEUIL LIMITE LÉGAL TPD (20MG) DÉPASSÉ"; statusTxt.className = "status-text danger";
-                    } else {
-                        statusTxt.innerText = "✅ RECOMMANDATION CONFORME"; statusTxt.className = "status-text";
-                    }
+                    statusTxt.innerText = taux > 20 ? "⚠️ SEUIL LIMITE LÉGAL TPD DÉPASSÉ" : "✅ RECOMMANDATION CONFORME";
+                    statusTxt.className = taux > 20 ? "status-text danger" : "status-text";
                 } 
                 else if (currentTab === 'diy') {
                     labelText.innerText = "Proportions globales du pack :";
@@ -1218,7 +865,6 @@
                     let boostMl = (nic * total) / boostTaux; let aromeMl = total * (perc / 100);
                     let baseMl = total - boostMl - aromeMl; if(baseMl < 0) baseMl = 0;
                     mainVal.innerText = (boostMl/10).toFixed(1) + " Booster(s)";
-                    subTxt.innerText = "Préparation complète basée sur vos objectifs de dosage comptoir.";
                     statusTxt.innerText = "🧪 CALCUL RECETTE DIY VALIDE"; statusTxt.className = "status-text";
                     document.getElementById('rec-booster').innerText = boostMl.toFixed(1) + " ml";
                     document.getElementById('rec-arome').innerText = aromeMl.toFixed(1) + " ml";
@@ -1228,22 +874,17 @@
                 else if (currentTab === 'pgvg') {
                     labelText.innerText = "Viscosité idéale préconisée :";
                     let res = parseFloat(document.getElementById("resval").value) || 0.5;
-                    if (res < 0.4) {
-                        mainVal.innerText = "30 PG / 70 VG"; subTxt.innerText = "Résistance basse. Nécessite un liquide épais à fort taux de VG pour éviter les fuites.";
-                    } else if (res >= 0.4 && res <= 0.8) {
-                        mainVal.innerText = "50 PG / 50 VG"; subTxt.innerText = "Équilibre universel. Parfait pour la majorité des pods et clearomiseurs du marché actuel.";
-                    } else {
-                        mainVal.innerText = "70 PG / 30 VG"; subTxt.innerText = "Résistance Haute (MTL). Exige des e-liquides fluides pour écarter le Dry-Hit.";
-                    }
+                    if (res < 0.4) { mainVal.innerText = "30 PG / 70 VG"; subTxt.innerText = "Résistance basse. Jus épais à fort taux de VG nécessaire."; } 
+                    else if (res >= 0.4 && res <= 0.8) { mainVal.innerText = "50 PG / 50 VG"; subTxt.innerText = "Équilibre universel, compatible tous pods et clearomiseurs."; } 
+                    else { mainVal.innerText = "70 PG / 30 VG"; subTxt.innerText = "Résistance Haute (MTL). Exige un e-liquide très fluide."; }
                     statusTxt.innerText = "📊 ANALYSE MATÉRIEL FINALISÉE"; statusTxt.className = "status-text";
                 }
                 else if (currentTab === 'volt') {
                     labelText.innerText = "Puissance électrique calculée :";
                     let ohm = parseFloat(document.getElementById("vwOhm").value) || 1;
                     let volt = parseFloat(document.getElementById("vwVolt").value) || 0;
-                    let watts = (volt * volt) / ohm; let amps = volt / ohm;
-                    mainVal.innerText = watts.toFixed(1) + " Watts";
-                    subTxt.innerText = "Intensité du courant générée sur le coil : " + amps.toFixed(2) + " A";
+                    mainVal.innerText = ((volt * volt) / ohm).toFixed(1) + " Watts";
+                    subTxt.innerText = "Intensité générée sur le coil : " + (volt / ohm).toFixed(2) + " A";
                     statusTxt.innerText = "🔌 ÉQUILIBRE LOI D'OHM VALIDE"; statusTxt.className = "status-text";
                 }
                 else if (currentTab === 'auto') {
@@ -1251,41 +892,28 @@
                     let mah = parseFloat(document.getElementById("autoMah").value) || 0;
                     let nb = parseInt(document.getElementById("autoNb").value) || 1;
                     let w = parseFloat(document.getElementById("autoWatts").value) || 1;
-                    let totalJoules = ((mah * nb) / 1000) * 3.7 * 3600; let puffs = totalJoules / (w * 3);
-                    mainVal.innerText = Math.floor(puffs) + " Puffs";
-                    subTxt.innerText = "Basé sur des bouffées moyennes calibrées à 3 secondes d'activation continue.";
+                    mainVal.innerText = Math.floor((((mah * nb) / 1000) * 3.7 * 3600) / (w * 3)) + " Puffs";
+                    subTxt.innerText = "Calcul basé sur des bouffées moyennes calibrées à 3 secondes d'activation continue.";
                     statusTxt.innerText = "🔋 DIAGNOSTIC ÉNERGÉTIQUE EFFECTUÉ"; statusTxt.className = "status-text";
                 }
                 else if (currentTab === 'mix') {
                     labelText.innerText = "Résultat du mélange de taux :";
-                    let vA = parseFloat(document.getElementById("mixVolA").value) || 0;
-                    let nA = parseFloat(document.getElementById("mixNicA").value) || 0;
-                    let vB = parseFloat(document.getElementById("mixVolB").value) || 0;
-                    let nB = parseFloat(document.getElementById("mixNicB").value) || 0;
-                    let vTot = vA + vB; let nFinal = vTot > 0 ? (((vA * nA) + (vB * nB)) / vTot) : 0;
-                    mainVal.innerText = nFinal.toFixed(1) + " mg/ml";
-                    subTxt.innerText = "Volume final total obtenu après mixage en fiole : " + vTot.toFixed(0) + " ml";
+                    let vA = parseFloat(document.getElementById("mixVolA").value) || 0; let nA = parseFloat(document.getElementById("mixNicA").value) || 0;
+                    let vB = parseFloat(document.getElementById("mixVolB").value) || 0; let nB = parseFloat(document.getElementById("mixNicB").value) || 0;
+                    let vTot = vA + vB; mainVal.innerText = (vTot > 0 ? (((vA * nA) + (vB * nB)) / vTot) : 0).toFixed(1) + " mg/ml";
+                    subTxt.innerText = "Volume final total obtenu après mélange : " + vTot.toFixed(0) + " ml";
                     statusTxt.innerText = "🔀 HOMOGÉNÉISATION DU PRÉSET TERMINÉE"; statusTxt.className = "status-text";
                 }
                 else if (currentTab === 'eco') {
                     labelText.innerText = "Économies financières nettes :";
-                    let cigs = parseInt(document.getElementById("ecoCigs").value) || 0;
-                    let priceTabacPaquet = parseFloat(document.getElementById("ecoPrice").value) || 0;
-                    let flaconsMois = parseInt(document.getElementById("ecoNbFlacons").value) || 0;
-                    let priceFlaconVape = parseFloat(document.getElementById("ecoPriceFlacon").value) || 0;
-                    let resMois = parseFloat(document.getElementById("ecoResPerMonth").value) || 0;
-                    let kitInitial = parseFloat(document.getElementById("ecoKitInitial").value) || 0;
-                    
+                    let cigs = parseInt(document.getElementById("ecoCigs").value) || 0; let priceTabacPaquet = parseFloat(document.getElementById("ecoPrice").value) || 0;
+                    let flaconsMois = parseInt(document.getElementById("ecoNbFlacons").value) || 0; let priceFlaconVape = parseFloat(document.getElementById("ecoPriceFlacon").value) || 0;
+                    let resMois = parseFloat(document.getElementById("ecoResPerMonth").value) || 0; let kitInitial = parseFloat(document.getElementById("ecoKitInitial").value) || 0;
                     let coutTabacAnnuel = (cigs / 20) * priceTabacPaquet * 365.25;
-                    let coutVapeAnnuelRecurrent = ((flaconsMois * priceFlaconVape) + resMois) * 12;
-                    let coutVapeTotalAnnuel = coutVapeAnnuelRecurrent + kitInitial;
-                    
-                    let gainNetParAn = coutTabacAnnuel - coutVapeTotalAnnuel; 
+                    let gainNetParAn = coutTabacAnnuel - (((flaconsMois * priceFlaconVape) + resMois) * 12 + kitInitial);
                     if(gainNetParAn < 0) gainNetParAn = 0;
-                    let gainNetParMois = gainNetParAn / 12;
-                    
-                    mainVal.innerHTML = gainNetParAn.toFixed(2) + " € / an<br><span style='font-size: 14px; font-weight: 600; color: var(--text-muted); opacity: 0.8;'>Soit " + gainNetParMois.toFixed(2) + " € / mois</span>";
-                    subTxt.innerHTML = "Félicitations ! Ce bilan prend en compte vos consommables ainsi que l'amortissement de votre kit initial de départ.";
+                    mainVal.innerHTML = gainNetParAn.toFixed(2) + " € / an<br><span style='font-size: 14px; font-weight: 600; color: var(--text-muted);'>Soit " + (gainNetParAn / 12).toFixed(2) + " € / mois</span>";
+                    subTxt.innerHTML = "Ce bilan prend en compte vos consommables ainsi que l'amortissement de votre kit initial.";
                     statusTxt.innerText = "💰 BILAN FINANCIER ANNUEL RENTABLE"; statusTxt.className = "status-text";
                 }
             } catch (e) { console.error(e); }
