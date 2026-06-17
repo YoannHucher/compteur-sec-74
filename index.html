@@ -248,7 +248,7 @@
         .coaching-quote { background: var(--bg-input); padding: 10px 12px; border-radius: 8px; font-size: 13px; font-weight: 600; color: var(--text-main); font-style: italic; margin-top: 5px; }
         .badge-method { display: inline-block; background: var(--primary-light); color: var(--primary); font-size: 10px; font-weight: 800; padding: 2px 6px; border-radius: 4px; margin-bottom: 5px; text-transform: uppercase; }
 
-        footer { text-align: center; margin-top: auto; padding: 30px 10px 20px 10px; font-size: 12px; color: var(--text-muted); }
+        .margin-bottom-spacer { margin-bottom: 25px; }
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
         .hidden-tab { display: none; }
     </style>
@@ -278,14 +278,14 @@
 
     <!-- 📦 APP CONTAINER -->
     <main class="main-container">
-        <div class="window-card">
+        <div class="window-card margin-bottom-spacer">
             
             <div id="window-form-wrapper">
                 
                 <!-- ⚡ SÉCURITÉ ACCU EXPÉRIMENTALE -->
                 <div id="panel-cdr">
                     <h2 class="window-title">Analyse des Limites Électriques de l'Accu</h2>
-                    <div class="window-desc">Entrez les configurations de vape du matériel du client pour générer instantanément la fiche technique minimale requise.</div>
+                    <div class="window-desc">Entrez la configuration du matériel du client pour générer instantanément la fiche technique minimale requise.</div>
                     
                     <div class="grid-2">
                         <div>
@@ -616,10 +616,6 @@
         </div>
     </main>
 
-    <footer>
-        © 2026 LABVAPE — Système intelligent d'aide à la vente — Propriété exclusive du réseau.
-    </footer>
-
     <script>
         let currentTab = 'cdr';
         let isCoachingUnlocked = false;
@@ -742,43 +738,42 @@
 
                 if (currentTab === 'coaching') return;
 
-                // ⚡ CALCULATEUR DE CRITÈRES ACCU (SANS FIXER DE MODÈLE)
+                // ⚡ CALCULATEUR CORRIGÉ DE CRITÈRES ACCU (AVEC PRISE EN COMPTE DU NOMBRE D'ACCUS)
                 if (currentTab === 'cdr') {
-                    labelText.innerText = "Critère de Décharge Continu (CDR) minimum exigé :";
+                    labelText.innerText = "Courant de Décharge Continu (CDR) requis par accu :";
                     
                     let w = parseFloat(document.getElementById("w").value) || 0;
                     let ohm = parseFloat(document.getElementById("cdrOhm").value) || 0;
                     let n = parseInt(document.getElementById("n").value) || 1;
+                    if (n < 1) n = 1;
                     let formatTarget = document.getElementById("accuFormat").value;
                     
-                    // Calculs physiques basés sur la Loi d'Ohm et la décharge de tension sous coupure électronique (3.2V)
-                    let ampsByWatts = (n > 0) ? (w / (3.2 * n * 0.9)) : 0;
+                    // Calculs physiques : la puissance totale est répartie équitablement sur le nombre d'accus (n)
+                    let ampsByWatts = (w / (3.2 * n * 0.9)); 
                     let ampsByOhm = (ohm > 0) ? (4.2 / ohm) : 0;
                     
-                    // L'intensité critique requise pour la cellule
+                    // L'intensité requise par cellule individuelle
                     let finalAmpsRequired = Math.max(ampsByWatts, ampsByOhm);
                     
-                    // Calcul de la recommandation d'autonomie standard selon la charge de puissance
+                    // Calcul de la recommandation d'autonomie standard selon l'intensité demandée
                     let recommendedMah = 3000;
                     if (finalAmpsRequired > 20) recommendedMah = (formatTarget === "21700") ? 4200 : 2600;
                     if (finalAmpsRequired > 30) recommendedMah = (formatTarget === "21700") ? 3000 : 2000;
 
-                    mainVal.innerHTML = `${finalAmpsRequired.toFixed(1)} A <span style='font-size:18px; font-weight:600; color:var(--text-muted);'>minimum</span>`;
+                    mainVal.innerHTML = `${finalAmpsRequired.toFixed(1)} A <span style='font-size:16px; font-weight:600; color:var(--text-muted);'>/ accu</span>`;
                     
                     if (finalAmpsRequired > 45) {
-                        statusTxt.innerText = "🚨 ATTENTION : CONFIGURATION COMPROMISE / DANGER EXTRÊME";
+                        statusTxt.innerText = "🚨 SÉCURITÉ : CONFIGURATION MATÉRIEL HORS LIMITES";
                         statusTxt.className = "status-text danger";
-                        subTxt.innerHTML = `Le courant demandé (<strong>${finalAmpsRequired.toFixed(2)} A</strong>) dépasse les limites physiques des accumulateurs actuels du marché (Max 45A continus en 21700). Réduisez la puissance ou augmentez la valeur de la résistance.`;
+                        subTxt.innerHTML = `Le courant demandé (<strong>${finalAmpsRequired.toFixed(2)} A</strong>) par cellule est trop élevé pour les technologies d'accus actuelles. Diminuez la puissance ou passez sur une box possédant plus d'accus.`;
                     } else {
-                        statusTxt.innerText = `✅ SPÉCIFICATIONS CALCULÉES AVEC SÉCURITÉ (${formatTarget})`;
+                        statusTxt.innerText = `✅ CONFIGURATION EN TOUTE SÉCURITÉ (${formatTarget})`;
                         statusTxt.className = "status-text";
                         subTxt.innerHTML = `
-                            <strong>Caractéristiques de l'accu à installer :</strong><br>
-                            • Capacité de Décharge Continue (CDR) : <strong>${finalAmpsRequired.toFixed(1)} Ampères</strong> (ou plus).<br>
-                            • Autonomie conseillée pour ce profil : ~<strong>${recommendedMah} mAh</strong>.<br>
-                            • Puissance maximale supportable pour ce profil : <strong>${w} Watts</strong>.<br>
-                            • Résistance de coupure limite basse tolérée : <strong>${ohm} Ω</strong>.<br>
-                            <small style="display:block; margin-top:8px; color:var(--text-muted);">Calcul de sécurité basé sur ${n} accu(s) en série/régulé avec un rendement de chipset à 90%.</small>
+                            • Capacité de Décharge Continue (CDR) minimale : <strong>${finalAmpsRequired.toFixed(1)} A</strong> par accu.<br>
+                            • Autonomie recommandée par cellule : ~<strong>${recommendedMah} mAh</strong>.<br>
+                            • Puissance maximale supportée : <strong>${w} Watts</strong>.<br>
+                            • Résistance limite basse tolérée : <strong>${ohm} Ω</strong>.
                         `;
                     }
                 } 
