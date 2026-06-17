@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>LABVAPE — Système Intelligent d'Aide à la Vente</title>
     
-    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-GBBR4R84TT"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -14,7 +13,6 @@
         gtag('config', 'G-GBBR4R84TT');
     </script>
 
-    <!-- LOGO DE L'ONGLET NAVIGATEUR (FAVICON) -->
     <link rel="icon" type="image/png" href="https://i.ibb.co/qMfNgwV9/Logo-Labvape.png">
 
     <style>
@@ -486,7 +484,6 @@
 </head>
 <body>
 
-    <!-- 👑 HEADER -->
     <header class="app-header">
         <nav class="tools-nav-horizontal">
             <div class="vape-logo-inline">
@@ -507,36 +504,43 @@
         </nav>
     </header>
 
-    <!-- 📦 APP MODULE CONTAINER -->
     <main class="main-container">
         <div class="window-card">
             
             <div id="window-form-wrapper">
                 
-                <!-- CDR ACCU -->
                 <div id="panel-cdr">
-                    <h2 class="window-title">Diagnostic dynamique — Accu</h2>
-                    <div class="window-desc">Analyse en temps réel de la décharge d'ampères et conformité de sécurité.</div>
+                    <h2 class="window-title">Analyse & Recommandation Accu</h2>
+                    <div class="window-desc">Entrez la configuration du client pour trouver instantanément l'accu le plus adapté de votre stock.</div>
                     
-                    <label>Puissance demandée (Watts)</label>
-                    <input type="number" id="w" value="50" oninput="executeDiagnostic()">
-                    
-                    <label>Tension mini par accu (Volts)</label>
-                    <input type="number" id="v" value="3.2" step="0.1" oninput="executeDiagnostic()">
+                    <div class="grid-2">
+                        <div>
+                            <label>Puissance (Watts)</label>
+                            <input type="number" id="w" value="45" oninput="executeDiagnostic()">
+                        </div>
+                        <div>
+                            <label>Résistance (Ohms)</label>
+                            <input type="number" id="cdrOhm" value="0.3" step="0.05" oninput="executeDiagnostic()">
+                        </div>
+                    </div>
                     
                     <div class="grid-2">
                         <div>
                             <label>Nombre d'accus</label>
-                            <input type="number" id="n" value="1" oninput="executeDiagnostic()">
+                            <input type="number" id="n" value="1" min="1" oninput="executeDiagnostic()">
                         </div>
                         <div>
-                            <label>CDR Continu (A)</label>
-                            <input type="number" id="c" value="25" oninput="executeDiagnostic()">
+                            <label>Format d'accu recherché</label>
+                            <div class="select-wrapper">
+                                <select id="accuFormat" onchange="executeDiagnostic()">
+                                    <option value="18650" selected>Format 18650</option>
+                                    <option value="21700">Format 21700</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- NICOTINE FUMEUR -->
                 <div id="panel-nicotine" class="hidden-tab">
                     <h2 class="window-title">Diagnostic dynamique — Nicotine</h2>
                     <div class="window-desc">Configuration personnalisée selon le profil de consommation du fumeur.</div>
@@ -562,7 +566,6 @@
                     <input type="number" id="ml" value="4" oninput="executeDiagnostic()">
                 </div>
 
-                <!-- PACK DIY RECETTE -->
                 <div id="panel-diy" class="hidden-tab">
                     <h2 class="window-title">Diagnostic dynamique — Mix DIY</h2>
                     <div class="window-desc">Sélectionnez ou recherchez un arôme pour configurer le % fabricant.</div>
@@ -603,7 +606,6 @@
                     </div>
                 </div>
 
-                <!-- PG/VG VISCOSITÉ -->
                 <div id="panel-pgvg" class="hidden-tab">
                     <h2 class="window-title">Diagnostic dynamique — Matériel</h2>
                     <div class="window-desc">Vérification de la viscosité idéale du jus selon l'atomiseur.</div>
@@ -621,7 +623,6 @@
                     </div>
                 </div>
 
-                <!-- ELECTRICITE VOLT TO WATT -->
                 <div id="panel-volt" class="hidden-tab">
                     <h2 class="window-title">Diagnostic dynamique — Électricité</h2>
                     <div class="window-desc">Calcul de la puissance générée selon la tension délivrée.</div>
@@ -638,7 +639,6 @@
                     <input type="number" id="vwVolt" value="3.7" step="0.1" oninput="executeDiagnostic()">
                 </div>
 
-                <!-- AUTONOMIE PUFFS -->
                 <div id="panel-auto" class="hidden-tab">
                     <h2 class="window-title">Diagnostic dynamique — Capacité</h2>
                     <div class="window-desc">Estimation mathématique de la durée de vie de la batterie.</div>
@@ -657,7 +657,6 @@
                     <input type="number" id="autoWatts" value="40" oninput="executeDiagnostic()">
                 </div>
 
-                <!-- MIX LIQUIDES -->
                 <div id="panel-mix" class="hidden-tab">
                     <h2 class="window-title">Diagnostic dynamique — Recyclage</h2>
                     <div class="window-desc">Mélange de deux liquides aux taux différents.</div>
@@ -674,7 +673,6 @@
                     </div>
                 </div>
 
-                <!-- SIMULATEUR ECONOMIE -->
                 <div id="panel-eco" class="hidden-tab">
                     <h2 class="window-title">Économies</h2>
                     <div class="window-desc">Bilan financier complet et comparatif direct.</div>
@@ -723,7 +721,6 @@
                     </div>
                 </div>
 
-                <!-- 🎓 PANNEAU SECRET : TECHNIQUES DE VENTE PROTEGEES -->
                 <div id="panel-coaching" class="hidden-tab">
                     <h2 class="window-title">Techniques de Vente</h2>
                     <div class="window-desc">Méthodes de commerce et grilles psychologiques.</div>
@@ -777,7 +774,7 @@
                             <p><strong>Objectif :</strong> Rassurer le client lorsqu'il montre des signes d'hésitation.</p>
                             <p><em>Protocole : Reformuler l'objection ➔ Apporter une solution technique claire ➔ Vérifier que le client est pleinement rassuré.</em></p>
                             <div class="coaching-quote">
-                                Client : « C'est un peu cher. » ou « J'ai peur que ce soit trop compliqué. »
+                                Client : « C'est un peu cher. » ou J'ai peur que ce soit trop compliqué. »
                             </div>
                         </div>
 
@@ -833,14 +830,12 @@
                     </div>
                 </div>
 
-                <!-- PANNEAU DE RÉSULTATS DYNAMIQUES -->
                 <div class="result-panel" id="mainResultPanel">
                     <label id="result-label-text">Analyse de comptoir</label>
                     <div class="result-value" id="main-result-value">--</div>
                     <div class="status-text" id="main-status-text">✅ Diagnostic calculé instantanément</div>
                     <div class="sub-result-details" id="sub-result-text">Modifiez les données ci-dessus pour voir l'analyse se mettre à jour en temps réel.</div>
                     
-                    <!-- BLOC RECETTE DIY -->
                     <div class="big-recipe-box" id="recipe-block-view">
                         <div class="big-recipe-title">🧪 Recette à réaliser :</div>
                         <div class="big-recipe-grid">
@@ -872,6 +867,27 @@
     <script>
         let currentTab = 'cdr';
         let isCoachingUnlocked = false;
+
+        // 🔋 BASE DE DONNÉES EXPERTE DES ACCUS DU MARCHÉ (18650 & 21700)
+        const MASTER_ACCUS = [
+            { marque: "Sony / Murata", nom: "VTC5A", format: "18650", cdr: 25, mah: 2600, note: "Idéal puissance & méca" },
+            { marque: "Sony / Murata", nom: "VTC6", format: "18650", cdr: 15, mah: 3000, note: "Max autonomie sous 45W" },
+            { marque: "Molicel", nom: "P28A / P28B", format: "18650", cdr: 25, mah: 2800, note: "Le roi du 18650 actuel" },
+            { marque: "Samsung", nom: "25R", format: "18650", cdr: 20, mah: 2500, note: "La référence increvable" },
+            { marque: "Samsung", nom: "30Q", format: "18650", cdr: 15, mah: 3000, note: "Excellente autonomie" },
+            { marque: "Samsung", nom: "20S", format: "18650", cdr: 30, mah: 2000, note: "Urbain extrême / Très basse res" },
+            { marque: "Procell / Duracell", nom: "Intense 18650", format: "18650", cdr: 20, mah: 2500, note: "Qualité industrielle stable" },
+            { marque: "MXJO", nom: "Yellow 3000mAh", format: "18650", cdr: 20, mah: 3000, note: "Grand classique des shops" },
+            { marque: "Efest", nom: "Purple 3000mAh", format: "18650", cdr: 20, mah: 3000, note: "Usage polyvalent" },
+            
+            // 21700
+            { marque: "Molicel", nom: "P45B", format: "21700", cdr: 45, mah: 4500, note: "Le meilleur accu 21700 au monde" },
+            { marque: "Molicel", nom: "P42A", format: "21700", cdr: 40, mah: 4200, note: "Ultra performant et stable" },
+            { marque: "Samsung", nom: "40T", format: "21700", cdr: 30, mah: 4000, note: "Équilibre parfait puissance/autonomie" },
+            { marque: "Samsung", nom: "30T", format: "21700", cdr: 35, mah: 3000, note: "Puissance brute / Idéal Méca" },
+            { marque: "Samsung", nom: "50S", format: "21700", cdr: 25, mah: 5000, note: "Monstrueuse autonomie" },
+            { marque: "MXJO", nom: "Yellow 21700", format: "21700", cdr: 20, mah: 4000, note: "Parfait pour box électronique" }
+        ];
 
         // 📊 PACK DES 100 ARÔMES STARS DE FRANCE
         const MASTER_AROMES = [
@@ -1001,7 +1017,6 @@
             updateThemeButtonVisual(newTheme);
         }
 
-        /* METTRE À JOUR LE TEXTE DU BOUTON DE THÈME */
         function updateThemeButtonVisual(theme) {
             const btn = document.getElementById('theme-button');
             btn.innerHTML = theme === 'dark' ? '🌙 Thème Sombre' : '☀️ Thème Clair';
@@ -1059,18 +1074,6 @@
             const panel = document.getElementById('customDropdown');
             if(panel.style.display === 'block') { panel.style.display = 'none'; } 
             else { buildCustomDropdown(MASTER_AROMES); panel.style.display = 'block'; }
-        }
-        function handleAromeSelection() {
-            const inputVal = document.getElementById('diyAromeInput').value;
-            const percInput = document.getElementById('diyAromePerc');
-            if (inputVal.includes('—')) {
-                const parts = inputVal.split('—');
-                if (parts.length > 1) {
-                    const extractedNum = parseInt(parts[1].trim());
-                    if (!isNaN(extractedNum)) percInput.value = extractedNum;
-                }
-            }
-            executeDiagnostic();
         }
 
         /* 🔄 INTER-CONNECTIVITÉ ET SYNCHRO */
@@ -1135,7 +1138,7 @@
             executeDiagnostic();
         }
 
-        /* 🧮 CALCULATEUR ALGORITHMIQUE DE COMPTOIR */
+        /* 🧮 ALGORITHME AVANCÉ DE COMPTOIR */
         function executeDiagnostic() {
             try {
                 const labelText = document.getElementById('result-label-text');
@@ -1147,20 +1150,49 @@
 
                 if (currentTab === 'coaching') return;
 
+                // ⚡ NOUVEL ALGORITHME SÉCURITÉ & ANALYSE DE COMPTOIR ACCU
                 if (currentTab === 'cdr') {
-                    labelText.innerText = "Courant de décharge requis :";
+                    labelText.innerText = "Accu recommandé pour le client :";
+                    
                     let w = parseFloat(document.getElementById("w").value) || 0;
-                    let v = parseFloat(document.getElementById("v").value) || 3.2;
+                    let ohm = parseFloat(document.getElementById("cdrOhm").value) || 0;
                     let n = parseInt(document.getElementById("n").value) || 1;
-                    let c = parseFloat(document.getElementById("c").value) || 0;
-                    let amps = (v > 0 && n > 0) ? (w / (v * n * 0.9)) : 0;
-                    let maxCdr = c * n;
-                    mainVal.innerText = amps.toFixed(2) + " A";
-                    subTxt.innerText = "Capacité de décharge max disponible : " + maxCdr.toFixed(2) + " A";
-                    if (amps > maxCdr && maxCdr > 0) {
-                        statusTxt.innerText = "🚨 DANGER : SEUIL DE L'ACCU SURPASSÉ"; statusTxt.className = "status-text danger";
+                    let formatTarget = document.getElementById("accuFormat").value;
+                    
+                    // Calcul de l'ampérage requis basé sur la tension critique de décharge (3.2V)
+                    let ampsByWatts = (n > 0) ? (w / (3.2 * n * 0.9)) : 0;
+                    
+                    // Calcul bypass alternatif (Loi d'ohm pure si utilisation sur Mod Méca régulé à 4.2V plein accu)
+                    let ampsByOhm = (ohm > 0) ? (4.2 / ohm) : 0;
+                    
+                    // Prendre la contrainte la plus haute pour une sécurité absolue en boutique
+                    let finalAmpsRequired = Math.max(ampsByWatts, ampsByOhm);
+                    
+                    // Recherche dynamique de l'accu idéal dans le stock virtuel
+                    let accuTrouve = null;
+                    let candidates = MASTER_ACCUS.filter(a => a.format === formatTarget && a.cdr >= finalAmpsRequired);
+                    
+                    // Trier pour proposer l'accu qui a le plus de mAh (donc un meilleur confort pour le client)
+                    if (candidates.length > 0) {
+                        candidates.sort((a, b) => b.mah - a.mah);
+                        accuTrouve = candidates[0];
                     } else {
-                        statusTxt.innerText = "✅ CONFIGURATION SÉCURISÉE"; statusTxt.className = "status-text";
+                        // Si aucun accu ne supporte une telle décharge, on prend le plus puissant existant dans le format
+                        let allInFormat = MASTER_ACCUS.filter(a => a.format === formatTarget);
+                        allInFormat.sort((a, b) => b.cdr - a.cdr);
+                        accuTrouve = allInFormat[0];
+                    }
+
+                    if (finalAmpsRequired > 45) {
+                        mainVal.innerHTML = "<span style='color:var(--danger);'>Limite Dépassée</span>";
+                        statusTxt.innerText = "🚨 CONFIGURATION ULTRA DANGEREUSE"; 
+                        statusTxt.className = "status-text danger";
+                        subTxt.innerHTML = "Le courant requis est de <strong>" + finalAmpsRequired.toFixed(1) + " A</strong>. Aucun accu du marché ne peut assumer cette charge seul de manière continue.";
+                    } else if (accuTrouve) {
+                        mainVal.innerHTML = accuTrouve.marque + " — " + accuTrouve.nom;
+                        statusTxt.innerText = "✅ ACCU VALIDÉ (" + accuTrouve.cdr + "A CONTINU — " + accuTrouve.mah + "mAh)";
+                        statusTxt.className = "status-text";
+                        subTxt.innerHTML = "<strong>Conseil comptoir :</strong> " + accuTrouve.note + ". Intensité max requise calculée : <strong>" + finalAmpsRequired.toFixed(2) + " A</strong>.";
                     }
                 } 
                 else if (currentTab === 'nicotine') {
@@ -1252,7 +1284,6 @@
                     if(gainNetParAn < 0) gainNetParAn = 0;
                     let gainNetParMois = gainNetParAn / 12;
                     
-                    // 💰 AFFICHAGE MODIFIÉ : Annuel en gros, mensuel en tout petit
                     mainVal.innerHTML = gainNetParAn.toFixed(2) + " € / an<br><span style='font-size: 14px; font-weight: 600; color: var(--text-muted); opacity: 0.8;'>Soit " + gainNetParMois.toFixed(2) + " € / mois</span>";
                     subTxt.innerHTML = "Félicitations ! Ce bilan prend en compte vos consommables ainsi que l'amortissement de votre kit initial de départ.";
                     statusTxt.innerText = "💰 BILAN FINANCIER ANNUEL RENTABLE"; statusTxt.className = "status-text";
